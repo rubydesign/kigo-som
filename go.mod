@@ -1,4 +1,4 @@
-module kigo-som/v2
+module kigo-som
 
 go 1.25.6
 
