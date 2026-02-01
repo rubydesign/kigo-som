@@ -1,6 +1,8 @@
-grammar SOM;
+grammar Som;
+/*
+generate at root with: antlr4  -Dlanguage=Go parser/Som.g4
 
-/* This parser accepts valid programs adhering to the following grammar. Comments
+This parser accepts valid programs adhering to the following grammar. Comments
 and white space are not dealt with in the grammar. Names of non-terminals begin
 with a lower-case letter; terminals, with an upper-case one. */
 
