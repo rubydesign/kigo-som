@@ -4,19 +4,20 @@ import (
 	"github.com/antlr4-go/antlr/v4"
   "kigo-som/parser"
 	"os"
+  "log"
 )
 
-type Visitor struct {
-  *parser.BaseSomVisitor
-}
-
 type SomVisitor struct {
-    parser.SomVisitor
+    parser.BaseSomVisitor
 }
 
 func (v *SomVisitor) VisitClassdef(ctx *parser.ClassdefContext) interface{} {
-
-    return ctx
+  log.Println("Classdef visited")
+  return v.VisitChildren(ctx)
+}
+func (v *SomVisitor) VisitSuperclass(ctx *parser.SuperclassContext) interface{} {
+  log.Println("Superclass visited")
+  return v.VisitChildren(ctx)
 }
 
 func main() {
@@ -31,7 +32,8 @@ func main() {
 
   // To use:
   visitor := &SomVisitor{}
-  result := visitor.Visit(tree).(int)
-  result = result - 1
+
+  tree.Accept(visitor)
+
   return
 }
