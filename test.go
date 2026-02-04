@@ -7,17 +7,17 @@ import (
   "log"
 )
 
-type SomVisitor struct {
-    parser.BaseSomVisitor
+type Classdef struct{
+  Name  string
+//  Super string
 }
 
-func (v *SomVisitor) VisitClassdef(ctx *parser.ClassdefContext) interface{} {
-  log.Println("Classdef visited")
-  return v.VisitChildren(ctx)
-}
-func (v *SomVisitor) VisitSuperclass(ctx *parser.SuperclassContext) interface{} {
-  log.Println("Superclass visited")
-  return v.VisitChildren(ctx)
+func  MakeClassdef(ctx *parser.ClassdefContext) (*Classdef )  {
+  //superclazz := ctx.Superclass()
+  name := ctx.Identifier().GetText()
+  log.Println("Classdef Make: " , name)
+  clazz := &Classdef{name}
+  return clazz
 }
 
 func main() {
@@ -27,13 +27,8 @@ func main() {
   p := parser.NewSomParser(stream)
 	p.AddErrorListener(antlr.NewDiagnosticErrorListener(true))
 
+  ret := MakeClassdef(p.Classdef().(*parser.ClassdefContext))
 
-  tree := p.Classdef()
-
-  // To use:
-  visitor := &SomVisitor{}
-
-  tree.Accept(visitor)
-
+  log.Println("return = " , ret)
   return
 }
