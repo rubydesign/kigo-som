@@ -5,21 +5,31 @@ import (
   "kigo-som/parser"
 	"os"
   "log"
+  "reflect"
 )
 
 type Classdef struct{
   Name  string
   Super string
+  Instances []string
 }
 
+func AddInstanceNames( ctx *parser.ClassdefContext , clazz *Classdef){
+  instances  := ctx.InstanceFields().AllVariable()
+  for value := range instances {
+    inst  := instances[value].(*parser.VariableContext)
+    log.Println("Name + type" , inst , reflect.TypeOf(inst))
+    name := inst.GetText()
+    clazz.Instances = append(clazz.Instances , name)
+  }
+}
 func  ClassdefFromContext(ctx *parser.ClassdefContext) (*Classdef )  {
   name := ctx.Identifier().GetText()
   superclazz := ctx.Superclass().Identifier()
   super_name := ""
   if superclazz != nil { super_name = superclazz.GetText() }
-
-  log.Println("super  " , super_name)
-  clazz := &Classdef{name , super_name}
+  clazz := &Classdef{name , super_name ,  make([]string, 0, 3) }
+  AddInstanceNames(ctx , clazz)
   return clazz
 }
 
