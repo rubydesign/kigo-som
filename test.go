@@ -4,32 +4,64 @@ import (
 	"github.com/antlr4-go/antlr/v4"
   "kigo-som/parser"
 	"os"
-  "log"
-  "reflect"
+	"log"
+	"reflect"
 )
+
+type Method struct{
+	Pattern string
+}
 
 type Classdef struct{
   Name  string
   Super string
-  Instances []string
+  Instance_variables []string
+	Instance_methods   []*Method
+}
+
+func MakeMethodFromContext(ctx *parser.MethodContext) (*Method)  {
+	pattern := ctx.Pattern()
+	if unary := pattern.UnaryPattern() ; unary != nil {
+		log.Println("Unary" , unary , reflect.TypeOf(unary))
+	} else if keyword := pattern.KeywordPattern() ; keyword != nil {
+		log.Println("Keyword" , keyword, reflect.TypeOf(keyword))
+	} else if binary := pattern.BinaryPattern() ; binary != nil {
+		log.Println("Binary" , binary , reflect.TypeOf(binary))
+	} else {
+		log.Println("Unknown type" , pattern , reflect.TypeOf(pattern))
+		panic(1)
+	}
+
+	return nil
+}
+
+func AddMethods( ctx *parser.ClassdefContext , clazz *Classdef){
+	var methods_ctx []parser.IMethodContext = ctx.AllMethod()
+	log.Println("No of methods" , len(methods_ctx))
+	for value := range methods_ctx {
+		method_ctx  := methods_ctx[value].(*parser.MethodContext)
+		method := MakeMethodFromContext(method_ctx)
+		clazz.Instance_methods = append(clazz.Instance_methods , method)
+  }
 }
 
 func AddInstanceNames( ctx *parser.ClassdefContext , clazz *Classdef){
   instances  := ctx.InstanceFields().AllVariable()
   for value := range instances {
     inst  := instances[value].(*parser.VariableContext)
-    log.Println("Name + type" , inst , reflect.TypeOf(inst))
     name := inst.GetText()
-    clazz.Instances = append(clazz.Instances , name)
+    clazz.Instance_variables = append(clazz.Instance_variables , name)
   }
 }
+
 func  ClassdefFromContext(ctx *parser.ClassdefContext) (*Classdef )  {
   name := ctx.Identifier().GetText()
   superclazz := ctx.Superclass().Identifier()
   super_name := ""
   if superclazz != nil { super_name = superclazz.GetText() }
-  clazz := &Classdef{name , super_name ,  make([]string, 0, 3) }
+	clazz := &Classdef{name , super_name ,  make([]string, 0, 3) , make([]*Method, 0, 3)}
   AddInstanceNames(ctx , clazz)
+	AddMethods(ctx , clazz)
   return clazz
 }
 
