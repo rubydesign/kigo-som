@@ -1,5 +1,3 @@
-transferable# KiGo-SOM
-
 ## An experiment to run OO code fast
 
 This time using SOM as input and Go as output. With the hope to reach a decent
@@ -61,13 +59,12 @@ Objects have instance variables, but also indexed data. How to represent this
 
 ## Parser
 
-The first step is to build a parser, and test it against
-som-st. I prefer to use a generator and ideally one that generates go code and
-doesn't construct it on the fly, so i think it'll be gocc. That will produce
-a general level AST.
+The first step was to build a parser, and test it against
+SOM. I prefer to use a generator and ideally one that generates go code and
+doesn't construct it on the fly, so i use antlr4, as there is a g4
+file in the SOM repository.
 
-It seems c-som has a bnf like definition of som's language, called sol (simple
-object language)
+Now the parser is done, i am writing cst and converting the antlr nodes.
 
 ## General intermediate representation (gir)
 
