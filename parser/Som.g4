@@ -1,6 +1,7 @@
 grammar Som;
 /*
-generate at root with: antlr4  -Dlanguage=Go parser/Som.g4
+generate at root with: antlr4  -no-visitor -no-listener -Dlanguage=Go parser/Som.g4
+
 
 This parser accepts valid programs adhering to the following grammar. Comments
 and white space are not dealt with in the grammar. Names of non-terminals begin
