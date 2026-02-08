@@ -8,25 +8,79 @@ import (
 	"reflect"
 )
 
+type Calling struct{
+	name string
+}
+
 type Method struct{
-	Pattern string
+	pattern string
+	calling *Calling
 }
 
 type Classdef struct{
-  Name  string
-  Super string
-  Instance_variables []string
-	Instance_methods   []*Method
+	name  string
+	super string
+	instance_variables []string
+	instance_methods   []*Method
+}
+
+func MakeUnarySelector(ctx *parser.UnaryPatternContext) (*Calling) {
+	name := ctx.UnarySelector().Identifier().GetText()
+//	log.Println("Unary" , name , reflect.TypeOf(name))
+	return &Calling{name}
+}
+
+func MakeBinarySelector(ctx *parser.BinaryPatternContext) (*Calling) {
+	sel := ctx.BinarySelector()
+
+	var binary antlr.TerminalNode
+	var name string
+	// seems i am missing something, silly way to do a switch, or just store the darn op
+	if binary = sel.Or(); binary != nil {
+		name = binary.GetText()
+	} else if binary = sel.Comma(); binary != nil {
+		name = binary.GetText()
+	} else if binary = sel.Minus(); binary != nil {
+		name = binary.GetText()
+	} else if binary = sel.Equal(); binary != nil {
+		name = binary.GetText()
+	} else if binary = sel.Not(); binary != nil {
+		name = binary.GetText()
+	} else if binary = sel.And(); binary != nil {
+		name = binary.GetText()
+	} else if binary = sel.Star(); binary != nil {
+		name = binary.GetText()
+	} else if binary = sel.Div(); binary != nil {
+		name = binary.GetText()
+	} else if binary = sel.Mod(); binary != nil {
+		name = binary.GetText()
+	} else if binary = sel.Plus(); binary != nil {
+		name = binary.GetText()
+	} else if binary = sel.More(); binary != nil {
+		name = binary.GetText()
+	} else if binary = sel.Less(); binary != nil {
+		name = binary.GetText()
+	} else if binary = sel.At(); binary != nil {
+		name = binary.GetText()
+	} else if binary = sel.Per(); binary != nil {
+		name = binary.GetText()
+	} else if binary = sel.OperatorSequence(); binary != nil {
+		panic( "double op not impemented")
+		name = binary.GetText()
+	} else { panic(1) }
+
+//log.Println("Context Unary" , unary , reflect.TypeOf(unary))
+	return &Calling{name}
 }
 
 func MakeMethodFromContext(ctx *parser.MethodContext) (*Method)  {
 	pattern := ctx.Pattern()
 	if unary := pattern.UnaryPattern() ; unary != nil {
-		log.Println("Unary" , unary , reflect.TypeOf(unary))
-	} else if keyword := pattern.KeywordPattern() ; keyword != nil {
-		log.Println("Keyword" , keyword, reflect.TypeOf(keyword))
+		MakeUnarySelector(unary.(*parser.UnaryPatternContext))
 	} else if binary := pattern.BinaryPattern() ; binary != nil {
-		log.Println("Binary" , binary , reflect.TypeOf(binary))
+		MakeBinarySelector(binary.(*parser.BinaryPatternContext))
+	} else if keyword := pattern.KeywordPattern() ; keyword != nil {
+		log.Println("Context Keyword" , keyword, reflect.TypeOf(keyword))
 	} else {
 		log.Println("Unknown type" , pattern , reflect.TypeOf(pattern))
 		panic(1)
@@ -41,16 +95,16 @@ func AddMethods( ctx *parser.ClassdefContext , clazz *Classdef){
 	for value := range methods_ctx {
 		method_ctx  := methods_ctx[value].(*parser.MethodContext)
 		method := MakeMethodFromContext(method_ctx)
-		clazz.Instance_methods = append(clazz.Instance_methods , method)
+		clazz.instance_methods = append(clazz.instance_methods , method)
   }
 }
 
 func AddInstanceNames( ctx *parser.ClassdefContext , clazz *Classdef){
   instances  := ctx.InstanceFields().AllVariable()
   for value := range instances {
-    inst  := instances[value].(*parser.VariableContext)
-    name := inst.GetText()
-    clazz.Instance_variables = append(clazz.Instance_variables , name)
+		inst  := instances[value].(*parser.VariableContext)
+		name := inst.GetText()
+		clazz.instance_variables = append(clazz.instance_variables , name)
   }
 }
 
