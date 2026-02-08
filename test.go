@@ -8,13 +8,9 @@ import (
 	"reflect"
 )
 
-type Calling struct{
-	name string
-}
-
 type Method struct{
-	pattern string
-	calling *Calling
+	calling string
+	locals []string
 }
 
 type Classdef struct{
@@ -24,15 +20,14 @@ type Classdef struct{
 	instance_methods   []*Method
 }
 
-func MakeUnarySelector(ctx *parser.UnaryPatternContext) (*Calling) {
+func MakeUnarySelector(ctx *parser.UnaryPatternContext) (string) {
 	name := ctx.UnarySelector().Identifier().GetText()
 //	log.Println("Unary" , name , reflect.TypeOf(name))
-	return &Calling{name}
+	return name
 }
 
-func MakeBinarySelector(ctx *parser.BinaryPatternContext) (*Calling) {
+func MakeBinarySelector(ctx *parser.BinaryPatternContext) (string) {
 	sel := ctx.BinarySelector()
-
 	var binary antlr.TerminalNode
 	var name string
 	// seems i am missing something, silly way to do a switch, or just store the darn op
@@ -70,11 +65,11 @@ func MakeBinarySelector(ctx *parser.BinaryPatternContext) (*Calling) {
 	} else {
 		panic("Unknown operator type")
 	}
-//log.Println("Context Unary" , unary , reflect.TypeOf(unary))
-	return &Calling{name}
+	//log.Println("Context Unary" , name , reflect.TypeOf(name))
+	return name
 }
 
-func MakeKeywordSelector(ctx *parser.KeywordPatternContext) (*Calling) {
+func MakeKeywordSelector(ctx *parser.KeywordPatternContext) (string) {
 	all := ""
 	for keyword_idx := range ctx.AllKeyword() {
 		keyword_ctx := ctx.Keyword(keyword_idx)
@@ -82,24 +77,35 @@ func MakeKeywordSelector(ctx *parser.KeywordPatternContext) (*Calling) {
 		all += name
 	}
 	//log.Println("Ctx" , all , reflect.TypeOf(all))
-	return &Calling{all}
+	return all
 }
 
-func MakeMethodFromContext(ctx *parser.MethodContext) (*Method)  {
+func MakeSelector(ctx *parser.MethodContext) (string) {
+	calling := ""
 	pattern := ctx.Pattern()
 	if unary := pattern.UnaryPattern() ; unary != nil {
-		MakeUnarySelector(unary.(*parser.UnaryPatternContext))
+		calling = MakeUnarySelector(unary.(*parser.UnaryPatternContext))
 	} else if binary := pattern.BinaryPattern() ; binary != nil {
-		MakeBinarySelector(binary.(*parser.BinaryPatternContext))
+		calling = MakeBinarySelector(binary.(*parser.BinaryPatternContext))
 	} else if keyword := pattern.KeywordPattern() ; keyword != nil {
 		//log.Println("Context Keyword" , keyword, reflect.TypeOf(keyword))
-		MakeKeywordSelector(keyword.(*parser.KeywordPatternContext))
+		calling = MakeKeywordSelector(keyword.(*parser.KeywordPatternContext))
 	} else {
 		log.Println("Unknown type" , pattern , reflect.TypeOf(pattern))
 		panic(1)
 	}
+	return calling
+}
 
-	return nil
+func MakeLocals(ctx *parser.MethodContext) ([]string) {
+
+	return make([]string ,0 ,3)
+}
+
+func MakeMethodFromContext(ctx *parser.MethodContext) (*Method)  {
+	calling := MakeSelector(ctx)
+	locals := MakeLocals(ctx)
+	return &Method{ calling , locals}
 }
 
 func AddMethods( ctx *parser.ClassdefContext , clazz *Classdef){
