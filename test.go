@@ -67,10 +67,22 @@ func MakeBinarySelector(ctx *parser.BinaryPatternContext) (*Calling) {
 	} else if binary = sel.OperatorSequence(); binary != nil {
 		panic( "double op not impemented")
 		name = binary.GetText()
-	} else { panic(1) }
-
+	} else {
+		panic("Unknown operator type")
+	}
 //log.Println("Context Unary" , unary , reflect.TypeOf(unary))
 	return &Calling{name}
+}
+
+func MakeKeywordSelector(ctx *parser.KeywordPatternContext) (*Calling) {
+	all := ""
+	for keyword_idx := range ctx.AllKeyword() {
+		keyword_ctx := ctx.Keyword(keyword_idx)
+		name := keyword_ctx.Keyword().GetText()
+		all += name
+	}
+	//log.Println("Ctx" , all , reflect.TypeOf(all))
+	return &Calling{all}
 }
 
 func MakeMethodFromContext(ctx *parser.MethodContext) (*Method)  {
@@ -80,7 +92,8 @@ func MakeMethodFromContext(ctx *parser.MethodContext) (*Method)  {
 	} else if binary := pattern.BinaryPattern() ; binary != nil {
 		MakeBinarySelector(binary.(*parser.BinaryPatternContext))
 	} else if keyword := pattern.KeywordPattern() ; keyword != nil {
-		log.Println("Context Keyword" , keyword, reflect.TypeOf(keyword))
+		//log.Println("Context Keyword" , keyword, reflect.TypeOf(keyword))
+		MakeKeywordSelector(keyword.(*parser.KeywordPatternContext))
 	} else {
 		log.Println("Unknown type" , pattern , reflect.TypeOf(pattern))
 		panic(1)
