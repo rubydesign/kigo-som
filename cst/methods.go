@@ -8,15 +8,17 @@ import (
 )
 
 type BlockBody struct {
-  locals []string
 }
 
-// is just brackets and a BlockContent
-// So what we call MethodBlock the parser calls BlockContent
-// skipping a beat, uuh
+
+type BlockContents struct {
+  locals []string
+  block_body *BlockBody
+}
+
 type MethodBlock struct {
   primitive bool
-  block_body *BlockBody
+  block_contents *BlockContents
 }
 
 type Method struct{
@@ -114,14 +116,18 @@ func MakeLocals(ctx parser.ILocalDefsContext) ([]string) {
   return locals
 }
 
-func MakeBlockBody(ctx *parser.MethodBlockContext) (*BlockBody) {
+func MakeBlockBody(ctx *parser.BlockContentsContext) (*BlockBody) {
+  block_ctx := ctx.BlockBody()
+  log.Println("block_ctx" , block_ctx , reflect.TypeOf(block_ctx))
+  return nil
+}
+
+func MakeBlockContents(ctx *parser.MethodBlockContext) (*BlockContents) {
   content_ctx := ctx.BlockContents()
-  if content_ctx == nil { panic(" cant happen")}
   locals_ctx := content_ctx.LocalDefs()
   locals := MakeLocals(locals_ctx)
-  block_ctx := content_ctx.BlockBody()
-  log.Println("block_ctx" , block_ctx , reflect.TypeOf(block_ctx))
-  return &BlockBody{ locals }
+  block_body := MakeBlockBody(content_ctx.(*parser.BlockContentsContext))
+  return &BlockContents{ locals , block_body }
 }
 
 func MakeBlockOrPrimitive(ctx *parser.MethodContext) (*MethodBlock) {
@@ -131,8 +137,8 @@ func MakeBlockOrPrimitive(ctx *parser.MethodContext) (*MethodBlock) {
     return &MethodBlock{ true , nil }
   }
   method_block := ctx.MethodBlock()
-  block_body := MakeBlockBody( method_block.(*parser.MethodBlockContext) )
-  return &MethodBlock{ false , block_body }
+  block_contents := MakeBlockContents( method_block.(*parser.MethodBlockContext) )
+  return &MethodBlock{ false , block_contents }
 }
 
 func MakeMethodFromContext(ctx *parser.MethodContext) (*Method)  {
