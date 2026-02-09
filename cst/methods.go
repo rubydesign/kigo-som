@@ -7,9 +7,21 @@ import (
     "reflect"
 )
 
+type BlockBody struct {
+  locals []string
+}
+
+// is just brackets and a BlockContent
+// So what we call MethodBlock the parser calls BlockContent
+// skipping a beat, uuh
+type MethodBlock struct {
+  primitive bool
+  block_body *BlockBody
+}
+
 type Method struct{
 	calling string
-	locals []string
+  method_block *MethodBlock
 }
 
 
@@ -58,7 +70,6 @@ func MakeBinarySelector(ctx *parser.BinaryPatternContext) (string) {
 	} else {
 		panic("Unknown operator type")
 	}
-	//log.Println("Context Unary" , name , reflect.TypeOf(name))
 	return name
 }
 
@@ -90,13 +101,28 @@ func MakeSelector(ctx *parser.MethodContext) (string) {
 	return calling
 }
 
-func MakeLocals(ctx *parser.MethodContext) ([]string) {
 
-	return make([]string ,0 ,3)
+func MakeBlockBody(ctx *parser.MethodBlockContext) (*BlockBody) {
+  content_ctx = ctx.BlockContents()
+  if content_ctx == nil { panic(" cant happen")}
+  
+  return &BlockBody{ nil}
+}
+
+func MakeBlockOrPrimitive(ctx *parser.MethodContext) (*MethodBlock) {
+
+  if primitive := ctx.Primitive() ; primitive != nil {
+//    log.Println("Primitive" , primitive.GetText() , reflect.TypeOf(primitive))
+    return &MethodBlock{ true , nil }
+  }
+  method_block := ctx.MethodBlock()
+  log.Println("MethodBlock" , method_block , reflect.TypeOf(method_block))
+  block_body := MakeBlockBody( method_block.(*parser.MethodBlockContext) )
+  return &MethodBlock{ false , block_body }
 }
 
 func MakeMethodFromContext(ctx *parser.MethodContext) (*Method)  {
 	calling := MakeSelector(ctx)
-	locals := MakeLocals(ctx)
-	return &Method{ calling , locals}
+  method_block := MakeBlockOrPrimitive(ctx)
+  return &Method{ calling , method_block}
 }
