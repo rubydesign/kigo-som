@@ -7,7 +7,12 @@ import (
     "reflect"
 )
 
+type Expression struct {
+  exp string
+}
+
 type BlockBody struct {
+  exit *Expression
 }
 
 
@@ -103,7 +108,6 @@ func MakeSelector(ctx *parser.MethodContext) (string) {
 	return calling
 }
 
-
 func MakeLocals(ctx parser.ILocalDefsContext) ([]string) {
   locals := make([]string , 0 , 3)
   if ctx != nil {
@@ -116,10 +120,20 @@ func MakeLocals(ctx parser.ILocalDefsContext) ([]string) {
   return locals
 }
 
+func MakeExpression(ctx *parser.ExpressionContext) (*Expression) {
+  return nil
+}
+
 func MakeBlockBody(ctx *parser.BlockContentsContext) (*BlockBody) {
   block_ctx := ctx.BlockBody()
-  log.Println("block_ctx" , block_ctx , reflect.TypeOf(block_ctx))
-  return nil
+  result_ctx := block_ctx.Result()
+  var result_exp *Expression
+  if result_ctx != nil {
+    expression_ctx := result_ctx.Expression()
+    result_exp = MakeExpression( expression_ctx.(*parser.ExpressionContext) )
+    log.Println("result_exp" , result_exp , reflect.TypeOf(result_exp))
+  }
+  return &BlockBody{ result_exp }
 }
 
 func MakeBlockContents(ctx *parser.MethodBlockContext) (*BlockContents) {
