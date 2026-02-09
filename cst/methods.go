@@ -102,11 +102,26 @@ func MakeSelector(ctx *parser.MethodContext) (string) {
 }
 
 
+func MakeLocals(ctx parser.ILocalDefsContext) ([]string) {
+  locals := make([]string , 0 , 3)
+  if ctx != nil {
+    for i := range ctx.AllVariable()  {
+      variable := ctx.Variable(i).GetText()
+      locals = append( locals , variable )
+//      log.Println("variable" , variable , reflect.TypeOf(variable))
+    }
+  }
+  return locals
+}
+
 func MakeBlockBody(ctx *parser.MethodBlockContext) (*BlockBody) {
-  content_ctx = ctx.BlockContents()
+  content_ctx := ctx.BlockContents()
   if content_ctx == nil { panic(" cant happen")}
-  
-  return &BlockBody{ nil}
+  locals_ctx := content_ctx.LocalDefs()
+  locals := MakeLocals(locals_ctx)
+  block_ctx := content_ctx.BlockBody()
+  log.Println("block_ctx" , block_ctx , reflect.TypeOf(block_ctx))
+  return &BlockBody{ locals }
 }
 
 func MakeBlockOrPrimitive(ctx *parser.MethodContext) (*MethodBlock) {
@@ -116,7 +131,6 @@ func MakeBlockOrPrimitive(ctx *parser.MethodContext) (*MethodBlock) {
     return &MethodBlock{ true , nil }
   }
   method_block := ctx.MethodBlock()
-  log.Println("MethodBlock" , method_block , reflect.TypeOf(method_block))
   block_body := MakeBlockBody( method_block.(*parser.MethodBlockContext) )
   return &MethodBlock{ false , block_body }
 }
