@@ -39,8 +39,13 @@ func MakeBlockBody(block_ctx *parser.BlockBodyContext) (*BlockBody) {
   } else {
     expression_ctx := block_ctx.Expression()
     main_expression := MakeExpression( expression_ctx.(*parser.ExpressionContext) )
-
-    return &BlockBody{ nil , main_expression , nil}
+    var inner_block *BlockBody = nil
+    inner_block_ctx := block_ctx.BlockBody()
+    //log.Println("inner_block_ctx" , inner_block_ctx , reflect.TypeOf(inner_block_ctx))
+    if inner_block_ctx != nil {
+      inner_block = MakeBlockBody( inner_block_ctx.(*parser.BlockBodyContext) )
+    }
+    return &BlockBody{ nil , main_expression , inner_block}
   }
 }
 
