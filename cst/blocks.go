@@ -2,13 +2,9 @@ package cst
 
 import (
     "kigo-som/parser"
-    "log"
-    "reflect"
+    // "log"
+    // "reflect"
 )
-
-type Expression struct {
-  exp string
-}
 
 // either result / return   OR
 // main with optional code
@@ -36,17 +32,13 @@ func MakeLocals(ctx parser.ILocalDefsContext) ([]string) {
   return locals
 }
 
-func MakeExpression(ctx *parser.ExpressionContext) (*Expression) {
-  return nil
-}
-
 func MakeBlockBody(block_ctx *parser.BlockBodyContext) (*BlockBody) {
   result_ctx := block_ctx.Result()
   var result_exp *Expression
   if result_ctx != nil {
     expression_ctx := result_ctx.Expression()
     result_exp = MakeExpression( expression_ctx.(*parser.ExpressionContext) )
-    log.Println("result_exp" , result_exp , reflect.TypeOf(result_exp))
+    //log.Println("result_exp" , result_exp , reflect.TypeOf(result_exp))
     return &BlockBody{ result_exp , nil , nil}
   } else {
     expression_ctx := block_ctx.Expression()
