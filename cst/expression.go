@@ -25,14 +25,8 @@ import (
 //     variable | nestedTerm | nestedBlock | literal;
 
 
-type Assignment struct {
-  variable string
-}
-type Assignments struct {
-  assignments []*Assignment
-}
 type Assignation struct {
-  assignments *Assignments
+  assignments []string
   evaluation *Evaluation
 }
 type Primary struct {
@@ -50,8 +44,15 @@ type Expression struct {
   assignation *Assignation  // OR
   evaluation  *Evaluation
 }
-func  MakeAssignments(ctx *parser.AssignmentsContext) (*Assignments) {
-  return &Assignments{nil}
+func  MakeAssignments(ctx *parser.AssignmentsContext) ([]string) {
+  assignments := make([]string, 0,1) // usually just one assignment
+  for i := range ctx.AllAssignment() {
+    assignment := ctx.Assignment(i)
+    variable := assignment.Variable().GetText()
+//    log.Println("variable" , variable , reflect.TypeOf(variable))
+    assignments = append( assignments , variable)
+  }
+  return assignments
 }
 
 func MakeAssignation(ctx *parser.AssignationContext) (*Assignation){
