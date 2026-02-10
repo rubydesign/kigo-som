@@ -7,6 +7,20 @@ import (
     "reflect"
 )
 
+// pattern:
+//     unaryPattern | keywordPattern | binaryPattern;
+//
+// unaryPattern:
+//     unarySelector;
+//
+// binaryPattern:
+//     binarySelector argument;
+//
+// keywordPattern:
+//     ( keyword argument )+;
+
+// Selectors representet as strings for now
+
 func MakeUnarySelector(ctx *parser.UnaryPatternContext) (string) {
 	name := ctx.UnarySelector().Identifier().GetText()
 //	log.Println("Unary" , name , reflect.TypeOf(name))

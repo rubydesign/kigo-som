@@ -6,6 +6,22 @@ import (
     "log"
 )
 
+// classdef:
+//     Identifier Equal superclass
+//     instanceFields method*
+//     ( Separator classFields method* )?
+//     EndTerm;
+//
+// superclass:
+//     Identifier? NewTerm;
+//
+// instanceFields:
+//     ( Or variable* Or )?;
+//
+// classFields:
+//     ( Or variable* Or )?;
+
+
 type Classdef struct{
 	name  string
 	super string

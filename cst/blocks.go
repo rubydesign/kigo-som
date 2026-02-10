@@ -24,6 +24,18 @@ type BlockContents struct {
   block_body *BlockBody
 }
 
+func MakeLocals(ctx parser.ILocalDefsContext) ([]string) {
+  locals := make([]string , 0 , 3)
+  if ctx != nil {
+    for i := range ctx.AllVariable()  {
+      variable := ctx.Variable(i).GetText()
+      locals = append( locals , variable )
+//      log.Println("variable" , variable , reflect.TypeOf(variable))
+    }
+  }
+  return locals
+}
+
 func MakeExpression(ctx *parser.ExpressionContext) (*Expression) {
   return nil
 }
