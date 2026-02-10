@@ -25,11 +25,24 @@ import (
 //     variable | nestedTerm | nestedBlock | literal;
 
 
+type Assignment struct {
+  variable string
+}
+type Assignments struct {
+  assignments []*Assignment
+}
 type Assignation struct {
   assign string
 }
+type Primary struct {
+
+}
+type Message  struct {
+
+}
 type Evaluation struct {
-  eval string
+  primary  *Primary
+  messages []*Message
 }
 
 type Expression struct {
@@ -40,21 +53,34 @@ type Expression struct {
 func MakeAssignation(ctx *parser.AssignationContext) (*Assignation){
   return nil
 }
+func MakePrimary(ctx *parser.PrimaryContext) (*Primary){
+  return &Primary{}
+}
+func MakeMessages(ctx parser.IMessagesContext) ([]*Message){
+  //messages_ctx.(*parser.MessagesContext)
+  messages := make([]*Message , 0 ,  3)
+  return messages
+}
+
 func MakeEvaluation(ctx *parser.EvaluationContext) (*Evaluation){
-  return nil
+  primary_ctx := ctx.Primary()
+  primary := MakePrimary(primary_ctx.(*parser.PrimaryContext))
+  messages_ctx := ctx.Messages()
+  messages := MakeMessages(messages_ctx)
+  return &Evaluation{ primary , messages}
 }
 
 func MakeExpression(ctx *parser.ExpressionContext) (*Expression) {
   var evaluation *Evaluation = nil
   var assignation *Assignation = nil
   log.Println("ctx" , ctx , reflect.TypeOf(ctx))
-  ctx.Evaluation() //IEvaluationContext
-  assignation_ctx := ctx.Assignation() // IAssignationContext
+  ctx.Evaluation()
+  assignation_ctx := ctx.Assignation()
   if  assignation_ctx != nil {
     log.Println("assignation_ctx" , assignation_ctx , reflect.TypeOf(assignation_ctx))
     assignation = MakeAssignation(assignation_ctx.(*parser.AssignationContext))
   }
-  evaluation_ctx := ctx.Evaluation() // IAssignationContext
+  evaluation_ctx := ctx.Evaluation()
   if  evaluation_ctx != nil {
     log.Println("evaluation_ctx" , evaluation_ctx , reflect.TypeOf(evaluation_ctx))
     evaluation = MakeEvaluation(evaluation_ctx.(*parser.EvaluationContext))
