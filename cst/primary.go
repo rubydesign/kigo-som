@@ -19,9 +19,6 @@ type NestedTerm struct {
 type NestedBlock struct {
 
 }
-type Literal struct {
-
-}
 type Primary struct {
   variable    *Variable
   nestedTerm  *NestedTerm
@@ -34,9 +31,6 @@ func MakeNestedTerm(ctx *parser.NestedTermContext) (*NestedTerm){
 }
 func MakeNestedBlock(ctx *parser.NestedBlockContext) (*NestedBlock){
   return &NestedBlock{}
-}
-func MakeLiteral(ctx *parser.LiteralContext) (*Literal){
-  return &Literal{}
 }
 func MakePrimary(ctx *parser.PrimaryContext) (*Primary){
   if variable_ctx := ctx.Variable() ; variable_ctx != nil {
@@ -55,7 +49,6 @@ func MakePrimary(ctx *parser.PrimaryContext) (*Primary){
   }
   literal_ctx := ctx.Literal() // by now this can't be anything else
   literal := MakeLiteral( literal_ctx.(*parser.LiteralContext) )
-  log.Println("literal " , literal , reflect.TypeOf(literal))
   return &Primary{ nil , nil , nil , literal}
 
 }

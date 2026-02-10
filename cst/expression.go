@@ -2,8 +2,8 @@ package cst
 
 import (
     "kigo-som/parser"
-    "log"
-    "reflect"
+    // "log"
+    // "reflect"
 )
 
 // expression:
@@ -66,16 +66,16 @@ func MakeEvaluation(ctx *parser.EvaluationContext) (*Evaluation){
 func MakeExpression(ctx *parser.ExpressionContext) (*Expression) {
   var evaluation *Evaluation = nil
   var assignation *Assignation = nil
-  log.Println("ctx" , ctx , reflect.TypeOf(ctx))
+  //log.Println("ctx" , ctx , reflect.TypeOf(ctx))
   ctx.Evaluation()
   assignation_ctx := ctx.Assignation()
   if  assignation_ctx != nil {
-    log.Println("assignation_ctx" , assignation_ctx , reflect.TypeOf(assignation_ctx))
+    //log.Println("assignation_ctx" , assignation_ctx , reflect.TypeOf(assignation_ctx))
     assignation = MakeAssignation(assignation_ctx.(*parser.AssignationContext))
   }
   evaluation_ctx := ctx.Evaluation()
   if  evaluation_ctx != nil {
-    log.Println("evaluation_ctx" , evaluation_ctx , reflect.TypeOf(evaluation_ctx))
+    //log.Println("evaluation_ctx" , evaluation_ctx , reflect.TypeOf(evaluation_ctx))
     evaluation = MakeEvaluation(evaluation_ctx.(*parser.EvaluationContext))
   }
   return &Expression{assignation,evaluation}
