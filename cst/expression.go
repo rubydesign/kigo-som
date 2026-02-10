@@ -21,29 +21,21 @@ import (
 // evaluation:
 //     primary messages?;
 //
-// primary:
-//     variable | nestedTerm | nestedBlock | literal;
 
 
 type Assignation struct {
   assignments []string
   evaluation *Evaluation
 }
-type Primary struct {
-
-}
-type Message  struct {
-
-}
 type Evaluation struct {
   primary  *Primary
   messages []*Message
 }
-
 type Expression struct {
   assignation *Assignation  // OR
   evaluation  *Evaluation
 }
+
 func  MakeAssignments(ctx *parser.AssignmentsContext) ([]string) {
   assignments := make([]string, 0,1) // usually just one assignment
   for i := range ctx.AllAssignment() {
@@ -61,15 +53,6 @@ func MakeAssignation(ctx *parser.AssignationContext) (*Assignation){
   assignments := MakeAssignments(assignments_ctx.(*parser.AssignmentsContext) )
   evaluation := MakeEvaluation(evaluation_ctx.(*parser.EvaluationContext))
   return &Assignation{ assignments , evaluation }
-}
-func MakePrimary(ctx *parser.PrimaryContext) (*Primary){
-  return &Primary{}
-}
-func MakeMessages(ctx parser.IMessagesContext) ([]*Message){
-  messages := make([]*Message , 0 ,  3)
-  if ctx == nil { return messages }
-  //message_ctx := ctx.(*parser.MessagesContext)
-  return messages
 }
 
 func MakeEvaluation(ctx *parser.EvaluationContext) (*Evaluation){
