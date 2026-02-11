@@ -2,8 +2,8 @@ package cst
 
 import (
     "kigo-som/parser"
-    //"log"
-    //"reflect"
+    "log"
+    "reflect"
 )
 
 // method:
@@ -17,7 +17,7 @@ type MethodBlock struct {
 }
 
 type Method struct{
-	calling string
+  pattern []string
   method_block *MethodBlock
 }
 
@@ -34,7 +34,9 @@ func MakeBlockOrPrimitive(ctx *parser.MethodContext) (*MethodBlock) {
 
 func MakeMethod(ctx *parser.MethodContext) (*Method)  {
   pattern_ctx := ctx.Pattern()
-  calling := MakeSelector(pattern_ctx.(*parser.PatternContext))
+  pattern := MakeSelector(pattern_ctx.(*parser.PatternContext))
+  log.Println("pattern" , pattern , reflect.TypeOf(pattern))
+
   method_block := MakeBlockOrPrimitive(ctx)
-  return &Method{ calling , method_block}
+  return &Method{ pattern , method_block}
 }

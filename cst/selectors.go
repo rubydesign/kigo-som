@@ -61,37 +61,38 @@ func MakeBinarySelector(ctx *parser.BinaryPatternContext) (string) {
 	} else if binary = sel.Per(); binary != nil {
 		name = binary.GetText()
 	} else if binary = sel.OperatorSequence(); binary != nil {
-		panic( "double op not impemented")
-		name = binary.GetText()
+//		panic( "double op not impemented")
+    name = "binary" + binary.GetText()
 	} else {
 		panic("Unknown operator type")
 	}
 	return name
 }
 
-func MakeKeywordSelector(ctx *parser.KeywordPatternContext) (string) {
-	all := ""
+func MakeKeywordSelector(ctx *parser.KeywordPatternContext) ([]string) {
+  calling := make( [] string , 0 , 3)
 	for keyword_idx := range ctx.AllKeyword() {
 		keyword_ctx := ctx.Keyword(keyword_idx)
 		name := keyword_ctx.Keyword().GetText()
-		all += name
+    calling = append(calling , name )
 	}
-	//log.Println("Ctx" , all , reflect.TypeOf(all))
-	return all
+	log.Println("calling" , calling , reflect.TypeOf(calling))
+  return calling
 }
 
-func MakeSelector(pattern_ctx *parser.PatternContext) (string) {
-	calling := ""
+func MakeSelector(pattern_ctx *parser.PatternContext) ([]string) {
+  if keyword := pattern_ctx.KeywordPattern() ; keyword != nil {
+    //log.Println("Context Keyword" , keyword, reflect.TypeOf(keyword))
+    return MakeKeywordSelector(keyword.(*parser.KeywordPatternContext))
+  }
   if unary := pattern_ctx.UnaryPattern() ; unary != nil {
-		calling = MakeUnarySelector(unary.(*parser.UnaryPatternContext))
+    calling := MakeUnarySelector(unary.(*parser.UnaryPatternContext))
+    return []string{calling}
   } else if binary := pattern_ctx.BinaryPattern() ; binary != nil {
-		calling = MakeBinarySelector(binary.(*parser.BinaryPatternContext))
-  } else if keyword := pattern_ctx.KeywordPattern() ; keyword != nil {
-		//log.Println("Context Keyword" , keyword, reflect.TypeOf(keyword))
-		calling = MakeKeywordSelector(keyword.(*parser.KeywordPatternContext))
-	} else {
+    calling := MakeBinarySelector(binary.(*parser.BinaryPatternContext))
+    return []string{"binary" , calling}
+  } else {
     log.Println("Unknown type" , pattern_ctx , reflect.TypeOf(pattern_ctx))
 		panic(1)
 	}
-	return calling
 }
