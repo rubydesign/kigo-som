@@ -45,14 +45,24 @@ type Literal struct {
 }
 
 func MakeLiteralArray(ctx *parser.LiteralArrayContext) ([]*Literal){
-  return nil
+  literals := make([]*Literal , 0, 3)
+  for i := range ctx.AllLiteral() {
+    literal_ctx :=  ctx.Literal(i).(*parser.LiteralContext)
+    literal := MakeLiteral(literal_ctx)
+    literals = append(literals , literal)
+  }
+  return literals
 }
+
 func MakeLiteralSymbol(ctx *parser.LiteralSymbolContext) (string){
+  panic("Should be very similiar to string")
   return ""
 }
 
 func MakeLiteralString(ctx *parser.LiteralStringContext) (string){
-  return ""
+  string_ctx := ctx.String_()
+  st_ctx := string_ctx.STString()
+  return st_ctx.GetText()
 }
 
 func MakeLiteralDecimal(decimal_ctx *parser.LiteralDecimalContext) (int , int , float64){
@@ -83,17 +93,17 @@ func MakeLiteralNumber(ctx *parser.LiteralNumberContext) (int , int , float64){
 func MakeLiteral(ctx *parser.LiteralContext) (*Literal){
   if array_ctx := ctx.LiteralArray() ; array_ctx != nil {
     array := MakeLiteralArray( array_ctx.(*parser.LiteralArrayContext) )
-    log.Println("array " , array , reflect.TypeOf(array))
+    log.Println("array" , array , reflect.TypeOf(array))
     return &Literal{1 , array , "" , 0, 0}
   }
   if symbol_ctx := ctx.LiteralSymbol() ; symbol_ctx != nil {
     symbol := MakeLiteralSymbol( symbol_ctx.(*parser.LiteralSymbolContext) )
-    log.Println("symbol " , symbol , reflect.TypeOf(symbol))
+    log.Println("symbol" , symbol , reflect.TypeOf(symbol))
     return &Literal{2 , nil ,symbol  , 0, 0}
   }
   if string_ctx := ctx.LiteralString() ; string_ctx != nil {
     string := MakeLiteralString( string_ctx.(*parser.LiteralStringContext) )
-    log.Println("string " , string , reflect.TypeOf(string))
+    log.Println("string" , string , reflect.TypeOf(string))
     return &Literal{2 , nil ,string  , 0, 0}
   }
   number_ctx := ctx.LiteralNumber()
