@@ -80,18 +80,17 @@ func MakeKeywordSelector(ctx *parser.KeywordPatternContext) (string) {
 	return all
 }
 
-func MakeSelector(ctx *parser.MethodContext) (string) {
+func MakeSelector(pattern_ctx *parser.PatternContext) (string) {
 	calling := ""
-	pattern := ctx.Pattern()
-	if unary := pattern.UnaryPattern() ; unary != nil {
+  if unary := pattern_ctx.UnaryPattern() ; unary != nil {
 		calling = MakeUnarySelector(unary.(*parser.UnaryPatternContext))
-	} else if binary := pattern.BinaryPattern() ; binary != nil {
+  } else if binary := pattern_ctx.BinaryPattern() ; binary != nil {
 		calling = MakeBinarySelector(binary.(*parser.BinaryPatternContext))
-	} else if keyword := pattern.KeywordPattern() ; keyword != nil {
+  } else if keyword := pattern_ctx.KeywordPattern() ; keyword != nil {
 		//log.Println("Context Keyword" , keyword, reflect.TypeOf(keyword))
 		calling = MakeKeywordSelector(keyword.(*parser.KeywordPatternContext))
 	} else {
-		log.Println("Unknown type" , pattern , reflect.TypeOf(pattern))
+    log.Println("Unknown type" , pattern_ctx , reflect.TypeOf(pattern_ctx))
 		panic(1)
 	}
 	return calling

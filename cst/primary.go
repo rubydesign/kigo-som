@@ -16,7 +16,7 @@ type Variable struct {
 type NestedTerm struct {
 
 }
-type NestedBlock struct {
+type BlockPattern struct {
 
 }
 type Primary struct {
@@ -29,9 +29,7 @@ type Primary struct {
 func MakeNestedTerm(ctx *parser.NestedTermContext) (*NestedTerm){
   return &NestedTerm{}
 }
-func MakeNestedBlock(ctx *parser.NestedBlockContext) (*NestedBlock){
-  return &NestedBlock{}
-}
+
 func MakePrimary(ctx *parser.PrimaryContext) (*Primary){
   if variable_ctx := ctx.Variable() ; variable_ctx != nil {
     name := variable_ctx.(*parser.VariableContext).Identifier().GetText()

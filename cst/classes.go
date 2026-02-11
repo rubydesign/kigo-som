@@ -64,7 +64,7 @@ func AddMethods( ctx *parser.ClassdefContext , clazz *Classdef){
 	log.Println("No of methods" , len(methods_ctx))
 	for value := range methods_ctx {
 		method_ctx  := methods_ctx[value].(*parser.MethodContext)
-		method := MakeMethodFromContext(method_ctx)
+		method := MakeMethod(method_ctx)
 		clazz.instance_methods = append(clazz.instance_methods , method)
   }
 }

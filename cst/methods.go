@@ -8,9 +8,11 @@ import (
 
 // method:
 //    pattern Equal ( Primitive | methodBlock );
+// methodBlock:
+//     NewTerm blockContents? EndTerm;
 
 type MethodBlock struct {
-  primitive bool
+  primitive bool  // OR MethodBlock, which is basically BlockContents
   block_contents *BlockContents
 }
 
@@ -20,18 +22,19 @@ type Method struct{
 }
 
 func MakeBlockOrPrimitive(ctx *parser.MethodContext) (*MethodBlock) {
-
   if primitive := ctx.Primitive() ; primitive != nil {
 //    log.Println("Primitive" , primitive.GetText() , reflect.TypeOf(primitive))
     return &MethodBlock{ true , nil }
   }
-  method_block := ctx.MethodBlock()
-  block_contents := MakeBlockContents( method_block.(*parser.MethodBlockContext) )
+  method_block_ctx := ctx.MethodBlock()
+  contents_ctx := method_block_ctx.BlockContents()
+  block_contents := MakeBlockContents( contents_ctx.(*parser.BlockContentsContext) )
   return &MethodBlock{ false , block_contents }
 }
 
-func MakeMethodFromContext(ctx *parser.MethodContext) (*Method)  {
-	calling := MakeSelector(ctx)
+func MakeMethod(ctx *parser.MethodContext) (*Method)  {
+  pattern_ctx := ctx.Pattern()
+  calling := MakeSelector(pattern_ctx.(*parser.PatternContext))
   method_block := MakeBlockOrPrimitive(ctx)
   return &Method{ calling , method_block}
 }
