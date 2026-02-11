@@ -2,9 +2,43 @@ package cst
 
 import (
     "kigo-som/parser"
-    // "log"
-    // "reflect"
+    "log"
+    "reflect"
 )
+//
+// blockContents:
+//     ( Or localDefs Or )?
+//     blockBody;
+//
+// localDefs:
+//     variable*;
+//
+// blockBody:
+//       Exit result
+//     | expression ( Period blockBody? )?;
+//
+// nestedBlock:
+//     NewBlock blockPattern? blockContents? EndBlock;
+//
+// blockPattern:
+//     blockArguments Or;
+//
+// blockArguments:
+//     ( Colon argument )+;
+//
+// argument:
+//     variable;
+//
+// variable:
+//     identifier;
+//
+// identifier:
+//     Primitive | Identifier;
+
+type NestedBlock struct {
+  pattern  []string
+  contents *BlockContents
+}
 
 // either result / return   OR
 // main with optional code
@@ -20,6 +54,31 @@ type BlockContents struct {
   block_body *BlockBody
 }
 
+func MakeBlockPattern(pattern_ctx *parser.BlockPatternContext) ([]string) {
+  pattern := make( []string , 0 , 3)
+  arguments_ctx := pattern_ctx.BlockArguments()
+  for i := range arguments_ctx.AllArgument() {
+    argument_ctx := arguments_ctx.Argument(i)
+    variable_ctx := argument_ctx.Variable()
+    variable := variable_ctx.GetText()
+    log.Println("variable" , variable , reflect.TypeOf(variable))
+    pattern = append(pattern , variable)
+  }
+  return pattern
+}
+
+func MakeNestedBlock(ctx *parser.NestedBlockContext) (*NestedBlock){
+  var pattern []string
+  var contents *BlockContents
+  if pattern_ctx := ctx.BlockPattern() ; pattern_ctx != nil {
+    pattern = MakeBlockPattern(pattern_ctx.(*parser.BlockPatternContext))
+  }
+  if contents_ctx := ctx.BlockContents() ; contents_ctx != nil {
+    contents = MakeBlockContents(contents_ctx.(*parser.BlockContentsContext))
+  }
+  return &NestedBlock{ pattern , contents}
+}
+
 func MakeLocals(ctx parser.ILocalDefsContext) ([]string) {
   locals := make([]string , 0 , 3)
   if ctx != nil {
@@ -30,6 +89,14 @@ func MakeLocals(ctx parser.ILocalDefsContext) ([]string) {
     }
   }
   return locals
+}
+
+func MakeBlockContents(ctx *parser.BlockContentsContext) (*BlockContents) {
+  locals_ctx := ctx.LocalDefs()
+  locals := MakeLocals(locals_ctx)
+  block_ctx := ctx.BlockBody()
+  block_body := MakeBlockBody(block_ctx.(*parser.BlockBodyContext))
+  return &BlockContents{ locals , block_body }
 }
 
 func MakeBlockBody(block_ctx *parser.BlockBodyContext) (*BlockBody) {
@@ -51,13 +118,4 @@ func MakeBlockBody(block_ctx *parser.BlockBodyContext) (*BlockBody) {
     }
     return &BlockBody{ nil , main_expression , inner_block}
   }
-}
-
-func MakeBlockContents(ctx *parser.MethodBlockContext) (*BlockContents) {
-  content_ctx := ctx.BlockContents()
-  locals_ctx := content_ctx.LocalDefs()
-  locals := MakeLocals(locals_ctx)
-  block_ctx := content_ctx.BlockBody()
-  block_body := MakeBlockBody(block_ctx.(*parser.BlockBodyContext))
-  return &BlockContents{ locals , block_body }
 }
