@@ -2,6 +2,10 @@ grammar Som;
 /*
 generate at root with: antlr4  -no-visitor -no-listener -Dlanguage=Go parser/Som.g4
 
+for those with bad bnf memory, postfix
+* means "repeated 0 or more times"
++ means "repeated 1 or more times"
+? means "0 or 1 times"
 
 This parser accepts valid programs adhering to the following grammar. Comments
 and white space are not dealt with in the grammar. Names of non-terminals begin
