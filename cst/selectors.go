@@ -37,8 +37,7 @@ func MakeUnarySelector(ctx *parser.UnaryPatternContext) (string) {
 	return name
 }
 
-func MakeBinarySelector(ctx *parser.BinaryPatternContext) ([]string) {
-	sel := ctx.BinarySelector()
+func MakeBinarySelector(sel *parser.BinarySelectorContext) ([]string) {
   calling := make( [] string , 0 , 3)
 	var binary antlr.TerminalNode
 	var name string
@@ -77,7 +76,7 @@ func MakeBinarySelector(ctx *parser.BinaryPatternContext) ([]string) {
 		panic("Unknown operator type")
 	}
   calling = append(calling , name)
-  return AddVariable( ctx.Argument().(*parser.ArgumentContext) , calling)
+  return calling
 }
 
 func MakeKeywordSelector(ctx *parser.KeywordPatternContext) ([]string) {
@@ -100,7 +99,9 @@ func MakeSelector(pattern_ctx *parser.PatternContext) ([]string) {
     calling := MakeUnarySelector(unary.(*parser.UnaryPatternContext))
     return []string{calling}
   } else if binary := pattern_ctx.BinaryPattern() ; binary != nil {
-    return MakeBinarySelector(binary.(*parser.BinaryPatternContext))
+    selector := binary.BinarySelector()
+    calling := MakeBinarySelector(selector.(*parser.BinarySelectorContext))
+    return  AddVariable( binary.Argument().(*parser.ArgumentContext) , calling)
   } else {
     log.Println("Unknown type" , pattern_ctx , reflect.TypeOf(pattern_ctx))
 		panic(1)
