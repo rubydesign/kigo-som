@@ -21,14 +21,25 @@ import (
 
 // Selectors representet as strings for now
 
+// Helper method for argument extraction
+// Get the variable from an argument and addd the text of it to the slice
+// return the same slice
+func AddVariable(argument_ctx *parser.ArgumentContext, in []string) ([]string){
+  variable_ctx := argument_ctx.Variable()
+  variable := variable_ctx.GetText()
+//  log.Println("variable" , variable , reflect.TypeOf(variable))
+  return append(in , variable)
+}
+
 func MakeUnarySelector(ctx *parser.UnaryPatternContext) (string) {
 	name := ctx.UnarySelector().Identifier().GetText()
 //	log.Println("Unary" , name , reflect.TypeOf(name))
 	return name
 }
 
-func MakeBinarySelector(ctx *parser.BinaryPatternContext) (string) {
+func MakeBinarySelector(ctx *parser.BinaryPatternContext) ([]string) {
 	sel := ctx.BinarySelector()
+  calling := make( [] string , 0 , 3)
 	var binary antlr.TerminalNode
 	var name string
 	// seems i am missing something, silly way to do a switch, or just store the darn op
@@ -61,22 +72,22 @@ func MakeBinarySelector(ctx *parser.BinaryPatternContext) (string) {
 	} else if binary = sel.Per(); binary != nil {
 		name = binary.GetText()
 	} else if binary = sel.OperatorSequence(); binary != nil {
-//		panic( "double op not impemented")
-    name = "binary" + binary.GetText()
+    name = binary.GetText()
 	} else {
 		panic("Unknown operator type")
 	}
-	return name
+  calling = append(calling , name)
+  return AddVariable( ctx.Argument().(*parser.ArgumentContext) , calling)
 }
 
 func MakeKeywordSelector(ctx *parser.KeywordPatternContext) ([]string) {
   calling := make( [] string , 0 , 3)
-	for keyword_idx := range ctx.AllKeyword() {
-		keyword_ctx := ctx.Keyword(keyword_idx)
+	for idx := range ctx.AllKeyword() {
+		keyword_ctx := ctx.Keyword(idx)
 		name := keyword_ctx.Keyword().GetText()
     calling = append(calling , name )
+    calling = AddVariable( ctx.Argument(idx).(*parser.ArgumentContext) , calling)
 	}
-	log.Println("calling" , calling , reflect.TypeOf(calling))
   return calling
 }
 
@@ -89,8 +100,7 @@ func MakeSelector(pattern_ctx *parser.PatternContext) ([]string) {
     calling := MakeUnarySelector(unary.(*parser.UnaryPatternContext))
     return []string{calling}
   } else if binary := pattern_ctx.BinaryPattern() ; binary != nil {
-    calling := MakeBinarySelector(binary.(*parser.BinaryPatternContext))
-    return []string{"binary" , calling}
+    return MakeBinarySelector(binary.(*parser.BinaryPatternContext))
   } else {
     log.Println("Unknown type" , pattern_ctx , reflect.TypeOf(pattern_ctx))
 		panic(1)
