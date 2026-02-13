@@ -29,24 +29,37 @@ type Classdef struct{
 	instance_methods   []*Method
 }
 
-func AddInstanceNames( ctx *parser.ClassdefContext , clazz *Classdef){
-  instances  := ctx.InstanceFields().AllVariable()
+func MakeInstances( ctx *parser.InstanceFieldsContext ) ([]string) {
+  instances := make([]string, 0, 3)
+  variables  := ctx.AllVariable()
   for value := range instances {
-		inst  := instances[value].(*parser.VariableContext)
+    inst  := variables[value].(*parser.VariableContext)
 		name := inst.GetText()
-		clazz.instance_variables = append(clazz.instance_variables , name)
+    instances = append(instances , name)
   }
+  return instances
 }
 
-func  ClassdefFromContext(ctx *parser.ClassdefContext) (*Classdef )  {
+func MakeMethods( ctx *parser.ClassdefContext ) ([]*Method){
+	var methods_ctx []parser.IMethodContext = ctx.AllMethod()
+  methods := make([]*Method, 0, 3)
+	log.Println("No of methods" , len(methods_ctx))
+	for value := range methods_ctx {
+		method_ctx  := methods_ctx[value].(*parser.MethodContext)
+		method := MakeMethod(method_ctx)
+		methods = append(methods , method)
+  }
+  return methods
+}
+
+func  MakeClassdef(ctx *parser.ClassdefContext) (*Classdef )  {
   name := ctx.Identifier().GetText()
   superclazz := ctx.Superclass().Identifier()
   super_name := ""
   if superclazz != nil { super_name = superclazz.GetText() }
-	clazz := &Classdef{name , super_name ,  make([]string, 0, 3) , make([]*Method, 0, 3)}
-  AddInstanceNames(ctx , clazz)
-	AddMethods(ctx , clazz)
-  return clazz
+  instances := MakeInstances(ctx.InstanceFields().( *parser.InstanceFieldsContext ) )
+  methods := MakeMethods(ctx)
+  return  &Classdef{name , super_name ,  instances , methods }
 }
 
 func ClassdefFromFile(file_name string)(*Classdef){
@@ -56,15 +69,5 @@ func ClassdefFromFile(file_name string)(*Classdef){
   p := parser.NewSomParser(stream)
 	p.AddErrorListener(antlr.NewDiagnosticErrorListener(true))
   ctx := p.Classdef().(*parser.ClassdefContext)
-  return ClassdefFromContext(ctx)
-}
-
-func AddMethods( ctx *parser.ClassdefContext , clazz *Classdef){
-	var methods_ctx []parser.IMethodContext = ctx.AllMethod()
-	log.Println("No of methods" , len(methods_ctx))
-	for value := range methods_ctx {
-		method_ctx  := methods_ctx[value].(*parser.MethodContext)
-		method := MakeMethod(method_ctx)
-		clazz.instance_methods = append(clazz.instance_methods , method)
-  }
+  return MakeClassdef(ctx)
 }
