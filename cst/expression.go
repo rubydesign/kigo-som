@@ -29,7 +29,7 @@ type Assignation struct {
 }
 type Evaluation struct {
   primary  *Primary
-  messages []*Message
+  messages []Message
 }
 type Expression struct {
   assignation *Assignation  // OR
