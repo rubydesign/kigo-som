@@ -2,8 +2,8 @@ package cst
 
 import (
     "kigo-som/parser"
-    "log"
-    "reflect"
+    // "log"
+    // "reflect"
 )
 //
 // blockContents:
@@ -61,7 +61,7 @@ func MakeBlockPattern(pattern_ctx *parser.BlockPatternContext) ([]string) {
     argument_ctx := arguments_ctx.Argument(i)
     variable_ctx := argument_ctx.Variable()
     variable := variable_ctx.GetText()
-    log.Println("variable" , variable , reflect.TypeOf(variable))
+    //log.Println("block variable" , variable , reflect.TypeOf(variable))
     pattern = append(pattern , variable)
   }
   return pattern

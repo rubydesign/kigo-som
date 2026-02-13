@@ -69,12 +69,12 @@ func MakeLiteralDecimal(decimal_ctx *parser.LiteralDecimalContext) (int , int , 
   if literal_ctx := decimal_ctx.LiteralInteger() ; literal_ctx != nil {
     int_str := literal_ctx.(*parser.LiteralIntegerContext).Integer().GetText()
     int, _ := strconv.Atoi(int_str)
-    log.Println("lit int " , int , reflect.TypeOf(int))
+    //log.Println("lit int " , int , reflect.TypeOf(int))
     return 4, int , 0.0
   } else {
     double_ctx := decimal_ctx.LiteralDouble().(*parser.LiteralDoubleContext)
     double_str := double_ctx.Double().GetText()
-    log.Println("lit float " , double_str , reflect.TypeOf(double_str))
+    //log.Println("lit float " , double_str , reflect.TypeOf(double_str))
     double, _ := strconv.ParseFloat(double_str, 64)
     return 5, 0 , double
   }
