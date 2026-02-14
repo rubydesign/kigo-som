@@ -3,7 +3,7 @@ package cst
 import (
     "github.com/antlr4-go/antlr/v4"
     "kigo-som/parser"
-    "log"
+    "fmt"
     "reflect"
 )
 
@@ -18,6 +18,13 @@ import (
 //
 // keywordPattern:
 //     ( keyword argument )+;
+//
+// unarySelector:
+//     identifier;
+//
+// binarySelector:
+//     Or | Comma | Minus | Equal | Not | And | Star | Div | Mod | Plus | More |
+//     Less | At | Per | OperatorSequence;
 
 // Selectors representet as strings for now
 
@@ -27,18 +34,17 @@ import (
 func AddVariable(argument_ctx *parser.ArgumentContext, in []string) ([]string){
   variable_ctx := argument_ctx.Variable()
   variable := variable_ctx.GetText()
-//  log.Println("variable" , variable , reflect.TypeOf(variable))
+//  fmt.Println("variable" , variable , reflect.TypeOf(variable))
   return append(in , variable)
 }
 
-func MakeUnarySelector(ctx *parser.UnaryPatternContext) (string) {
+func MakeUnaryPattern(ctx *parser.UnaryPatternContext) (string) {
 	name := ctx.UnarySelector().Identifier().GetText()
-//	log.Println("Unary" , name , reflect.TypeOf(name))
+//	fmt.Println("Unary" , name , reflect.TypeOf(name))
 	return name
 }
 
-func MakeBinarySelector(sel *parser.BinarySelectorContext) ([]string) {
-  calling := make( [] string , 0 , 3)
+func MakeBinarySelector(sel *parser.BinarySelectorContext) (string) {
 	var binary antlr.TerminalNode
 	var name string
 	// seems i am missing something, silly way to do a switch, or just store the darn op
@@ -75,11 +81,10 @@ func MakeBinarySelector(sel *parser.BinarySelectorContext) ([]string) {
 	} else {
 		panic("Unknown operator type")
 	}
-  calling = append(calling , name)
-  return calling
+  return name
 }
 
-func MakeKeywordSelector(ctx *parser.KeywordPatternContext) ([]string) {
+func MakeKeywordPattern(ctx *parser.KeywordPatternContext) ([]string) {
   calling := make( [] string , 0 , 3)
 	for idx := range ctx.AllKeyword() {
 		keyword_ctx := ctx.Keyword(idx)
@@ -90,20 +95,45 @@ func MakeKeywordSelector(ctx *parser.KeywordPatternContext) ([]string) {
   return calling
 }
 
-func MakeSelector(pattern_ctx *parser.PatternContext) ([]string) {
+func MakePattern(pattern_ctx *parser.PatternContext) ([]string) {
   if keyword := pattern_ctx.KeywordPattern() ; keyword != nil {
-    //log.Println("Context Keyword" , keyword, reflect.TypeOf(keyword))
-    return MakeKeywordSelector(keyword.(*parser.KeywordPatternContext))
+    //fmt.Println("Context Keyword" , keyword, reflect.TypeOf(keyword))
+    return MakeKeywordPattern(keyword.(*parser.KeywordPatternContext))
   }
   if unary := pattern_ctx.UnaryPattern() ; unary != nil {
-    calling := MakeUnarySelector(unary.(*parser.UnaryPatternContext))
+    calling := MakeUnaryPattern(unary.(*parser.UnaryPatternContext))
     return []string{calling}
   } else if binary := pattern_ctx.BinaryPattern() ; binary != nil {
     selector := binary.BinarySelector()
-    calling := MakeBinarySelector(selector.(*parser.BinarySelectorContext))
+    name := MakeBinarySelector(selector.(*parser.BinarySelectorContext))
+    calling := make([]string , 0 , 3)
+    calling = append(calling , name)
     return  AddVariable( binary.Argument().(*parser.ArgumentContext) , calling)
   } else {
-    log.Println("Unknown type" , pattern_ctx , reflect.TypeOf(pattern_ctx))
+    fmt.Println("Unknown type" , pattern_ctx , reflect.TypeOf(pattern_ctx))
+		panic(1)
+	}
+}
+func MakeKeywordSelector(ctx *parser.KeywordSelectorContext)(string){
+  if keyword := ctx.Keyword() ; keyword != nil {
+    return keyword.GetText()
+  }
+  sequence := ctx.KeywordSequence()
+  name := sequence.GetText()
+  fmt.Println("KEYWORD sequence" , name , reflect.TypeOf(name))
+  return name
+}
+func MakeSelector(selector_ctx *parser.SelectorContext) (string) {
+  if keyword := selector_ctx.KeywordSelector() ; keyword != nil {
+    return MakeKeywordSelector(keyword.(*parser.KeywordSelectorContext))
+  }
+  if unary := selector_ctx.UnarySelector() ; unary != nil {
+    name := unary.Identifier().GetText()
+    return name
+  } else if binary := selector_ctx.BinarySelector() ; binary != nil {
+    return MakeBinarySelector(binary.(*parser.BinarySelectorContext))
+  } else {
+    fmt.Println("Unknown type" , selector_ctx , reflect.TypeOf(selector_ctx))
 		panic(1)
 	}
 }
