@@ -27,8 +27,10 @@ func MakeBlockOrPrimitive(ctx *parser.MethodContext) (*MethodBlock) {
     return &MethodBlock{ true , nil }
   }
   method_block_ctx := ctx.MethodBlock()
-  contents_ctx := method_block_ctx.BlockContents()
-  block_contents := MakeBlockContents( contents_ctx.(*parser.BlockContentsContext) )
+  var block_contents *BlockContents
+  if contents_ctx := method_block_ctx.BlockContents() ; contents_ctx != nil {
+    block_contents = MakeBlockContents( contents_ctx.(*parser.BlockContentsContext) )
+  }
   return &MethodBlock{ false , block_contents }
 }
 

@@ -2,8 +2,8 @@ package cst
 
 import (
     "kigo-som/parser"
-     "fmt"
-     "reflect"
+     // "fmt"
+     // "reflect"
      "strconv"
 )
 
@@ -98,17 +98,17 @@ func MakeLiteralNumber(ctx *parser.LiteralNumberContext) (int , int , float64){
 func MakeLiteral(ctx *parser.LiteralContext) (*Literal){
   if array_ctx := ctx.LiteralArray() ; array_ctx != nil {
     array := MakeLiteralArray( array_ctx.(*parser.LiteralArrayContext) )
-    fmt.Println("array" , array , reflect.TypeOf(array))
+    //fmt.Println("array" , array , reflect.TypeOf(array))
     return &Literal{1 , array , "" , 0, 0}
   }
   if symbol_ctx := ctx.LiteralSymbol() ; symbol_ctx != nil {
     symbol := MakeLiteralSymbol( symbol_ctx.(*parser.LiteralSymbolContext) )
-    fmt.Println("symbol" , symbol , reflect.TypeOf(symbol))
+    // fmt.Println("symbol" , symbol , reflect.TypeOf(symbol))
     return &Literal{2 , nil ,symbol  , 0, 0}
   }
   if string_ctx := ctx.LiteralString() ; string_ctx != nil {
     string := MakeLiteralString( string_ctx.(*parser.LiteralStringContext) )
-    fmt.Println("string" , string , reflect.TypeOf(string))
+    //fmt.Println("string" , string , reflect.TypeOf(string))
     return &Literal{2 , nil ,string  , 0, 0}
   }
   number_ctx := ctx.LiteralNumber()

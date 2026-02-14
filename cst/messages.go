@@ -2,8 +2,8 @@ package cst
 
 import (
     "kigo-som/parser"
-    "fmt"
-    "reflect"
+    // "fmt"
+    // "reflect"
 )
 
 // messages:
@@ -56,7 +56,7 @@ func MakeBinaryOperand(ctx *parser.BinaryOperandContext) (*BinaryOperand){
   for i := range ctx.AllUnaryMessage() {
     unary_ctx := ctx.UnaryMessage(i)
     method_name := unary_ctx.UnarySelector().Identifier().GetText()
-    fmt.Println("unary" , method_name , reflect.TypeOf(method_name))
+    // fmt.Println("unary" , method_name , reflect.TypeOf(method_name))
     unary = append( unary , method_name )
   }
   return &BinaryOperand{primary , unary}

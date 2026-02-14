@@ -2,8 +2,8 @@ package cst
 
 import (
     "kigo-som/parser"
-     "fmt"
-     "reflect"
+     // "fmt"
+     // "reflect"
 )
 
 // primary:
@@ -28,12 +28,12 @@ func MakePrimary(ctx *parser.PrimaryContext) (*Primary){
   if nestedTerm_ctx := ctx.NestedTerm() ; nestedTerm_ctx != nil {
     nested_expression := nestedTerm_ctx.Expression()
     expression := MakeExpression(nested_expression.(*parser.ExpressionContext))
-    fmt.Println("nested_expression " , nested_expression , reflect.TypeOf(nested_expression))
+    //fmt.Println("nested_expression " , nested_expression , reflect.TypeOf(nested_expression))
     return &Primary{"" , expression , nil , nil}
   }
   if nestedBlock_ctx := ctx.NestedBlock() ; nestedBlock_ctx != nil {
     nestedBlock := MakeNestedBlock( nestedBlock_ctx.(*parser.NestedBlockContext) )
-    fmt.Println("nestedBlock " , nestedBlock , reflect.TypeOf(nestedBlock))
+    //fmt.Println("nestedBlock " , nestedBlock , reflect.TypeOf(nestedBlock))
     return &Primary{"" , nil , nestedBlock , nil}
   }
   literal_ctx := ctx.Literal() // by now this can't be anything else

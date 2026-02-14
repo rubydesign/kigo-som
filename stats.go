@@ -4,26 +4,28 @@ import (
 	"kigo-som/cst"
 	"os"
 	"fmt"
+	"strings"
 )
 
 
 
 
 func main() {
-	dir := "./SOM/Smalltalk/"
+	dir := os.Args[1]
 	entries, _ := os.ReadDir(dir)
 	mapp := make(map[string]*cst.Classdef)
 
 	 for _, e := range entries {
+		 if !strings.HasSuffix(e.Name() , ".som") {continue}
 		 file := dir + e.Name()
+		 fmt.Print(e.Name() , ": ")
 		 clazz := cst.ClassdefFromFile(file)
 		 mapp[file] = clazz
-		 fmt.Println(e.Name())
  	}
 
-	 for key, _ := range mapp {
-		 fmt.Println(key)
-	 }
+	 // for key, _ := range mapp {
+		//  fmt.Println(key)
+	 // }
 
 	 return
 }
