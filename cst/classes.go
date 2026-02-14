@@ -28,6 +28,7 @@ type Classdef struct{
 	instance_variables []string
 	instance_methods   []*Method
   class_variables  []string
+  class_methods    []*Method
 }
 
 func MakeInstances( ctx *parser.InstanceFieldsContext ) ([]string) {
@@ -53,16 +54,29 @@ func MakeMethods( ctx *parser.ClassdefContext ) ([]*Method){
   return methods
 }
 
-func MakeClassfields(ctx *parser.ClassFieldsContext) ([]string){
+func MakeClassMethods( ctx *parser.ClassdefContext ) ([]*Method){
+	var methods_ctx []parser.IClassMethodContext = ctx.AllClassMethod()
+  methods := make([]*Method, 0, 3)
+	for value := range methods_ctx {
+    method_ctx  := methods_ctx[value].(*parser.ClassMethodContext)
+    method := MakeMethod(method_ctx.Method().(*parser.MethodContext))
+		methods = append(methods , method)
+  }
+  fmt.Println("class methods" , len(methods) )
+  return methods
+}
+
+func MakeClassfields(ctx *parser.ClassdefContext) ([]string){
   class_vars := make([]string, 0, 3)
-  variables  := ctx.AllVariable()
-  for value := range class_vars {
-    inst  := variables[value].(*parser.VariableContext)
-    name := inst.GetText()
-    class_vars = append(class_vars , name)
+  if classfieds_ctx := ctx.ClassFields() ; classfieds_ctx != nil {
+    variables  := classfieds_ctx.AllVariable()
+    for value := range variables {
+      inst  := variables[value].(*parser.VariableContext)
+      name := inst.GetText()
+      class_vars = append(class_vars , name)
+    }
   }
   return class_vars
-
 }
 
 func  MakeClassdef(ctx *parser.ClassdefContext) (*Classdef )  {
@@ -72,11 +86,9 @@ func  MakeClassdef(ctx *parser.ClassdefContext) (*Classdef )  {
   if superclazz != nil { super_name = superclazz.GetText() }
   instances := MakeInstances(ctx.InstanceFields().( *parser.InstanceFieldsContext ) )
   methods := MakeMethods(ctx)
-  class_vars := make([]string , 0 ,3)
-  if classfieds_ctx := ctx.ClassFields() ; classfieds_ctx != nil {
-    class_vars = MakeClassfields(classfieds_ctx.(*parser.ClassFieldsContext))
-  }
-  return  &Classdef{name , super_name ,  instances , methods , class_vars}
+  class_vars := MakeClassfields(ctx)
+  class_methods := MakeClassMethods(ctx)
+  return  &Classdef{name , super_name ,  instances , methods , class_vars, class_methods}
 }
 
 func ClassdefFromFile(file_name string)(*Classdef){
