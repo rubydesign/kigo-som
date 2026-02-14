@@ -45,20 +45,20 @@ func somParserInit() {
 		"Integer", "Double", "Keyword", "KeywordSequence", "STString",
 	}
 	staticData.RuleNames = []string{
-		"classdef", "superclass", "instanceFields", "classFields", "method",
-		"pattern", "unaryPattern", "binaryPattern", "keywordPattern", "methodBlock",
-		"unarySelector", "binarySelector", "identifier", "keyword", "argument",
-		"blockContents", "localDefs", "blockBody", "result", "expression", "assignation",
-		"assignments", "assignment", "evaluation", "primary", "variable", "messages",
-		"unaryMessage", "binaryMessage", "binaryOperand", "keywordMessage",
-		"formula", "nestedTerm", "literal", "literalArray", "literalNumber",
-		"literalDecimal", "negativeDecimal", "literalInteger", "literalDouble",
-		"literalSymbol", "literalString", "selector", "keywordSelector", "string",
-		"nestedBlock", "blockPattern", "blockArguments",
+		"classdef", "superclass", "instanceFields", "classFields", "classMethod",
+		"method", "pattern", "unaryPattern", "binaryPattern", "keywordPattern",
+		"methodBlock", "unarySelector", "binarySelector", "identifier", "keyword",
+		"argument", "blockContents", "localDefs", "blockBody", "result", "expression",
+		"assignation", "assignments", "assignment", "evaluation", "primary",
+		"variable", "messages", "unaryMessage", "binaryMessage", "binaryOperand",
+		"keywordMessage", "formula", "nestedTerm", "literal", "literalArray",
+		"literalNumber", "literalDecimal", "negativeDecimal", "literalInteger",
+		"literalDouble", "literalSymbol", "literalString", "selector", "keywordSelector",
+		"string", "nestedBlock", "blockPattern", "blockArguments",
 	}
 	staticData.PredictionContextCache = antlr.NewPredictionContextCache()
 	staticData.serializedATN = []int32{
-		4, 1, 34, 359, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
+		4, 1, 34, 363, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
 		4, 2, 5, 7, 5, 2, 6, 7, 6, 2, 7, 7, 7, 2, 8, 7, 8, 2, 9, 7, 9, 2, 10, 7,
 		10, 2, 11, 7, 11, 2, 12, 7, 12, 2, 13, 7, 13, 2, 14, 7, 14, 2, 15, 7, 15,
 		2, 16, 7, 16, 2, 17, 7, 17, 2, 18, 7, 18, 2, 19, 7, 19, 2, 20, 7, 20, 2,
@@ -67,151 +67,152 @@ func somParserInit() {
 		31, 2, 32, 7, 32, 2, 33, 7, 33, 2, 34, 7, 34, 2, 35, 7, 35, 2, 36, 7, 36,
 		2, 37, 7, 37, 2, 38, 7, 38, 2, 39, 7, 39, 2, 40, 7, 40, 2, 41, 7, 41, 2,
 		42, 7, 42, 2, 43, 7, 43, 2, 44, 7, 44, 2, 45, 7, 45, 2, 46, 7, 46, 2, 47,
-		7, 47, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 5, 0, 102, 8, 0, 10, 0, 12, 0, 105,
-		9, 0, 1, 0, 1, 0, 1, 0, 5, 0, 110, 8, 0, 10, 0, 12, 0, 113, 9, 0, 3, 0,
-		115, 8, 0, 1, 0, 1, 0, 1, 1, 3, 1, 120, 8, 1, 1, 1, 1, 1, 1, 2, 1, 2, 5,
-		2, 126, 8, 2, 10, 2, 12, 2, 129, 9, 2, 1, 2, 3, 2, 132, 8, 2, 1, 3, 1,
-		3, 5, 3, 136, 8, 3, 10, 3, 12, 3, 139, 9, 3, 1, 3, 3, 3, 142, 8, 3, 1,
-		4, 1, 4, 1, 4, 1, 4, 3, 4, 148, 8, 4, 1, 5, 1, 5, 1, 5, 3, 5, 153, 8, 5,
-		1, 6, 1, 6, 1, 7, 1, 7, 1, 7, 1, 8, 1, 8, 1, 8, 4, 8, 163, 8, 8, 11, 8,
-		12, 8, 164, 1, 9, 1, 9, 3, 9, 169, 8, 9, 1, 9, 1, 9, 1, 10, 1, 10, 1, 11,
-		1, 11, 1, 12, 1, 12, 1, 13, 1, 13, 1, 14, 1, 14, 1, 15, 1, 15, 1, 15, 1,
-		15, 3, 15, 187, 8, 15, 1, 15, 1, 15, 1, 16, 5, 16, 192, 8, 16, 10, 16,
-		12, 16, 195, 9, 16, 1, 17, 1, 17, 1, 17, 1, 17, 1, 17, 3, 17, 202, 8, 17,
-		3, 17, 204, 8, 17, 3, 17, 206, 8, 17, 1, 18, 1, 18, 3, 18, 210, 8, 18,
-		1, 19, 1, 19, 3, 19, 214, 8, 19, 1, 20, 1, 20, 1, 20, 1, 21, 4, 21, 220,
-		8, 21, 11, 21, 12, 21, 221, 1, 22, 1, 22, 1, 22, 1, 23, 1, 23, 3, 23, 229,
-		8, 23, 1, 24, 1, 24, 1, 24, 1, 24, 3, 24, 235, 8, 24, 1, 25, 1, 25, 1,
-		26, 4, 26, 240, 8, 26, 11, 26, 12, 26, 241, 1, 26, 5, 26, 245, 8, 26, 10,
-		26, 12, 26, 248, 9, 26, 1, 26, 3, 26, 251, 8, 26, 1, 26, 4, 26, 254, 8,
-		26, 11, 26, 12, 26, 255, 1, 26, 3, 26, 259, 8, 26, 1, 26, 3, 26, 262, 8,
-		26, 1, 27, 1, 27, 1, 28, 1, 28, 1, 28, 1, 29, 1, 29, 5, 29, 271, 8, 29,
-		10, 29, 12, 29, 274, 9, 29, 1, 30, 1, 30, 1, 30, 4, 30, 279, 8, 30, 11,
-		30, 12, 30, 280, 1, 31, 1, 31, 5, 31, 285, 8, 31, 10, 31, 12, 31, 288,
-		9, 31, 1, 32, 1, 32, 1, 32, 1, 32, 1, 33, 1, 33, 1, 33, 1, 33, 3, 33, 298,
-		8, 33, 1, 34, 1, 34, 1, 34, 5, 34, 303, 8, 34, 10, 34, 12, 34, 306, 9,
-		34, 1, 34, 1, 34, 1, 35, 1, 35, 3, 35, 312, 8, 35, 1, 36, 1, 36, 3, 36,
-		316, 8, 36, 1, 37, 1, 37, 1, 37, 1, 38, 1, 38, 1, 39, 1, 39, 1, 40, 1,
-		40, 1, 40, 3, 40, 328, 8, 40, 1, 41, 1, 41, 1, 42, 1, 42, 1, 42, 3, 42,
-		335, 8, 42, 1, 43, 1, 43, 1, 44, 1, 44, 1, 45, 1, 45, 3, 45, 343, 8, 45,
-		1, 45, 3, 45, 346, 8, 45, 1, 45, 1, 45, 1, 46, 1, 46, 1, 46, 1, 47, 1,
-		47, 4, 47, 355, 8, 47, 11, 47, 12, 47, 356, 1, 47, 0, 0, 48, 0, 2, 4, 6,
-		8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42,
-		44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74, 76, 78,
-		80, 82, 84, 86, 88, 90, 92, 94, 0, 3, 2, 0, 5, 5, 9, 22, 1, 0, 3, 4, 1,
-		0, 32, 33, 357, 0, 96, 1, 0, 0, 0, 2, 119, 1, 0, 0, 0, 4, 131, 1, 0, 0,
-		0, 6, 141, 1, 0, 0, 0, 8, 143, 1, 0, 0, 0, 10, 152, 1, 0, 0, 0, 12, 154,
-		1, 0, 0, 0, 14, 156, 1, 0, 0, 0, 16, 162, 1, 0, 0, 0, 18, 166, 1, 0, 0,
-		0, 20, 172, 1, 0, 0, 0, 22, 174, 1, 0, 0, 0, 24, 176, 1, 0, 0, 0, 26, 178,
-		1, 0, 0, 0, 28, 180, 1, 0, 0, 0, 30, 186, 1, 0, 0, 0, 32, 193, 1, 0, 0,
-		0, 34, 205, 1, 0, 0, 0, 36, 207, 1, 0, 0, 0, 38, 213, 1, 0, 0, 0, 40, 215,
-		1, 0, 0, 0, 42, 219, 1, 0, 0, 0, 44, 223, 1, 0, 0, 0, 46, 226, 1, 0, 0,
-		0, 48, 234, 1, 0, 0, 0, 50, 236, 1, 0, 0, 0, 52, 261, 1, 0, 0, 0, 54, 263,
-		1, 0, 0, 0, 56, 265, 1, 0, 0, 0, 58, 268, 1, 0, 0, 0, 60, 278, 1, 0, 0,
-		0, 62, 282, 1, 0, 0, 0, 64, 289, 1, 0, 0, 0, 66, 297, 1, 0, 0, 0, 68, 299,
-		1, 0, 0, 0, 70, 311, 1, 0, 0, 0, 72, 315, 1, 0, 0, 0, 74, 317, 1, 0, 0,
-		0, 76, 320, 1, 0, 0, 0, 78, 322, 1, 0, 0, 0, 80, 324, 1, 0, 0, 0, 82, 329,
-		1, 0, 0, 0, 84, 334, 1, 0, 0, 0, 86, 336, 1, 0, 0, 0, 88, 338, 1, 0, 0,
-		0, 90, 340, 1, 0, 0, 0, 92, 349, 1, 0, 0, 0, 94, 354, 1, 0, 0, 0, 96, 97,
-		5, 4, 0, 0, 97, 98, 5, 5, 0, 0, 98, 99, 3, 2, 1, 0, 99, 103, 3, 4, 2, 0,
-		100, 102, 3, 8, 4, 0, 101, 100, 1, 0, 0, 0, 102, 105, 1, 0, 0, 0, 103,
-		101, 1, 0, 0, 0, 103, 104, 1, 0, 0, 0, 104, 114, 1, 0, 0, 0, 105, 103,
-		1, 0, 0, 0, 106, 107, 5, 6, 0, 0, 107, 111, 3, 6, 3, 0, 108, 110, 3, 8,
-		4, 0, 109, 108, 1, 0, 0, 0, 110, 113, 1, 0, 0, 0, 111, 109, 1, 0, 0, 0,
-		111, 112, 1, 0, 0, 0, 112, 115, 1, 0, 0, 0, 113, 111, 1, 0, 0, 0, 114,
-		106, 1, 0, 0, 0, 114, 115, 1, 0, 0, 0, 115, 116, 1, 0, 0, 0, 116, 117,
-		5, 8, 0, 0, 117, 1, 1, 0, 0, 0, 118, 120, 5, 4, 0, 0, 119, 118, 1, 0, 0,
-		0, 119, 120, 1, 0, 0, 0, 120, 121, 1, 0, 0, 0, 121, 122, 5, 7, 0, 0, 122,
-		3, 1, 0, 0, 0, 123, 127, 5, 9, 0, 0, 124, 126, 3, 50, 25, 0, 125, 124,
-		1, 0, 0, 0, 126, 129, 1, 0, 0, 0, 127, 125, 1, 0, 0, 0, 127, 128, 1, 0,
-		0, 0, 128, 130, 1, 0, 0, 0, 129, 127, 1, 0, 0, 0, 130, 132, 5, 9, 0, 0,
-		131, 123, 1, 0, 0, 0, 131, 132, 1, 0, 0, 0, 132, 5, 1, 0, 0, 0, 133, 137,
-		5, 9, 0, 0, 134, 136, 3, 50, 25, 0, 135, 134, 1, 0, 0, 0, 136, 139, 1,
-		0, 0, 0, 137, 135, 1, 0, 0, 0, 137, 138, 1, 0, 0, 0, 138, 140, 1, 0, 0,
-		0, 139, 137, 1, 0, 0, 0, 140, 142, 5, 9, 0, 0, 141, 133, 1, 0, 0, 0, 141,
-		142, 1, 0, 0, 0, 142, 7, 1, 0, 0, 0, 143, 144, 3, 10, 5, 0, 144, 147, 5,
-		5, 0, 0, 145, 148, 5, 3, 0, 0, 146, 148, 3, 18, 9, 0, 147, 145, 1, 0, 0,
-		0, 147, 146, 1, 0, 0, 0, 148, 9, 1, 0, 0, 0, 149, 153, 3, 12, 6, 0, 150,
-		153, 3, 16, 8, 0, 151, 153, 3, 14, 7, 0, 152, 149, 1, 0, 0, 0, 152, 150,
-		1, 0, 0, 0, 152, 151, 1, 0, 0, 0, 153, 11, 1, 0, 0, 0, 154, 155, 3, 20,
-		10, 0, 155, 13, 1, 0, 0, 0, 156, 157, 3, 22, 11, 0, 157, 158, 3, 28, 14,
-		0, 158, 15, 1, 0, 0, 0, 159, 160, 3, 26, 13, 0, 160, 161, 3, 28, 14, 0,
-		161, 163, 1, 0, 0, 0, 162, 159, 1, 0, 0, 0, 163, 164, 1, 0, 0, 0, 164,
-		162, 1, 0, 0, 0, 164, 165, 1, 0, 0, 0, 165, 17, 1, 0, 0, 0, 166, 168, 5,
-		7, 0, 0, 167, 169, 3, 30, 15, 0, 168, 167, 1, 0, 0, 0, 168, 169, 1, 0,
-		0, 0, 169, 170, 1, 0, 0, 0, 170, 171, 5, 8, 0, 0, 171, 19, 1, 0, 0, 0,
-		172, 173, 3, 24, 12, 0, 173, 21, 1, 0, 0, 0, 174, 175, 7, 0, 0, 0, 175,
-		23, 1, 0, 0, 0, 176, 177, 7, 1, 0, 0, 177, 25, 1, 0, 0, 0, 178, 179, 5,
-		32, 0, 0, 179, 27, 1, 0, 0, 0, 180, 181, 3, 50, 25, 0, 181, 29, 1, 0, 0,
-		0, 182, 183, 5, 9, 0, 0, 183, 184, 3, 32, 16, 0, 184, 185, 5, 9, 0, 0,
-		185, 187, 1, 0, 0, 0, 186, 182, 1, 0, 0, 0, 186, 187, 1, 0, 0, 0, 187,
-		188, 1, 0, 0, 0, 188, 189, 3, 34, 17, 0, 189, 31, 1, 0, 0, 0, 190, 192,
-		3, 50, 25, 0, 191, 190, 1, 0, 0, 0, 192, 195, 1, 0, 0, 0, 193, 191, 1,
-		0, 0, 0, 193, 194, 1, 0, 0, 0, 194, 33, 1, 0, 0, 0, 195, 193, 1, 0, 0,
-		0, 196, 197, 5, 27, 0, 0, 197, 206, 3, 36, 18, 0, 198, 203, 3, 38, 19,
-		0, 199, 201, 5, 28, 0, 0, 200, 202, 3, 34, 17, 0, 201, 200, 1, 0, 0, 0,
-		201, 202, 1, 0, 0, 0, 202, 204, 1, 0, 0, 0, 203, 199, 1, 0, 0, 0, 203,
-		204, 1, 0, 0, 0, 204, 206, 1, 0, 0, 0, 205, 196, 1, 0, 0, 0, 205, 198,
-		1, 0, 0, 0, 206, 35, 1, 0, 0, 0, 207, 209, 3, 38, 19, 0, 208, 210, 5, 28,
-		0, 0, 209, 208, 1, 0, 0, 0, 209, 210, 1, 0, 0, 0, 210, 37, 1, 0, 0, 0,
-		211, 214, 3, 40, 20, 0, 212, 214, 3, 46, 23, 0, 213, 211, 1, 0, 0, 0, 213,
-		212, 1, 0, 0, 0, 214, 39, 1, 0, 0, 0, 215, 216, 3, 42, 21, 0, 216, 217,
-		3, 46, 23, 0, 217, 41, 1, 0, 0, 0, 218, 220, 3, 44, 22, 0, 219, 218, 1,
-		0, 0, 0, 220, 221, 1, 0, 0, 0, 221, 219, 1, 0, 0, 0, 221, 222, 1, 0, 0,
-		0, 222, 43, 1, 0, 0, 0, 223, 224, 3, 50, 25, 0, 224, 225, 5, 29, 0, 0,
-		225, 45, 1, 0, 0, 0, 226, 228, 3, 48, 24, 0, 227, 229, 3, 52, 26, 0, 228,
-		227, 1, 0, 0, 0, 228, 229, 1, 0, 0, 0, 229, 47, 1, 0, 0, 0, 230, 235, 3,
-		50, 25, 0, 231, 235, 3, 64, 32, 0, 232, 235, 3, 90, 45, 0, 233, 235, 3,
-		66, 33, 0, 234, 230, 1, 0, 0, 0, 234, 231, 1, 0, 0, 0, 234, 232, 1, 0,
-		0, 0, 234, 233, 1, 0, 0, 0, 235, 49, 1, 0, 0, 0, 236, 237, 3, 24, 12, 0,
-		237, 51, 1, 0, 0, 0, 238, 240, 3, 54, 27, 0, 239, 238, 1, 0, 0, 0, 240,
-		241, 1, 0, 0, 0, 241, 239, 1, 0, 0, 0, 241, 242, 1, 0, 0, 0, 242, 246,
-		1, 0, 0, 0, 243, 245, 3, 56, 28, 0, 244, 243, 1, 0, 0, 0, 245, 248, 1,
-		0, 0, 0, 246, 244, 1, 0, 0, 0, 246, 247, 1, 0, 0, 0, 247, 250, 1, 0, 0,
-		0, 248, 246, 1, 0, 0, 0, 249, 251, 3, 60, 30, 0, 250, 249, 1, 0, 0, 0,
-		250, 251, 1, 0, 0, 0, 251, 262, 1, 0, 0, 0, 252, 254, 3, 56, 28, 0, 253,
-		252, 1, 0, 0, 0, 254, 255, 1, 0, 0, 0, 255, 253, 1, 0, 0, 0, 255, 256,
-		1, 0, 0, 0, 256, 258, 1, 0, 0, 0, 257, 259, 3, 60, 30, 0, 258, 257, 1,
-		0, 0, 0, 258, 259, 1, 0, 0, 0, 259, 262, 1, 0, 0, 0, 260, 262, 3, 60, 30,
-		0, 261, 239, 1, 0, 0, 0, 261, 253, 1, 0, 0, 0, 261, 260, 1, 0, 0, 0, 262,
-		53, 1, 0, 0, 0, 263, 264, 3, 20, 10, 0, 264, 55, 1, 0, 0, 0, 265, 266,
-		3, 22, 11, 0, 266, 267, 3, 58, 29, 0, 267, 57, 1, 0, 0, 0, 268, 272, 3,
-		48, 24, 0, 269, 271, 3, 54, 27, 0, 270, 269, 1, 0, 0, 0, 271, 274, 1, 0,
-		0, 0, 272, 270, 1, 0, 0, 0, 272, 273, 1, 0, 0, 0, 273, 59, 1, 0, 0, 0,
-		274, 272, 1, 0, 0, 0, 275, 276, 3, 26, 13, 0, 276, 277, 3, 62, 31, 0, 277,
-		279, 1, 0, 0, 0, 278, 275, 1, 0, 0, 0, 279, 280, 1, 0, 0, 0, 280, 278,
-		1, 0, 0, 0, 280, 281, 1, 0, 0, 0, 281, 61, 1, 0, 0, 0, 282, 286, 3, 58,
-		29, 0, 283, 285, 3, 56, 28, 0, 284, 283, 1, 0, 0, 0, 285, 288, 1, 0, 0,
-		0, 286, 284, 1, 0, 0, 0, 286, 287, 1, 0, 0, 0, 287, 63, 1, 0, 0, 0, 288,
-		286, 1, 0, 0, 0, 289, 290, 5, 7, 0, 0, 290, 291, 3, 38, 19, 0, 291, 292,
-		5, 8, 0, 0, 292, 65, 1, 0, 0, 0, 293, 298, 3, 68, 34, 0, 294, 298, 3, 80,
-		40, 0, 295, 298, 3, 82, 41, 0, 296, 298, 3, 70, 35, 0, 297, 293, 1, 0,
-		0, 0, 297, 294, 1, 0, 0, 0, 297, 295, 1, 0, 0, 0, 297, 296, 1, 0, 0, 0,
-		298, 67, 1, 0, 0, 0, 299, 300, 5, 26, 0, 0, 300, 304, 5, 7, 0, 0, 301,
-		303, 3, 66, 33, 0, 302, 301, 1, 0, 0, 0, 303, 306, 1, 0, 0, 0, 304, 302,
-		1, 0, 0, 0, 304, 305, 1, 0, 0, 0, 305, 307, 1, 0, 0, 0, 306, 304, 1, 0,
-		0, 0, 307, 308, 5, 8, 0, 0, 308, 69, 1, 0, 0, 0, 309, 312, 3, 74, 37, 0,
-		310, 312, 3, 72, 36, 0, 311, 309, 1, 0, 0, 0, 311, 310, 1, 0, 0, 0, 312,
-		71, 1, 0, 0, 0, 313, 316, 3, 76, 38, 0, 314, 316, 3, 78, 39, 0, 315, 313,
-		1, 0, 0, 0, 315, 314, 1, 0, 0, 0, 316, 73, 1, 0, 0, 0, 317, 318, 5, 11,
-		0, 0, 318, 319, 3, 72, 36, 0, 319, 75, 1, 0, 0, 0, 320, 321, 5, 30, 0,
-		0, 321, 77, 1, 0, 0, 0, 322, 323, 5, 31, 0, 0, 323, 79, 1, 0, 0, 0, 324,
-		327, 5, 26, 0, 0, 325, 328, 3, 88, 44, 0, 326, 328, 3, 84, 42, 0, 327,
-		325, 1, 0, 0, 0, 327, 326, 1, 0, 0, 0, 328, 81, 1, 0, 0, 0, 329, 330, 3,
-		88, 44, 0, 330, 83, 1, 0, 0, 0, 331, 335, 3, 22, 11, 0, 332, 335, 3, 86,
-		43, 0, 333, 335, 3, 20, 10, 0, 334, 331, 1, 0, 0, 0, 334, 332, 1, 0, 0,
-		0, 334, 333, 1, 0, 0, 0, 335, 85, 1, 0, 0, 0, 336, 337, 7, 2, 0, 0, 337,
-		87, 1, 0, 0, 0, 338, 339, 5, 34, 0, 0, 339, 89, 1, 0, 0, 0, 340, 342, 5,
-		24, 0, 0, 341, 343, 3, 92, 46, 0, 342, 341, 1, 0, 0, 0, 342, 343, 1, 0,
-		0, 0, 343, 345, 1, 0, 0, 0, 344, 346, 3, 30, 15, 0, 345, 344, 1, 0, 0,
-		0, 345, 346, 1, 0, 0, 0, 346, 347, 1, 0, 0, 0, 347, 348, 5, 25, 0, 0, 348,
-		91, 1, 0, 0, 0, 349, 350, 3, 94, 47, 0, 350, 351, 5, 9, 0, 0, 351, 93,
-		1, 0, 0, 0, 352, 353, 5, 23, 0, 0, 353, 355, 3, 28, 14, 0, 354, 352, 1,
-		0, 0, 0, 355, 356, 1, 0, 0, 0, 356, 354, 1, 0, 0, 0, 356, 357, 1, 0, 0,
-		0, 357, 95, 1, 0, 0, 0, 40, 103, 111, 114, 119, 127, 131, 137, 141, 147,
-		152, 164, 168, 186, 193, 201, 203, 205, 209, 213, 221, 228, 234, 241, 246,
-		250, 255, 258, 261, 272, 280, 286, 297, 304, 311, 315, 327, 334, 342, 345,
-		356,
+		7, 47, 2, 48, 7, 48, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 5, 0, 104, 8, 0, 10,
+		0, 12, 0, 107, 9, 0, 1, 0, 1, 0, 1, 0, 5, 0, 112, 8, 0, 10, 0, 12, 0, 115,
+		9, 0, 3, 0, 117, 8, 0, 1, 0, 1, 0, 1, 1, 3, 1, 122, 8, 1, 1, 1, 1, 1, 1,
+		2, 1, 2, 5, 2, 128, 8, 2, 10, 2, 12, 2, 131, 9, 2, 1, 2, 3, 2, 134, 8,
+		2, 1, 3, 1, 3, 5, 3, 138, 8, 3, 10, 3, 12, 3, 141, 9, 3, 1, 3, 3, 3, 144,
+		8, 3, 1, 4, 1, 4, 1, 5, 1, 5, 1, 5, 1, 5, 3, 5, 152, 8, 5, 1, 6, 1, 6,
+		1, 6, 3, 6, 157, 8, 6, 1, 7, 1, 7, 1, 8, 1, 8, 1, 8, 1, 9, 1, 9, 1, 9,
+		4, 9, 167, 8, 9, 11, 9, 12, 9, 168, 1, 10, 1, 10, 3, 10, 173, 8, 10, 1,
+		10, 1, 10, 1, 11, 1, 11, 1, 12, 1, 12, 1, 13, 1, 13, 1, 14, 1, 14, 1, 15,
+		1, 15, 1, 16, 1, 16, 1, 16, 1, 16, 3, 16, 191, 8, 16, 1, 16, 1, 16, 1,
+		17, 5, 17, 196, 8, 17, 10, 17, 12, 17, 199, 9, 17, 1, 18, 1, 18, 1, 18,
+		1, 18, 1, 18, 3, 18, 206, 8, 18, 3, 18, 208, 8, 18, 3, 18, 210, 8, 18,
+		1, 19, 1, 19, 3, 19, 214, 8, 19, 1, 20, 1, 20, 3, 20, 218, 8, 20, 1, 21,
+		1, 21, 1, 21, 1, 22, 4, 22, 224, 8, 22, 11, 22, 12, 22, 225, 1, 23, 1,
+		23, 1, 23, 1, 24, 1, 24, 3, 24, 233, 8, 24, 1, 25, 1, 25, 1, 25, 1, 25,
+		3, 25, 239, 8, 25, 1, 26, 1, 26, 1, 27, 4, 27, 244, 8, 27, 11, 27, 12,
+		27, 245, 1, 27, 5, 27, 249, 8, 27, 10, 27, 12, 27, 252, 9, 27, 1, 27, 3,
+		27, 255, 8, 27, 1, 27, 4, 27, 258, 8, 27, 11, 27, 12, 27, 259, 1, 27, 3,
+		27, 263, 8, 27, 1, 27, 3, 27, 266, 8, 27, 1, 28, 1, 28, 1, 29, 1, 29, 1,
+		29, 1, 30, 1, 30, 5, 30, 275, 8, 30, 10, 30, 12, 30, 278, 9, 30, 1, 31,
+		1, 31, 1, 31, 4, 31, 283, 8, 31, 11, 31, 12, 31, 284, 1, 32, 1, 32, 5,
+		32, 289, 8, 32, 10, 32, 12, 32, 292, 9, 32, 1, 33, 1, 33, 1, 33, 1, 33,
+		1, 34, 1, 34, 1, 34, 1, 34, 3, 34, 302, 8, 34, 1, 35, 1, 35, 1, 35, 5,
+		35, 307, 8, 35, 10, 35, 12, 35, 310, 9, 35, 1, 35, 1, 35, 1, 36, 1, 36,
+		3, 36, 316, 8, 36, 1, 37, 1, 37, 3, 37, 320, 8, 37, 1, 38, 1, 38, 1, 38,
+		1, 39, 1, 39, 1, 40, 1, 40, 1, 41, 1, 41, 1, 41, 3, 41, 332, 8, 41, 1,
+		42, 1, 42, 1, 43, 1, 43, 1, 43, 3, 43, 339, 8, 43, 1, 44, 1, 44, 1, 45,
+		1, 45, 1, 46, 1, 46, 3, 46, 347, 8, 46, 1, 46, 3, 46, 350, 8, 46, 1, 46,
+		1, 46, 1, 47, 1, 47, 1, 47, 1, 48, 1, 48, 4, 48, 359, 8, 48, 11, 48, 12,
+		48, 360, 1, 48, 0, 0, 49, 0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24,
+		26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60,
+		62, 64, 66, 68, 70, 72, 74, 76, 78, 80, 82, 84, 86, 88, 90, 92, 94, 96,
+		0, 3, 2, 0, 5, 5, 9, 22, 1, 0, 3, 4, 1, 0, 32, 33, 360, 0, 98, 1, 0, 0,
+		0, 2, 121, 1, 0, 0, 0, 4, 133, 1, 0, 0, 0, 6, 143, 1, 0, 0, 0, 8, 145,
+		1, 0, 0, 0, 10, 147, 1, 0, 0, 0, 12, 156, 1, 0, 0, 0, 14, 158, 1, 0, 0,
+		0, 16, 160, 1, 0, 0, 0, 18, 166, 1, 0, 0, 0, 20, 170, 1, 0, 0, 0, 22, 176,
+		1, 0, 0, 0, 24, 178, 1, 0, 0, 0, 26, 180, 1, 0, 0, 0, 28, 182, 1, 0, 0,
+		0, 30, 184, 1, 0, 0, 0, 32, 190, 1, 0, 0, 0, 34, 197, 1, 0, 0, 0, 36, 209,
+		1, 0, 0, 0, 38, 211, 1, 0, 0, 0, 40, 217, 1, 0, 0, 0, 42, 219, 1, 0, 0,
+		0, 44, 223, 1, 0, 0, 0, 46, 227, 1, 0, 0, 0, 48, 230, 1, 0, 0, 0, 50, 238,
+		1, 0, 0, 0, 52, 240, 1, 0, 0, 0, 54, 265, 1, 0, 0, 0, 56, 267, 1, 0, 0,
+		0, 58, 269, 1, 0, 0, 0, 60, 272, 1, 0, 0, 0, 62, 282, 1, 0, 0, 0, 64, 286,
+		1, 0, 0, 0, 66, 293, 1, 0, 0, 0, 68, 301, 1, 0, 0, 0, 70, 303, 1, 0, 0,
+		0, 72, 315, 1, 0, 0, 0, 74, 319, 1, 0, 0, 0, 76, 321, 1, 0, 0, 0, 78, 324,
+		1, 0, 0, 0, 80, 326, 1, 0, 0, 0, 82, 328, 1, 0, 0, 0, 84, 333, 1, 0, 0,
+		0, 86, 338, 1, 0, 0, 0, 88, 340, 1, 0, 0, 0, 90, 342, 1, 0, 0, 0, 92, 344,
+		1, 0, 0, 0, 94, 353, 1, 0, 0, 0, 96, 358, 1, 0, 0, 0, 98, 99, 5, 4, 0,
+		0, 99, 100, 5, 5, 0, 0, 100, 101, 3, 2, 1, 0, 101, 105, 3, 4, 2, 0, 102,
+		104, 3, 10, 5, 0, 103, 102, 1, 0, 0, 0, 104, 107, 1, 0, 0, 0, 105, 103,
+		1, 0, 0, 0, 105, 106, 1, 0, 0, 0, 106, 116, 1, 0, 0, 0, 107, 105, 1, 0,
+		0, 0, 108, 109, 5, 6, 0, 0, 109, 113, 3, 6, 3, 0, 110, 112, 3, 8, 4, 0,
+		111, 110, 1, 0, 0, 0, 112, 115, 1, 0, 0, 0, 113, 111, 1, 0, 0, 0, 113,
+		114, 1, 0, 0, 0, 114, 117, 1, 0, 0, 0, 115, 113, 1, 0, 0, 0, 116, 108,
+		1, 0, 0, 0, 116, 117, 1, 0, 0, 0, 117, 118, 1, 0, 0, 0, 118, 119, 5, 8,
+		0, 0, 119, 1, 1, 0, 0, 0, 120, 122, 5, 4, 0, 0, 121, 120, 1, 0, 0, 0, 121,
+		122, 1, 0, 0, 0, 122, 123, 1, 0, 0, 0, 123, 124, 5, 7, 0, 0, 124, 3, 1,
+		0, 0, 0, 125, 129, 5, 9, 0, 0, 126, 128, 3, 52, 26, 0, 127, 126, 1, 0,
+		0, 0, 128, 131, 1, 0, 0, 0, 129, 127, 1, 0, 0, 0, 129, 130, 1, 0, 0, 0,
+		130, 132, 1, 0, 0, 0, 131, 129, 1, 0, 0, 0, 132, 134, 5, 9, 0, 0, 133,
+		125, 1, 0, 0, 0, 133, 134, 1, 0, 0, 0, 134, 5, 1, 0, 0, 0, 135, 139, 5,
+		9, 0, 0, 136, 138, 3, 52, 26, 0, 137, 136, 1, 0, 0, 0, 138, 141, 1, 0,
+		0, 0, 139, 137, 1, 0, 0, 0, 139, 140, 1, 0, 0, 0, 140, 142, 1, 0, 0, 0,
+		141, 139, 1, 0, 0, 0, 142, 144, 5, 9, 0, 0, 143, 135, 1, 0, 0, 0, 143,
+		144, 1, 0, 0, 0, 144, 7, 1, 0, 0, 0, 145, 146, 3, 10, 5, 0, 146, 9, 1,
+		0, 0, 0, 147, 148, 3, 12, 6, 0, 148, 151, 5, 5, 0, 0, 149, 152, 5, 3, 0,
+		0, 150, 152, 3, 20, 10, 0, 151, 149, 1, 0, 0, 0, 151, 150, 1, 0, 0, 0,
+		152, 11, 1, 0, 0, 0, 153, 157, 3, 14, 7, 0, 154, 157, 3, 18, 9, 0, 155,
+		157, 3, 16, 8, 0, 156, 153, 1, 0, 0, 0, 156, 154, 1, 0, 0, 0, 156, 155,
+		1, 0, 0, 0, 157, 13, 1, 0, 0, 0, 158, 159, 3, 22, 11, 0, 159, 15, 1, 0,
+		0, 0, 160, 161, 3, 24, 12, 0, 161, 162, 3, 30, 15, 0, 162, 17, 1, 0, 0,
+		0, 163, 164, 3, 28, 14, 0, 164, 165, 3, 30, 15, 0, 165, 167, 1, 0, 0, 0,
+		166, 163, 1, 0, 0, 0, 167, 168, 1, 0, 0, 0, 168, 166, 1, 0, 0, 0, 168,
+		169, 1, 0, 0, 0, 169, 19, 1, 0, 0, 0, 170, 172, 5, 7, 0, 0, 171, 173, 3,
+		32, 16, 0, 172, 171, 1, 0, 0, 0, 172, 173, 1, 0, 0, 0, 173, 174, 1, 0,
+		0, 0, 174, 175, 5, 8, 0, 0, 175, 21, 1, 0, 0, 0, 176, 177, 3, 26, 13, 0,
+		177, 23, 1, 0, 0, 0, 178, 179, 7, 0, 0, 0, 179, 25, 1, 0, 0, 0, 180, 181,
+		7, 1, 0, 0, 181, 27, 1, 0, 0, 0, 182, 183, 5, 32, 0, 0, 183, 29, 1, 0,
+		0, 0, 184, 185, 3, 52, 26, 0, 185, 31, 1, 0, 0, 0, 186, 187, 5, 9, 0, 0,
+		187, 188, 3, 34, 17, 0, 188, 189, 5, 9, 0, 0, 189, 191, 1, 0, 0, 0, 190,
+		186, 1, 0, 0, 0, 190, 191, 1, 0, 0, 0, 191, 192, 1, 0, 0, 0, 192, 193,
+		3, 36, 18, 0, 193, 33, 1, 0, 0, 0, 194, 196, 3, 52, 26, 0, 195, 194, 1,
+		0, 0, 0, 196, 199, 1, 0, 0, 0, 197, 195, 1, 0, 0, 0, 197, 198, 1, 0, 0,
+		0, 198, 35, 1, 0, 0, 0, 199, 197, 1, 0, 0, 0, 200, 201, 5, 27, 0, 0, 201,
+		210, 3, 38, 19, 0, 202, 207, 3, 40, 20, 0, 203, 205, 5, 28, 0, 0, 204,
+		206, 3, 36, 18, 0, 205, 204, 1, 0, 0, 0, 205, 206, 1, 0, 0, 0, 206, 208,
+		1, 0, 0, 0, 207, 203, 1, 0, 0, 0, 207, 208, 1, 0, 0, 0, 208, 210, 1, 0,
+		0, 0, 209, 200, 1, 0, 0, 0, 209, 202, 1, 0, 0, 0, 210, 37, 1, 0, 0, 0,
+		211, 213, 3, 40, 20, 0, 212, 214, 5, 28, 0, 0, 213, 212, 1, 0, 0, 0, 213,
+		214, 1, 0, 0, 0, 214, 39, 1, 0, 0, 0, 215, 218, 3, 42, 21, 0, 216, 218,
+		3, 48, 24, 0, 217, 215, 1, 0, 0, 0, 217, 216, 1, 0, 0, 0, 218, 41, 1, 0,
+		0, 0, 219, 220, 3, 44, 22, 0, 220, 221, 3, 48, 24, 0, 221, 43, 1, 0, 0,
+		0, 222, 224, 3, 46, 23, 0, 223, 222, 1, 0, 0, 0, 224, 225, 1, 0, 0, 0,
+		225, 223, 1, 0, 0, 0, 225, 226, 1, 0, 0, 0, 226, 45, 1, 0, 0, 0, 227, 228,
+		3, 52, 26, 0, 228, 229, 5, 29, 0, 0, 229, 47, 1, 0, 0, 0, 230, 232, 3,
+		50, 25, 0, 231, 233, 3, 54, 27, 0, 232, 231, 1, 0, 0, 0, 232, 233, 1, 0,
+		0, 0, 233, 49, 1, 0, 0, 0, 234, 239, 3, 52, 26, 0, 235, 239, 3, 66, 33,
+		0, 236, 239, 3, 92, 46, 0, 237, 239, 3, 68, 34, 0, 238, 234, 1, 0, 0, 0,
+		238, 235, 1, 0, 0, 0, 238, 236, 1, 0, 0, 0, 238, 237, 1, 0, 0, 0, 239,
+		51, 1, 0, 0, 0, 240, 241, 3, 26, 13, 0, 241, 53, 1, 0, 0, 0, 242, 244,
+		3, 56, 28, 0, 243, 242, 1, 0, 0, 0, 244, 245, 1, 0, 0, 0, 245, 243, 1,
+		0, 0, 0, 245, 246, 1, 0, 0, 0, 246, 250, 1, 0, 0, 0, 247, 249, 3, 58, 29,
+		0, 248, 247, 1, 0, 0, 0, 249, 252, 1, 0, 0, 0, 250, 248, 1, 0, 0, 0, 250,
+		251, 1, 0, 0, 0, 251, 254, 1, 0, 0, 0, 252, 250, 1, 0, 0, 0, 253, 255,
+		3, 62, 31, 0, 254, 253, 1, 0, 0, 0, 254, 255, 1, 0, 0, 0, 255, 266, 1,
+		0, 0, 0, 256, 258, 3, 58, 29, 0, 257, 256, 1, 0, 0, 0, 258, 259, 1, 0,
+		0, 0, 259, 257, 1, 0, 0, 0, 259, 260, 1, 0, 0, 0, 260, 262, 1, 0, 0, 0,
+		261, 263, 3, 62, 31, 0, 262, 261, 1, 0, 0, 0, 262, 263, 1, 0, 0, 0, 263,
+		266, 1, 0, 0, 0, 264, 266, 3, 62, 31, 0, 265, 243, 1, 0, 0, 0, 265, 257,
+		1, 0, 0, 0, 265, 264, 1, 0, 0, 0, 266, 55, 1, 0, 0, 0, 267, 268, 3, 22,
+		11, 0, 268, 57, 1, 0, 0, 0, 269, 270, 3, 24, 12, 0, 270, 271, 3, 60, 30,
+		0, 271, 59, 1, 0, 0, 0, 272, 276, 3, 50, 25, 0, 273, 275, 3, 56, 28, 0,
+		274, 273, 1, 0, 0, 0, 275, 278, 1, 0, 0, 0, 276, 274, 1, 0, 0, 0, 276,
+		277, 1, 0, 0, 0, 277, 61, 1, 0, 0, 0, 278, 276, 1, 0, 0, 0, 279, 280, 3,
+		28, 14, 0, 280, 281, 3, 64, 32, 0, 281, 283, 1, 0, 0, 0, 282, 279, 1, 0,
+		0, 0, 283, 284, 1, 0, 0, 0, 284, 282, 1, 0, 0, 0, 284, 285, 1, 0, 0, 0,
+		285, 63, 1, 0, 0, 0, 286, 290, 3, 60, 30, 0, 287, 289, 3, 58, 29, 0, 288,
+		287, 1, 0, 0, 0, 289, 292, 1, 0, 0, 0, 290, 288, 1, 0, 0, 0, 290, 291,
+		1, 0, 0, 0, 291, 65, 1, 0, 0, 0, 292, 290, 1, 0, 0, 0, 293, 294, 5, 7,
+		0, 0, 294, 295, 3, 40, 20, 0, 295, 296, 5, 8, 0, 0, 296, 67, 1, 0, 0, 0,
+		297, 302, 3, 70, 35, 0, 298, 302, 3, 82, 41, 0, 299, 302, 3, 84, 42, 0,
+		300, 302, 3, 72, 36, 0, 301, 297, 1, 0, 0, 0, 301, 298, 1, 0, 0, 0, 301,
+		299, 1, 0, 0, 0, 301, 300, 1, 0, 0, 0, 302, 69, 1, 0, 0, 0, 303, 304, 5,
+		26, 0, 0, 304, 308, 5, 7, 0, 0, 305, 307, 3, 68, 34, 0, 306, 305, 1, 0,
+		0, 0, 307, 310, 1, 0, 0, 0, 308, 306, 1, 0, 0, 0, 308, 309, 1, 0, 0, 0,
+		309, 311, 1, 0, 0, 0, 310, 308, 1, 0, 0, 0, 311, 312, 5, 8, 0, 0, 312,
+		71, 1, 0, 0, 0, 313, 316, 3, 76, 38, 0, 314, 316, 3, 74, 37, 0, 315, 313,
+		1, 0, 0, 0, 315, 314, 1, 0, 0, 0, 316, 73, 1, 0, 0, 0, 317, 320, 3, 78,
+		39, 0, 318, 320, 3, 80, 40, 0, 319, 317, 1, 0, 0, 0, 319, 318, 1, 0, 0,
+		0, 320, 75, 1, 0, 0, 0, 321, 322, 5, 11, 0, 0, 322, 323, 3, 74, 37, 0,
+		323, 77, 1, 0, 0, 0, 324, 325, 5, 30, 0, 0, 325, 79, 1, 0, 0, 0, 326, 327,
+		5, 31, 0, 0, 327, 81, 1, 0, 0, 0, 328, 331, 5, 26, 0, 0, 329, 332, 3, 90,
+		45, 0, 330, 332, 3, 86, 43, 0, 331, 329, 1, 0, 0, 0, 331, 330, 1, 0, 0,
+		0, 332, 83, 1, 0, 0, 0, 333, 334, 3, 90, 45, 0, 334, 85, 1, 0, 0, 0, 335,
+		339, 3, 24, 12, 0, 336, 339, 3, 88, 44, 0, 337, 339, 3, 22, 11, 0, 338,
+		335, 1, 0, 0, 0, 338, 336, 1, 0, 0, 0, 338, 337, 1, 0, 0, 0, 339, 87, 1,
+		0, 0, 0, 340, 341, 7, 2, 0, 0, 341, 89, 1, 0, 0, 0, 342, 343, 5, 34, 0,
+		0, 343, 91, 1, 0, 0, 0, 344, 346, 5, 24, 0, 0, 345, 347, 3, 94, 47, 0,
+		346, 345, 1, 0, 0, 0, 346, 347, 1, 0, 0, 0, 347, 349, 1, 0, 0, 0, 348,
+		350, 3, 32, 16, 0, 349, 348, 1, 0, 0, 0, 349, 350, 1, 0, 0, 0, 350, 351,
+		1, 0, 0, 0, 351, 352, 5, 25, 0, 0, 352, 93, 1, 0, 0, 0, 353, 354, 3, 96,
+		48, 0, 354, 355, 5, 9, 0, 0, 355, 95, 1, 0, 0, 0, 356, 357, 5, 23, 0, 0,
+		357, 359, 3, 30, 15, 0, 358, 356, 1, 0, 0, 0, 359, 360, 1, 0, 0, 0, 360,
+		358, 1, 0, 0, 0, 360, 361, 1, 0, 0, 0, 361, 97, 1, 0, 0, 0, 40, 105, 113,
+		116, 121, 129, 133, 139, 143, 151, 156, 168, 172, 190, 197, 205, 207, 209,
+		213, 217, 225, 232, 238, 245, 250, 254, 259, 262, 265, 276, 284, 290, 301,
+		308, 315, 319, 331, 338, 346, 349, 360,
 	}
 	deserializer := antlr.NewATNDeserializer(nil)
 	staticData.atn = deserializer.Deserialize(staticData.serializedATN)
@@ -292,50 +293,51 @@ const (
 	SomParserRULE_superclass      = 1
 	SomParserRULE_instanceFields  = 2
 	SomParserRULE_classFields     = 3
-	SomParserRULE_method          = 4
-	SomParserRULE_pattern         = 5
-	SomParserRULE_unaryPattern    = 6
-	SomParserRULE_binaryPattern   = 7
-	SomParserRULE_keywordPattern  = 8
-	SomParserRULE_methodBlock     = 9
-	SomParserRULE_unarySelector   = 10
-	SomParserRULE_binarySelector  = 11
-	SomParserRULE_identifier      = 12
-	SomParserRULE_keyword         = 13
-	SomParserRULE_argument        = 14
-	SomParserRULE_blockContents   = 15
-	SomParserRULE_localDefs       = 16
-	SomParserRULE_blockBody       = 17
-	SomParserRULE_result          = 18
-	SomParserRULE_expression      = 19
-	SomParserRULE_assignation     = 20
-	SomParserRULE_assignments     = 21
-	SomParserRULE_assignment      = 22
-	SomParserRULE_evaluation      = 23
-	SomParserRULE_primary         = 24
-	SomParserRULE_variable        = 25
-	SomParserRULE_messages        = 26
-	SomParserRULE_unaryMessage    = 27
-	SomParserRULE_binaryMessage   = 28
-	SomParserRULE_binaryOperand   = 29
-	SomParserRULE_keywordMessage  = 30
-	SomParserRULE_formula         = 31
-	SomParserRULE_nestedTerm      = 32
-	SomParserRULE_literal         = 33
-	SomParserRULE_literalArray    = 34
-	SomParserRULE_literalNumber   = 35
-	SomParserRULE_literalDecimal  = 36
-	SomParserRULE_negativeDecimal = 37
-	SomParserRULE_literalInteger  = 38
-	SomParserRULE_literalDouble   = 39
-	SomParserRULE_literalSymbol   = 40
-	SomParserRULE_literalString   = 41
-	SomParserRULE_selector        = 42
-	SomParserRULE_keywordSelector = 43
-	SomParserRULE_string          = 44
-	SomParserRULE_nestedBlock     = 45
-	SomParserRULE_blockPattern    = 46
-	SomParserRULE_blockArguments  = 47
+	SomParserRULE_classMethod     = 4
+	SomParserRULE_method          = 5
+	SomParserRULE_pattern         = 6
+	SomParserRULE_unaryPattern    = 7
+	SomParserRULE_binaryPattern   = 8
+	SomParserRULE_keywordPattern  = 9
+	SomParserRULE_methodBlock     = 10
+	SomParserRULE_unarySelector   = 11
+	SomParserRULE_binarySelector  = 12
+	SomParserRULE_identifier      = 13
+	SomParserRULE_keyword         = 14
+	SomParserRULE_argument        = 15
+	SomParserRULE_blockContents   = 16
+	SomParserRULE_localDefs       = 17
+	SomParserRULE_blockBody       = 18
+	SomParserRULE_result          = 19
+	SomParserRULE_expression      = 20
+	SomParserRULE_assignation     = 21
+	SomParserRULE_assignments     = 22
+	SomParserRULE_assignment      = 23
+	SomParserRULE_evaluation      = 24
+	SomParserRULE_primary         = 25
+	SomParserRULE_variable        = 26
+	SomParserRULE_messages        = 27
+	SomParserRULE_unaryMessage    = 28
+	SomParserRULE_binaryMessage   = 29
+	SomParserRULE_binaryOperand   = 30
+	SomParserRULE_keywordMessage  = 31
+	SomParserRULE_formula         = 32
+	SomParserRULE_nestedTerm      = 33
+	SomParserRULE_literal         = 34
+	SomParserRULE_literalArray    = 35
+	SomParserRULE_literalNumber   = 36
+	SomParserRULE_literalDecimal  = 37
+	SomParserRULE_negativeDecimal = 38
+	SomParserRULE_literalInteger  = 39
+	SomParserRULE_literalDouble   = 40
+	SomParserRULE_literalSymbol   = 41
+	SomParserRULE_literalString   = 42
+	SomParserRULE_selector        = 43
+	SomParserRULE_keywordSelector = 44
+	SomParserRULE_string          = 45
+	SomParserRULE_nestedBlock     = 46
+	SomParserRULE_blockPattern    = 47
+	SomParserRULE_blockArguments  = 48
 )
 
 // IClassdefContext is an interface to support dynamic dispatch.
@@ -355,6 +357,8 @@ type IClassdefContext interface {
 	Method(i int) IMethodContext
 	Separator() antlr.TerminalNode
 	ClassFields() IClassFieldsContext
+	AllClassMethod() []IClassMethodContext
+	ClassMethod(i int) IClassMethodContext
 
 	// IsClassdefContext differentiates from other interfaces.
 	IsClassdefContext()
@@ -497,6 +501,47 @@ func (s *ClassdefContext) ClassFields() IClassFieldsContext {
 	return t.(IClassFieldsContext)
 }
 
+func (s *ClassdefContext) AllClassMethod() []IClassMethodContext {
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(IClassMethodContext); ok {
+			len++
+		}
+	}
+
+	tst := make([]IClassMethodContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(IClassMethodContext); ok {
+			tst[i] = t.(IClassMethodContext)
+			i++
+		}
+	}
+
+	return tst
+}
+
+func (s *ClassdefContext) ClassMethod(i int) IClassMethodContext {
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IClassMethodContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IClassMethodContext)
+}
+
 func (s *ClassdefContext) GetRuleContext() antlr.RuleContext {
 	return s
 }
@@ -512,7 +557,7 @@ func (p *SomParser) Classdef() (localctx IClassdefContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(96)
+		p.SetState(98)
 		p.Match(SomParserIdentifier)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -520,7 +565,7 @@ func (p *SomParser) Classdef() (localctx IClassdefContext) {
 		}
 	}
 	{
-		p.SetState(97)
+		p.SetState(99)
 		p.Match(SomParserEqual)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -528,14 +573,14 @@ func (p *SomParser) Classdef() (localctx IClassdefContext) {
 		}
 	}
 	{
-		p.SetState(98)
+		p.SetState(100)
 		p.Superclass()
 	}
 	{
-		p.SetState(99)
+		p.SetState(101)
 		p.InstanceFields()
 	}
-	p.SetState(103)
+	p.SetState(105)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -544,18 +589,18 @@ func (p *SomParser) Classdef() (localctx IClassdefContext) {
 
 	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&4303355448) != 0 {
 		{
-			p.SetState(100)
+			p.SetState(102)
 			p.Method()
 		}
 
-		p.SetState(105)
+		p.SetState(107)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
 		}
 		_la = p.GetTokenStream().LA(1)
 	}
-	p.SetState(114)
+	p.SetState(116)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -564,7 +609,7 @@ func (p *SomParser) Classdef() (localctx IClassdefContext) {
 
 	if _la == SomParserSeparator {
 		{
-			p.SetState(106)
+			p.SetState(108)
 			p.Match(SomParserSeparator)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -572,10 +617,10 @@ func (p *SomParser) Classdef() (localctx IClassdefContext) {
 			}
 		}
 		{
-			p.SetState(107)
+			p.SetState(109)
 			p.ClassFields()
 		}
-		p.SetState(111)
+		p.SetState(113)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -584,11 +629,11 @@ func (p *SomParser) Classdef() (localctx IClassdefContext) {
 
 		for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&4303355448) != 0 {
 			{
-				p.SetState(108)
-				p.Method()
+				p.SetState(110)
+				p.ClassMethod()
 			}
 
-			p.SetState(113)
+			p.SetState(115)
 			p.GetErrorHandler().Sync(p)
 			if p.HasError() {
 				goto errorExit
@@ -598,7 +643,7 @@ func (p *SomParser) Classdef() (localctx IClassdefContext) {
 
 	}
 	{
-		p.SetState(116)
+		p.SetState(118)
 		p.Match(SomParserEndTerm)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -688,7 +733,7 @@ func (p *SomParser) Superclass() (localctx ISuperclassContext) {
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(119)
+	p.SetState(121)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -697,7 +742,7 @@ func (p *SomParser) Superclass() (localctx ISuperclassContext) {
 
 	if _la == SomParserIdentifier {
 		{
-			p.SetState(118)
+			p.SetState(120)
 			p.Match(SomParserIdentifier)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -707,7 +752,7 @@ func (p *SomParser) Superclass() (localctx ISuperclassContext) {
 
 	}
 	{
-		p.SetState(121)
+		p.SetState(123)
 		p.Match(SomParserNewTerm)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -840,19 +885,19 @@ func (p *SomParser) InstanceFields() (localctx IInstanceFieldsContext) {
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(131)
+	p.SetState(133)
 	p.GetErrorHandler().Sync(p)
 
 	if p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 5, p.GetParserRuleContext()) == 1 {
 		{
-			p.SetState(123)
+			p.SetState(125)
 			p.Match(SomParserOr)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
 			}
 		}
-		p.SetState(127)
+		p.SetState(129)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -861,11 +906,11 @@ func (p *SomParser) InstanceFields() (localctx IInstanceFieldsContext) {
 
 		for _la == SomParserPrimitive || _la == SomParserIdentifier {
 			{
-				p.SetState(124)
+				p.SetState(126)
 				p.Variable()
 			}
 
-			p.SetState(129)
+			p.SetState(131)
 			p.GetErrorHandler().Sync(p)
 			if p.HasError() {
 				goto errorExit
@@ -873,7 +918,7 @@ func (p *SomParser) InstanceFields() (localctx IInstanceFieldsContext) {
 			_la = p.GetTokenStream().LA(1)
 		}
 		{
-			p.SetState(130)
+			p.SetState(132)
 			p.Match(SomParserOr)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -1010,19 +1055,19 @@ func (p *SomParser) ClassFields() (localctx IClassFieldsContext) {
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(141)
+	p.SetState(143)
 	p.GetErrorHandler().Sync(p)
 
 	if p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 7, p.GetParserRuleContext()) == 1 {
 		{
-			p.SetState(133)
+			p.SetState(135)
 			p.Match(SomParserOr)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
 			}
 		}
-		p.SetState(137)
+		p.SetState(139)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -1031,11 +1076,11 @@ func (p *SomParser) ClassFields() (localctx IClassFieldsContext) {
 
 		for _la == SomParserPrimitive || _la == SomParserIdentifier {
 			{
-				p.SetState(134)
+				p.SetState(136)
 				p.Variable()
 			}
 
-			p.SetState(139)
+			p.SetState(141)
 			p.GetErrorHandler().Sync(p)
 			if p.HasError() {
 				goto errorExit
@@ -1043,7 +1088,7 @@ func (p *SomParser) ClassFields() (localctx IClassFieldsContext) {
 			_la = p.GetTokenStream().LA(1)
 		}
 		{
-			p.SetState(140)
+			p.SetState(142)
 			p.Match(SomParserOr)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -1053,6 +1098,98 @@ func (p *SomParser) ClassFields() (localctx IClassFieldsContext) {
 
 	} else if p.HasError() { // JIM
 		goto errorExit
+	}
+
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
+	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
+}
+
+// IClassMethodContext is an interface to support dynamic dispatch.
+type IClassMethodContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// Getter signatures
+	Method() IMethodContext
+
+	// IsClassMethodContext differentiates from other interfaces.
+	IsClassMethodContext()
+}
+
+type ClassMethodContext struct {
+	antlr.BaseParserRuleContext
+	parser antlr.Parser
+}
+
+func NewEmptyClassMethodContext() *ClassMethodContext {
+	var p = new(ClassMethodContext)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = SomParserRULE_classMethod
+	return p
+}
+
+func InitEmptyClassMethodContext(p *ClassMethodContext) {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = SomParserRULE_classMethod
+}
+
+func (*ClassMethodContext) IsClassMethodContext() {}
+
+func NewClassMethodContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *ClassMethodContext {
+	var p = new(ClassMethodContext)
+
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = SomParserRULE_classMethod
+
+	return p
+}
+
+func (s *ClassMethodContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *ClassMethodContext) Method() IMethodContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IMethodContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IMethodContext)
+}
+
+func (s *ClassMethodContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *ClassMethodContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (p *SomParser) ClassMethod() (localctx IClassMethodContext) {
+	localctx = NewClassMethodContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 8, SomParserRULE_classMethod)
+	p.EnterOuterAlt(localctx, 1)
+	{
+		p.SetState(145)
+		p.Method()
 	}
 
 errorExit:
@@ -1167,21 +1304,21 @@ func (s *MethodContext) ToStringTree(ruleNames []string, recog antlr.Recognizer)
 
 func (p *SomParser) Method() (localctx IMethodContext) {
 	localctx = NewMethodContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 8, SomParserRULE_method)
+	p.EnterRule(localctx, 10, SomParserRULE_method)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(143)
+		p.SetState(147)
 		p.Pattern()
 	}
 	{
-		p.SetState(144)
+		p.SetState(148)
 		p.Match(SomParserEqual)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(147)
+	p.SetState(151)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -1190,7 +1327,7 @@ func (p *SomParser) Method() (localctx IMethodContext) {
 	switch p.GetTokenStream().LA(1) {
 	case SomParserPrimitive:
 		{
-			p.SetState(145)
+			p.SetState(149)
 			p.Match(SomParserPrimitive)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -1200,7 +1337,7 @@ func (p *SomParser) Method() (localctx IMethodContext) {
 
 	case SomParserNewTerm:
 		{
-			p.SetState(146)
+			p.SetState(150)
 			p.MethodBlock()
 		}
 
@@ -1328,8 +1465,8 @@ func (s *PatternContext) ToStringTree(ruleNames []string, recog antlr.Recognizer
 
 func (p *SomParser) Pattern() (localctx IPatternContext) {
 	localctx = NewPatternContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 10, SomParserRULE_pattern)
-	p.SetState(152)
+	p.EnterRule(localctx, 12, SomParserRULE_pattern)
+	p.SetState(156)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -1339,21 +1476,21 @@ func (p *SomParser) Pattern() (localctx IPatternContext) {
 	case SomParserPrimitive, SomParserIdentifier:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(149)
+			p.SetState(153)
 			p.UnaryPattern()
 		}
 
 	case SomParserKeyword:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(150)
+			p.SetState(154)
 			p.KeywordPattern()
 		}
 
 	case SomParserEqual, SomParserOr, SomParserComma, SomParserMinus, SomParserNot, SomParserAnd, SomParserStar, SomParserDiv, SomParserMod, SomParserPlus, SomParserMore, SomParserLess, SomParserAt, SomParserPer, SomParserOperatorSequence:
 		p.EnterOuterAlt(localctx, 3)
 		{
-			p.SetState(151)
+			p.SetState(155)
 			p.BinaryPattern()
 		}
 
@@ -1447,10 +1584,10 @@ func (s *UnaryPatternContext) ToStringTree(ruleNames []string, recog antlr.Recog
 
 func (p *SomParser) UnaryPattern() (localctx IUnaryPatternContext) {
 	localctx = NewUnaryPatternContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 12, SomParserRULE_unaryPattern)
+	p.EnterRule(localctx, 14, SomParserRULE_unaryPattern)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(154)
+		p.SetState(158)
 		p.UnarySelector()
 	}
 
@@ -1556,14 +1693,14 @@ func (s *BinaryPatternContext) ToStringTree(ruleNames []string, recog antlr.Reco
 
 func (p *SomParser) BinaryPattern() (localctx IBinaryPatternContext) {
 	localctx = NewBinaryPatternContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 14, SomParserRULE_binaryPattern)
+	p.EnterRule(localctx, 16, SomParserRULE_binaryPattern)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(156)
+		p.SetState(160)
 		p.BinarySelector()
 	}
 	{
-		p.SetState(157)
+		p.SetState(161)
 		p.Argument()
 	}
 
@@ -1721,11 +1858,11 @@ func (s *KeywordPatternContext) ToStringTree(ruleNames []string, recog antlr.Rec
 
 func (p *SomParser) KeywordPattern() (localctx IKeywordPatternContext) {
 	localctx = NewKeywordPatternContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 16, SomParserRULE_keywordPattern)
+	p.EnterRule(localctx, 18, SomParserRULE_keywordPattern)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(162)
+	p.SetState(166)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -1734,15 +1871,15 @@ func (p *SomParser) KeywordPattern() (localctx IKeywordPatternContext) {
 
 	for ok := true; ok; ok = _la == SomParserKeyword {
 		{
-			p.SetState(159)
+			p.SetState(163)
 			p.Keyword()
 		}
 		{
-			p.SetState(160)
+			p.SetState(164)
 			p.Argument()
 		}
 
-		p.SetState(164)
+		p.SetState(168)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -1845,19 +1982,19 @@ func (s *MethodBlockContext) ToStringTree(ruleNames []string, recog antlr.Recogn
 
 func (p *SomParser) MethodBlock() (localctx IMethodBlockContext) {
 	localctx = NewMethodBlockContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 18, SomParserRULE_methodBlock)
+	p.EnterRule(localctx, 20, SomParserRULE_methodBlock)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(166)
+		p.SetState(170)
 		p.Match(SomParserNewTerm)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(168)
+	p.SetState(172)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -1866,13 +2003,13 @@ func (p *SomParser) MethodBlock() (localctx IMethodBlockContext) {
 
 	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&20619201176) != 0 {
 		{
-			p.SetState(167)
+			p.SetState(171)
 			p.BlockContents()
 		}
 
 	}
 	{
-		p.SetState(170)
+		p.SetState(174)
 		p.Match(SomParserEndTerm)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -1965,10 +2102,10 @@ func (s *UnarySelectorContext) ToStringTree(ruleNames []string, recog antlr.Reco
 
 func (p *SomParser) UnarySelector() (localctx IUnarySelectorContext) {
 	localctx = NewUnarySelectorContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 20, SomParserRULE_unarySelector)
+	p.EnterRule(localctx, 22, SomParserRULE_unarySelector)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(172)
+		p.SetState(176)
 		p.Identifier()
 	}
 
@@ -2115,12 +2252,12 @@ func (s *BinarySelectorContext) ToStringTree(ruleNames []string, recog antlr.Rec
 
 func (p *SomParser) BinarySelector() (localctx IBinarySelectorContext) {
 	localctx = NewBinarySelectorContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 22, SomParserRULE_binarySelector)
+	p.EnterRule(localctx, 24, SomParserRULE_binarySelector)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(174)
+		p.SetState(178)
 		_la = p.GetTokenStream().LA(1)
 
 		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&8388128) != 0) {
@@ -2209,12 +2346,12 @@ func (s *IdentifierContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 
 func (p *SomParser) Identifier() (localctx IIdentifierContext) {
 	localctx = NewIdentifierContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 24, SomParserRULE_identifier)
+	p.EnterRule(localctx, 26, SomParserRULE_identifier)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(176)
+		p.SetState(180)
 		_la = p.GetTokenStream().LA(1)
 
 		if !(_la == SomParserPrimitive || _la == SomParserIdentifier) {
@@ -2298,10 +2435,10 @@ func (s *KeywordContext) ToStringTree(ruleNames []string, recog antlr.Recognizer
 
 func (p *SomParser) Keyword() (localctx IKeywordContext) {
 	localctx = NewKeywordContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 26, SomParserRULE_keyword)
+	p.EnterRule(localctx, 28, SomParserRULE_keyword)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(178)
+		p.SetState(182)
 		p.Match(SomParserKeyword)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -2394,10 +2531,10 @@ func (s *ArgumentContext) ToStringTree(ruleNames []string, recog antlr.Recognize
 
 func (p *SomParser) Argument() (localctx IArgumentContext) {
 	localctx = NewArgumentContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 28, SomParserRULE_argument)
+	p.EnterRule(localctx, 30, SomParserRULE_argument)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(180)
+		p.SetState(184)
 		p.Variable()
 	}
 
@@ -2513,11 +2650,11 @@ func (s *BlockContentsContext) ToStringTree(ruleNames []string, recog antlr.Reco
 
 func (p *SomParser) BlockContents() (localctx IBlockContentsContext) {
 	localctx = NewBlockContentsContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 30, SomParserRULE_blockContents)
+	p.EnterRule(localctx, 32, SomParserRULE_blockContents)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(186)
+	p.SetState(190)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -2526,7 +2663,7 @@ func (p *SomParser) BlockContents() (localctx IBlockContentsContext) {
 
 	if _la == SomParserOr {
 		{
-			p.SetState(182)
+			p.SetState(186)
 			p.Match(SomParserOr)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -2534,11 +2671,11 @@ func (p *SomParser) BlockContents() (localctx IBlockContentsContext) {
 			}
 		}
 		{
-			p.SetState(183)
+			p.SetState(187)
 			p.LocalDefs()
 		}
 		{
-			p.SetState(184)
+			p.SetState(188)
 			p.Match(SomParserOr)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -2548,7 +2685,7 @@ func (p *SomParser) BlockContents() (localctx IBlockContentsContext) {
 
 	}
 	{
-		p.SetState(188)
+		p.SetState(192)
 		p.BlockBody()
 	}
 
@@ -2663,11 +2800,11 @@ func (s *LocalDefsContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 
 func (p *SomParser) LocalDefs() (localctx ILocalDefsContext) {
 	localctx = NewLocalDefsContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 32, SomParserRULE_localDefs)
+	p.EnterRule(localctx, 34, SomParserRULE_localDefs)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(193)
+	p.SetState(197)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -2676,11 +2813,11 @@ func (p *SomParser) LocalDefs() (localctx ILocalDefsContext) {
 
 	for _la == SomParserPrimitive || _la == SomParserIdentifier {
 		{
-			p.SetState(190)
+			p.SetState(194)
 			p.Variable()
 		}
 
-		p.SetState(195)
+		p.SetState(199)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -2817,10 +2954,10 @@ func (s *BlockBodyContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 
 func (p *SomParser) BlockBody() (localctx IBlockBodyContext) {
 	localctx = NewBlockBodyContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 34, SomParserRULE_blockBody)
+	p.EnterRule(localctx, 36, SomParserRULE_blockBody)
 	var _la int
 
-	p.SetState(205)
+	p.SetState(209)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -2830,7 +2967,7 @@ func (p *SomParser) BlockBody() (localctx IBlockBodyContext) {
 	case SomParserExit:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(196)
+			p.SetState(200)
 			p.Match(SomParserExit)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -2838,17 +2975,17 @@ func (p *SomParser) BlockBody() (localctx IBlockBodyContext) {
 			}
 		}
 		{
-			p.SetState(197)
+			p.SetState(201)
 			p.Result()
 		}
 
 	case SomParserPrimitive, SomParserIdentifier, SomParserNewTerm, SomParserMinus, SomParserNewBlock, SomParserPound, SomParserInteger, SomParserDouble, SomParserSTString:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(198)
+			p.SetState(202)
 			p.Expression()
 		}
-		p.SetState(203)
+		p.SetState(207)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -2857,14 +2994,14 @@ func (p *SomParser) BlockBody() (localctx IBlockBodyContext) {
 
 		if _la == SomParserPeriod {
 			{
-				p.SetState(199)
+				p.SetState(203)
 				p.Match(SomParserPeriod)
 				if p.HasError() {
 					// Recognition error - abort rule
 					goto errorExit
 				}
 			}
-			p.SetState(201)
+			p.SetState(205)
 			p.GetErrorHandler().Sync(p)
 			if p.HasError() {
 				goto errorExit
@@ -2873,7 +3010,7 @@ func (p *SomParser) BlockBody() (localctx IBlockBodyContext) {
 
 			if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&20619200664) != 0 {
 				{
-					p.SetState(200)
+					p.SetState(204)
 					p.BlockBody()
 				}
 
@@ -2976,15 +3113,15 @@ func (s *ResultContext) ToStringTree(ruleNames []string, recog antlr.Recognizer)
 
 func (p *SomParser) Result() (localctx IResultContext) {
 	localctx = NewResultContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 36, SomParserRULE_result)
+	p.EnterRule(localctx, 38, SomParserRULE_result)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(207)
+		p.SetState(211)
 		p.Expression()
 	}
-	p.SetState(209)
+	p.SetState(213)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -2993,7 +3130,7 @@ func (p *SomParser) Result() (localctx IResultContext) {
 
 	if _la == SomParserPeriod {
 		{
-			p.SetState(208)
+			p.SetState(212)
 			p.Match(SomParserPeriod)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -3105,8 +3242,8 @@ func (s *ExpressionContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 
 func (p *SomParser) Expression() (localctx IExpressionContext) {
 	localctx = NewExpressionContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 38, SomParserRULE_expression)
-	p.SetState(213)
+	p.EnterRule(localctx, 40, SomParserRULE_expression)
+	p.SetState(217)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -3116,14 +3253,14 @@ func (p *SomParser) Expression() (localctx IExpressionContext) {
 	case 1:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(211)
+			p.SetState(215)
 			p.Assignation()
 		}
 
 	case 2:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(212)
+			p.SetState(216)
 			p.Evaluation()
 		}
 
@@ -3233,14 +3370,14 @@ func (s *AssignationContext) ToStringTree(ruleNames []string, recog antlr.Recogn
 
 func (p *SomParser) Assignation() (localctx IAssignationContext) {
 	localctx = NewAssignationContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 40, SomParserRULE_assignation)
+	p.EnterRule(localctx, 42, SomParserRULE_assignation)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(215)
+		p.SetState(219)
 		p.Assignments()
 	}
 	{
-		p.SetState(216)
+		p.SetState(220)
 		p.Evaluation()
 	}
 
@@ -3355,11 +3492,11 @@ func (s *AssignmentsContext) ToStringTree(ruleNames []string, recog antlr.Recogn
 
 func (p *SomParser) Assignments() (localctx IAssignmentsContext) {
 	localctx = NewAssignmentsContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 42, SomParserRULE_assignments)
+	p.EnterRule(localctx, 44, SomParserRULE_assignments)
 	var _alt int
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(219)
+	p.SetState(223)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -3369,7 +3506,7 @@ func (p *SomParser) Assignments() (localctx IAssignmentsContext) {
 		switch _alt {
 		case 1:
 			{
-				p.SetState(218)
+				p.SetState(222)
 				p.Assignment()
 			}
 
@@ -3378,7 +3515,7 @@ func (p *SomParser) Assignments() (localctx IAssignmentsContext) {
 			goto errorExit
 		}
 
-		p.SetState(221)
+		p.SetState(225)
 		p.GetErrorHandler().Sync(p)
 		_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 19, p.GetParserRuleContext())
 		if p.HasError() {
@@ -3476,14 +3613,14 @@ func (s *AssignmentContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 
 func (p *SomParser) Assignment() (localctx IAssignmentContext) {
 	localctx = NewAssignmentContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 44, SomParserRULE_assignment)
+	p.EnterRule(localctx, 46, SomParserRULE_assignment)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(223)
+		p.SetState(227)
 		p.Variable()
 	}
 	{
-		p.SetState(224)
+		p.SetState(228)
 		p.Match(SomParserAssign)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -3593,15 +3730,15 @@ func (s *EvaluationContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 
 func (p *SomParser) Evaluation() (localctx IEvaluationContext) {
 	localctx = NewEvaluationContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 46, SomParserRULE_evaluation)
+	p.EnterRule(localctx, 48, SomParserRULE_evaluation)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(226)
+		p.SetState(230)
 		p.Primary()
 	}
-	p.SetState(228)
+	p.SetState(232)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -3610,7 +3747,7 @@ func (p *SomParser) Evaluation() (localctx IEvaluationContext) {
 
 	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&4303355448) != 0 {
 		{
-			p.SetState(227)
+			p.SetState(231)
 			p.Messages()
 		}
 
@@ -3752,8 +3889,8 @@ func (s *PrimaryContext) ToStringTree(ruleNames []string, recog antlr.Recognizer
 
 func (p *SomParser) Primary() (localctx IPrimaryContext) {
 	localctx = NewPrimaryContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 48, SomParserRULE_primary)
-	p.SetState(234)
+	p.EnterRule(localctx, 50, SomParserRULE_primary)
+	p.SetState(238)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -3763,28 +3900,28 @@ func (p *SomParser) Primary() (localctx IPrimaryContext) {
 	case SomParserPrimitive, SomParserIdentifier:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(230)
+			p.SetState(234)
 			p.Variable()
 		}
 
 	case SomParserNewTerm:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(231)
+			p.SetState(235)
 			p.NestedTerm()
 		}
 
 	case SomParserNewBlock:
 		p.EnterOuterAlt(localctx, 3)
 		{
-			p.SetState(232)
+			p.SetState(236)
 			p.NestedBlock()
 		}
 
 	case SomParserMinus, SomParserPound, SomParserInteger, SomParserDouble, SomParserSTString:
 		p.EnterOuterAlt(localctx, 4)
 		{
-			p.SetState(233)
+			p.SetState(237)
 			p.Literal()
 		}
 
@@ -3878,10 +4015,10 @@ func (s *VariableContext) ToStringTree(ruleNames []string, recog antlr.Recognize
 
 func (p *SomParser) Variable() (localctx IVariableContext) {
 	localctx = NewVariableContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 50, SomParserRULE_variable)
+	p.EnterRule(localctx, 52, SomParserRULE_variable)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(236)
+		p.SetState(240)
 		p.Identifier()
 	}
 
@@ -4056,10 +4193,10 @@ func (s *MessagesContext) ToStringTree(ruleNames []string, recog antlr.Recognize
 
 func (p *SomParser) Messages() (localctx IMessagesContext) {
 	localctx = NewMessagesContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 52, SomParserRULE_messages)
+	p.EnterRule(localctx, 54, SomParserRULE_messages)
 	var _la int
 
-	p.SetState(261)
+	p.SetState(265)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -4068,7 +4205,7 @@ func (p *SomParser) Messages() (localctx IMessagesContext) {
 	switch p.GetTokenStream().LA(1) {
 	case SomParserPrimitive, SomParserIdentifier:
 		p.EnterOuterAlt(localctx, 1)
-		p.SetState(239)
+		p.SetState(243)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -4077,31 +4214,11 @@ func (p *SomParser) Messages() (localctx IMessagesContext) {
 
 		for ok := true; ok; ok = _la == SomParserPrimitive || _la == SomParserIdentifier {
 			{
-				p.SetState(238)
+				p.SetState(242)
 				p.UnaryMessage()
 			}
 
-			p.SetState(241)
-			p.GetErrorHandler().Sync(p)
-			if p.HasError() {
-				goto errorExit
-			}
-			_la = p.GetTokenStream().LA(1)
-		}
-		p.SetState(246)
-		p.GetErrorHandler().Sync(p)
-		if p.HasError() {
-			goto errorExit
-		}
-		_la = p.GetTokenStream().LA(1)
-
-		for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&8388128) != 0 {
-			{
-				p.SetState(243)
-				p.BinaryMessage()
-			}
-
-			p.SetState(248)
+			p.SetState(245)
 			p.GetErrorHandler().Sync(p)
 			if p.HasError() {
 				goto errorExit
@@ -4115,9 +4232,29 @@ func (p *SomParser) Messages() (localctx IMessagesContext) {
 		}
 		_la = p.GetTokenStream().LA(1)
 
+		for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&8388128) != 0 {
+			{
+				p.SetState(247)
+				p.BinaryMessage()
+			}
+
+			p.SetState(252)
+			p.GetErrorHandler().Sync(p)
+			if p.HasError() {
+				goto errorExit
+			}
+			_la = p.GetTokenStream().LA(1)
+		}
+		p.SetState(254)
+		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+			goto errorExit
+		}
+		_la = p.GetTokenStream().LA(1)
+
 		if _la == SomParserKeyword {
 			{
-				p.SetState(249)
+				p.SetState(253)
 				p.KeywordMessage()
 			}
 
@@ -4125,7 +4262,7 @@ func (p *SomParser) Messages() (localctx IMessagesContext) {
 
 	case SomParserEqual, SomParserOr, SomParserComma, SomParserMinus, SomParserNot, SomParserAnd, SomParserStar, SomParserDiv, SomParserMod, SomParserPlus, SomParserMore, SomParserLess, SomParserAt, SomParserPer, SomParserOperatorSequence:
 		p.EnterOuterAlt(localctx, 2)
-		p.SetState(253)
+		p.SetState(257)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -4134,18 +4271,18 @@ func (p *SomParser) Messages() (localctx IMessagesContext) {
 
 		for ok := true; ok; ok = ((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&8388128) != 0) {
 			{
-				p.SetState(252)
+				p.SetState(256)
 				p.BinaryMessage()
 			}
 
-			p.SetState(255)
+			p.SetState(259)
 			p.GetErrorHandler().Sync(p)
 			if p.HasError() {
 				goto errorExit
 			}
 			_la = p.GetTokenStream().LA(1)
 		}
-		p.SetState(258)
+		p.SetState(262)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -4154,7 +4291,7 @@ func (p *SomParser) Messages() (localctx IMessagesContext) {
 
 		if _la == SomParserKeyword {
 			{
-				p.SetState(257)
+				p.SetState(261)
 				p.KeywordMessage()
 			}
 
@@ -4163,7 +4300,7 @@ func (p *SomParser) Messages() (localctx IMessagesContext) {
 	case SomParserKeyword:
 		p.EnterOuterAlt(localctx, 3)
 		{
-			p.SetState(260)
+			p.SetState(264)
 			p.KeywordMessage()
 		}
 
@@ -4257,10 +4394,10 @@ func (s *UnaryMessageContext) ToStringTree(ruleNames []string, recog antlr.Recog
 
 func (p *SomParser) UnaryMessage() (localctx IUnaryMessageContext) {
 	localctx = NewUnaryMessageContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 54, SomParserRULE_unaryMessage)
+	p.EnterRule(localctx, 56, SomParserRULE_unaryMessage)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(263)
+		p.SetState(267)
 		p.UnarySelector()
 	}
 
@@ -4366,14 +4503,14 @@ func (s *BinaryMessageContext) ToStringTree(ruleNames []string, recog antlr.Reco
 
 func (p *SomParser) BinaryMessage() (localctx IBinaryMessageContext) {
 	localctx = NewBinaryMessageContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 56, SomParserRULE_binaryMessage)
+	p.EnterRule(localctx, 58, SomParserRULE_binaryMessage)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(265)
+		p.SetState(269)
 		p.BinarySelector()
 	}
 	{
-		p.SetState(266)
+		p.SetState(270)
 		p.BinaryOperand()
 	}
 
@@ -4505,15 +4642,15 @@ func (s *BinaryOperandContext) ToStringTree(ruleNames []string, recog antlr.Reco
 
 func (p *SomParser) BinaryOperand() (localctx IBinaryOperandContext) {
 	localctx = NewBinaryOperandContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 58, SomParserRULE_binaryOperand)
+	p.EnterRule(localctx, 60, SomParserRULE_binaryOperand)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(268)
+		p.SetState(272)
 		p.Primary()
 	}
-	p.SetState(272)
+	p.SetState(276)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -4522,11 +4659,11 @@ func (p *SomParser) BinaryOperand() (localctx IBinaryOperandContext) {
 
 	for _la == SomParserPrimitive || _la == SomParserIdentifier {
 		{
-			p.SetState(269)
+			p.SetState(273)
 			p.UnaryMessage()
 		}
 
-		p.SetState(274)
+		p.SetState(278)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -4688,11 +4825,11 @@ func (s *KeywordMessageContext) ToStringTree(ruleNames []string, recog antlr.Rec
 
 func (p *SomParser) KeywordMessage() (localctx IKeywordMessageContext) {
 	localctx = NewKeywordMessageContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 60, SomParserRULE_keywordMessage)
+	p.EnterRule(localctx, 62, SomParserRULE_keywordMessage)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(278)
+	p.SetState(282)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -4701,15 +4838,15 @@ func (p *SomParser) KeywordMessage() (localctx IKeywordMessageContext) {
 
 	for ok := true; ok; ok = _la == SomParserKeyword {
 		{
-			p.SetState(275)
+			p.SetState(279)
 			p.Keyword()
 		}
 		{
-			p.SetState(276)
+			p.SetState(280)
 			p.Formula()
 		}
 
-		p.SetState(280)
+		p.SetState(284)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -4845,15 +4982,15 @@ func (s *FormulaContext) ToStringTree(ruleNames []string, recog antlr.Recognizer
 
 func (p *SomParser) Formula() (localctx IFormulaContext) {
 	localctx = NewFormulaContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 62, SomParserRULE_formula)
+	p.EnterRule(localctx, 64, SomParserRULE_formula)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(282)
+		p.SetState(286)
 		p.BinaryOperand()
 	}
-	p.SetState(286)
+	p.SetState(290)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -4862,11 +4999,11 @@ func (p *SomParser) Formula() (localctx IFormulaContext) {
 
 	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&8388128) != 0 {
 		{
-			p.SetState(283)
+			p.SetState(287)
 			p.BinaryMessage()
 		}
 
-		p.SetState(288)
+		p.SetState(292)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -4969,10 +5106,10 @@ func (s *NestedTermContext) ToStringTree(ruleNames []string, recog antlr.Recogni
 
 func (p *SomParser) NestedTerm() (localctx INestedTermContext) {
 	localctx = NewNestedTermContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 64, SomParserRULE_nestedTerm)
+	p.EnterRule(localctx, 66, SomParserRULE_nestedTerm)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(289)
+		p.SetState(293)
 		p.Match(SomParserNewTerm)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -4980,11 +5117,11 @@ func (p *SomParser) NestedTerm() (localctx INestedTermContext) {
 		}
 	}
 	{
-		p.SetState(290)
+		p.SetState(294)
 		p.Expression()
 	}
 	{
-		p.SetState(291)
+		p.SetState(295)
 		p.Match(SomParserEndTerm)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -5128,8 +5265,8 @@ func (s *LiteralContext) ToStringTree(ruleNames []string, recog antlr.Recognizer
 
 func (p *SomParser) Literal() (localctx ILiteralContext) {
 	localctx = NewLiteralContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 66, SomParserRULE_literal)
-	p.SetState(297)
+	p.EnterRule(localctx, 68, SomParserRULE_literal)
+	p.SetState(301)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -5139,28 +5276,28 @@ func (p *SomParser) Literal() (localctx ILiteralContext) {
 	case 1:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(293)
+			p.SetState(297)
 			p.LiteralArray()
 		}
 
 	case 2:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(294)
+			p.SetState(298)
 			p.LiteralSymbol()
 		}
 
 	case 3:
 		p.EnterOuterAlt(localctx, 3)
 		{
-			p.SetState(295)
+			p.SetState(299)
 			p.LiteralString()
 		}
 
 	case 4:
 		p.EnterOuterAlt(localctx, 4)
 		{
-			p.SetState(296)
+			p.SetState(300)
 			p.LiteralNumber()
 		}
 
@@ -5294,12 +5431,12 @@ func (s *LiteralArrayContext) ToStringTree(ruleNames []string, recog antlr.Recog
 
 func (p *SomParser) LiteralArray() (localctx ILiteralArrayContext) {
 	localctx = NewLiteralArrayContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 68, SomParserRULE_literalArray)
+	p.EnterRule(localctx, 70, SomParserRULE_literalArray)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(299)
+		p.SetState(303)
 		p.Match(SomParserPound)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -5307,14 +5444,14 @@ func (p *SomParser) LiteralArray() (localctx ILiteralArrayContext) {
 		}
 	}
 	{
-		p.SetState(300)
+		p.SetState(304)
 		p.Match(SomParserNewTerm)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(304)
+	p.SetState(308)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -5323,11 +5460,11 @@ func (p *SomParser) LiteralArray() (localctx ILiteralArrayContext) {
 
 	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&20468205568) != 0 {
 		{
-			p.SetState(301)
+			p.SetState(305)
 			p.Literal()
 		}
 
-		p.SetState(306)
+		p.SetState(310)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -5335,7 +5472,7 @@ func (p *SomParser) LiteralArray() (localctx ILiteralArrayContext) {
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(307)
+		p.SetState(311)
 		p.Match(SomParserEndTerm)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -5445,8 +5582,8 @@ func (s *LiteralNumberContext) ToStringTree(ruleNames []string, recog antlr.Reco
 
 func (p *SomParser) LiteralNumber() (localctx ILiteralNumberContext) {
 	localctx = NewLiteralNumberContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 70, SomParserRULE_literalNumber)
-	p.SetState(311)
+	p.EnterRule(localctx, 72, SomParserRULE_literalNumber)
+	p.SetState(315)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -5456,14 +5593,14 @@ func (p *SomParser) LiteralNumber() (localctx ILiteralNumberContext) {
 	case SomParserMinus:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(309)
+			p.SetState(313)
 			p.NegativeDecimal()
 		}
 
 	case SomParserInteger, SomParserDouble:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(310)
+			p.SetState(314)
 			p.LiteralDecimal()
 		}
 
@@ -5574,8 +5711,8 @@ func (s *LiteralDecimalContext) ToStringTree(ruleNames []string, recog antlr.Rec
 
 func (p *SomParser) LiteralDecimal() (localctx ILiteralDecimalContext) {
 	localctx = NewLiteralDecimalContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 72, SomParserRULE_literalDecimal)
-	p.SetState(315)
+	p.EnterRule(localctx, 74, SomParserRULE_literalDecimal)
+	p.SetState(319)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -5585,14 +5722,14 @@ func (p *SomParser) LiteralDecimal() (localctx ILiteralDecimalContext) {
 	case SomParserInteger:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(313)
+			p.SetState(317)
 			p.LiteralInteger()
 		}
 
 	case SomParserDouble:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(314)
+			p.SetState(318)
 			p.LiteralDouble()
 		}
 
@@ -5691,10 +5828,10 @@ func (s *NegativeDecimalContext) ToStringTree(ruleNames []string, recog antlr.Re
 
 func (p *SomParser) NegativeDecimal() (localctx INegativeDecimalContext) {
 	localctx = NewNegativeDecimalContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 74, SomParserRULE_negativeDecimal)
+	p.EnterRule(localctx, 76, SomParserRULE_negativeDecimal)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(317)
+		p.SetState(321)
 		p.Match(SomParserMinus)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -5702,7 +5839,7 @@ func (p *SomParser) NegativeDecimal() (localctx INegativeDecimalContext) {
 		}
 	}
 	{
-		p.SetState(318)
+		p.SetState(322)
 		p.LiteralDecimal()
 	}
 
@@ -5779,10 +5916,10 @@ func (s *LiteralIntegerContext) ToStringTree(ruleNames []string, recog antlr.Rec
 
 func (p *SomParser) LiteralInteger() (localctx ILiteralIntegerContext) {
 	localctx = NewLiteralIntegerContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 76, SomParserRULE_literalInteger)
+	p.EnterRule(localctx, 78, SomParserRULE_literalInteger)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(320)
+		p.SetState(324)
 		p.Match(SomParserInteger)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -5863,10 +6000,10 @@ func (s *LiteralDoubleContext) ToStringTree(ruleNames []string, recog antlr.Reco
 
 func (p *SomParser) LiteralDouble() (localctx ILiteralDoubleContext) {
 	localctx = NewLiteralDoubleContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 78, SomParserRULE_literalDouble)
+	p.EnterRule(localctx, 80, SomParserRULE_literalDouble)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(322)
+		p.SetState(326)
 		p.Match(SomParserDouble)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -5981,17 +6118,17 @@ func (s *LiteralSymbolContext) ToStringTree(ruleNames []string, recog antlr.Reco
 
 func (p *SomParser) LiteralSymbol() (localctx ILiteralSymbolContext) {
 	localctx = NewLiteralSymbolContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 80, SomParserRULE_literalSymbol)
+	p.EnterRule(localctx, 82, SomParserRULE_literalSymbol)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(324)
+		p.SetState(328)
 		p.Match(SomParserPound)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(327)
+	p.SetState(331)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -6000,13 +6137,13 @@ func (p *SomParser) LiteralSymbol() (localctx ILiteralSymbolContext) {
 	switch p.GetTokenStream().LA(1) {
 	case SomParserSTString:
 		{
-			p.SetState(325)
+			p.SetState(329)
 			p.String_()
 		}
 
 	case SomParserPrimitive, SomParserIdentifier, SomParserEqual, SomParserOr, SomParserComma, SomParserMinus, SomParserNot, SomParserAnd, SomParserStar, SomParserDiv, SomParserMod, SomParserPlus, SomParserMore, SomParserLess, SomParserAt, SomParserPer, SomParserOperatorSequence, SomParserKeyword, SomParserKeywordSequence:
 		{
-			p.SetState(326)
+			p.SetState(330)
 			p.Selector()
 		}
 
@@ -6100,10 +6237,10 @@ func (s *LiteralStringContext) ToStringTree(ruleNames []string, recog antlr.Reco
 
 func (p *SomParser) LiteralString() (localctx ILiteralStringContext) {
 	localctx = NewLiteralStringContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 82, SomParserRULE_literalString)
+	p.EnterRule(localctx, 84, SomParserRULE_literalString)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(329)
+		p.SetState(333)
 		p.String_()
 	}
 
@@ -6226,8 +6363,8 @@ func (s *SelectorContext) ToStringTree(ruleNames []string, recog antlr.Recognize
 
 func (p *SomParser) Selector() (localctx ISelectorContext) {
 	localctx = NewSelectorContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 84, SomParserRULE_selector)
-	p.SetState(334)
+	p.EnterRule(localctx, 86, SomParserRULE_selector)
+	p.SetState(338)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -6237,21 +6374,21 @@ func (p *SomParser) Selector() (localctx ISelectorContext) {
 	case SomParserEqual, SomParserOr, SomParserComma, SomParserMinus, SomParserNot, SomParserAnd, SomParserStar, SomParserDiv, SomParserMod, SomParserPlus, SomParserMore, SomParserLess, SomParserAt, SomParserPer, SomParserOperatorSequence:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(331)
+			p.SetState(335)
 			p.BinarySelector()
 		}
 
 	case SomParserKeyword, SomParserKeywordSequence:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(332)
+			p.SetState(336)
 			p.KeywordSelector()
 		}
 
 	case SomParserPrimitive, SomParserIdentifier:
 		p.EnterOuterAlt(localctx, 3)
 		{
-			p.SetState(333)
+			p.SetState(337)
 			p.UnarySelector()
 		}
 
@@ -6338,12 +6475,12 @@ func (s *KeywordSelectorContext) ToStringTree(ruleNames []string, recog antlr.Re
 
 func (p *SomParser) KeywordSelector() (localctx IKeywordSelectorContext) {
 	localctx = NewKeywordSelectorContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 86, SomParserRULE_keywordSelector)
+	p.EnterRule(localctx, 88, SomParserRULE_keywordSelector)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(336)
+		p.SetState(340)
 		_la = p.GetTokenStream().LA(1)
 
 		if !(_la == SomParserKeyword || _la == SomParserKeywordSequence) {
@@ -6427,10 +6564,10 @@ func (s *StringContext) ToStringTree(ruleNames []string, recog antlr.Recognizer)
 
 func (p *SomParser) String_() (localctx IStringContext) {
 	localctx = NewStringContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 88, SomParserRULE_string)
+	p.EnterRule(localctx, 90, SomParserRULE_string)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(338)
+		p.SetState(342)
 		p.Match(SomParserSTString)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -6550,19 +6687,19 @@ func (s *NestedBlockContext) ToStringTree(ruleNames []string, recog antlr.Recogn
 
 func (p *SomParser) NestedBlock() (localctx INestedBlockContext) {
 	localctx = NewNestedBlockContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 90, SomParserRULE_nestedBlock)
+	p.EnterRule(localctx, 92, SomParserRULE_nestedBlock)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(340)
+		p.SetState(344)
 		p.Match(SomParserNewBlock)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(342)
+	p.SetState(346)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -6571,12 +6708,12 @@ func (p *SomParser) NestedBlock() (localctx INestedBlockContext) {
 
 	if _la == SomParserColon {
 		{
-			p.SetState(341)
+			p.SetState(345)
 			p.BlockPattern()
 		}
 
 	}
-	p.SetState(345)
+	p.SetState(349)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -6585,13 +6722,13 @@ func (p *SomParser) NestedBlock() (localctx INestedBlockContext) {
 
 	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&20619201176) != 0 {
 		{
-			p.SetState(344)
+			p.SetState(348)
 			p.BlockContents()
 		}
 
 	}
 	{
-		p.SetState(347)
+		p.SetState(351)
 		p.Match(SomParserEndBlock)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -6689,14 +6826,14 @@ func (s *BlockPatternContext) ToStringTree(ruleNames []string, recog antlr.Recog
 
 func (p *SomParser) BlockPattern() (localctx IBlockPatternContext) {
 	localctx = NewBlockPatternContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 92, SomParserRULE_blockPattern)
+	p.EnterRule(localctx, 94, SomParserRULE_blockPattern)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(349)
+		p.SetState(353)
 		p.BlockArguments()
 	}
 	{
-		p.SetState(350)
+		p.SetState(354)
 		p.Match(SomParserOr)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -6825,11 +6962,11 @@ func (s *BlockArgumentsContext) ToStringTree(ruleNames []string, recog antlr.Rec
 
 func (p *SomParser) BlockArguments() (localctx IBlockArgumentsContext) {
 	localctx = NewBlockArgumentsContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 94, SomParserRULE_blockArguments)
+	p.EnterRule(localctx, 96, SomParserRULE_blockArguments)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(354)
+	p.SetState(358)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -6838,7 +6975,7 @@ func (p *SomParser) BlockArguments() (localctx IBlockArgumentsContext) {
 
 	for ok := true; ok; ok = _la == SomParserColon {
 		{
-			p.SetState(352)
+			p.SetState(356)
 			p.Match(SomParserColon)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -6846,11 +6983,11 @@ func (p *SomParser) BlockArguments() (localctx IBlockArgumentsContext) {
 			}
 		}
 		{
-			p.SetState(353)
+			p.SetState(357)
 			p.Argument()
 		}
 
-		p.SetState(356)
+		p.SetState(360)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit

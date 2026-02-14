@@ -14,7 +14,7 @@ with a lower-case letter; terminals, with an upper-case one. */
 classdef:
     Identifier Equal superclass
     instanceFields method*
-    ( Separator classFields method* )?
+    ( Separator classFields classMethod* )?
     EndTerm;
 
 superclass:
@@ -25,6 +25,9 @@ instanceFields:
 
 classFields:
     ( Or variable* Or )?;
+
+classMethod:
+  method;
 
 method:
    pattern Equal ( Primitive | methodBlock );
