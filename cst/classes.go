@@ -33,9 +33,9 @@ type Classdef struct{
 
 func MakeInstances( ctx *parser.InstanceFieldsContext ) ([]string) {
   instances := make([]string, 0, 3)
-  variables  := ctx.AllVariable()
-  for value := range instances {
-    inst  := variables[value].(*parser.VariableContext)
+  variables_ctx := ctx.AllVariable()
+  for value := range variables_ctx {
+    inst  := variables_ctx[value].(*parser.VariableContext)
 		name := inst.GetText()
     instances = append(instances , name)
   }
@@ -69,9 +69,9 @@ func MakeClassMethods( ctx *parser.ClassdefContext ) ([]*Method){
 func MakeClassfields(ctx *parser.ClassdefContext) ([]string){
   class_vars := make([]string, 0, 3)
   if classfieds_ctx := ctx.ClassFields() ; classfieds_ctx != nil {
-    variables  := classfieds_ctx.AllVariable()
-    for value := range variables {
-      inst  := variables[value].(*parser.VariableContext)
+    variables_ctx := classfieds_ctx.AllVariable()
+    for value := range variables_ctx {
+      inst  := variables_ctx[value].(*parser.VariableContext)
       name := inst.GetText()
       class_vars = append(class_vars , name)
     }

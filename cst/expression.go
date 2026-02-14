@@ -38,8 +38,9 @@ type Expression struct {
 
 func  MakeAssignments(ctx *parser.AssignmentsContext) ([]string) {
   assignments := make([]string, 0,1) // usually just one assignment
-  for i := range ctx.AllAssignment() {
-    assignment := ctx.Assignment(i)
+  assignments_ctx := ctx.AllAssignment()
+  for i := range  assignments_ctx{
+    assignment := assignments_ctx[i]
     variable := assignment.Variable().GetText()
 //    fmt.Println("variable" , variable , reflect.TypeOf(variable))
     assignments = append( assignments , variable)

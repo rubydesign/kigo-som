@@ -46,8 +46,9 @@ type Literal struct {
 
 func MakeLiteralArray(ctx *parser.LiteralArrayContext) ([]*Literal){
   literals := make([]*Literal , 0, 3)
-  for i := range ctx.AllLiteral() {
-    literal_ctx :=  ctx.Literal(i).(*parser.LiteralContext)
+  literals_ctx := ctx.AllLiteral()
+  for i := range literals_ctx {
+    literal_ctx :=  literals_ctx[i].(*parser.LiteralContext)
     literal := MakeLiteral(literal_ctx)
     literals = append(literals , literal)
   }

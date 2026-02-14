@@ -26,7 +26,7 @@ import (
 //     Or | Comma | Minus | Equal | Not | And | Star | Div | Mod | Plus | More |
 //     Less | At | Per | OperatorSequence;
 
-// Selectors representet as strings for now
+// Selectors represented as strings for now
 
 // Helper method for argument extraction
 // Get the variable from an argument and addd the text of it to the slice
@@ -86,8 +86,9 @@ func MakeBinarySelector(sel *parser.BinarySelectorContext) (string) {
 
 func MakeKeywordPattern(ctx *parser.KeywordPatternContext) ([]string) {
   calling := make( [] string , 0 , 3)
-	for idx := range ctx.AllKeyword() {
-		keyword_ctx := ctx.Keyword(idx)
+  keywords_ctx := ctx.AllKeyword()
+  for idx := range keywords_ctx {
+    keyword_ctx := keywords_ctx[idx]
 		name := keyword_ctx.Keyword().GetText()
     calling = append(calling , name )
     calling = AddVariable( ctx.Argument(idx).(*parser.ArgumentContext) , calling)

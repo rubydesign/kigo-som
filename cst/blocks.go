@@ -56,9 +56,10 @@ type BlockContents struct {
 
 func MakeBlockPattern(pattern_ctx *parser.BlockPatternContext) ([]string) {
   pattern := make( []string , 0 , 3)
-  arguments_ctx := pattern_ctx.BlockArguments()
-  for i := range arguments_ctx.AllArgument() {
-    argument_ctx := arguments_ctx.Argument(i)
+  block_ctx := pattern_ctx.BlockArguments()
+  arguments_ctx := block_ctx.AllArgument()
+  for i := range arguments_ctx {
+    argument_ctx := arguments_ctx[i]
     variable_ctx := argument_ctx.Variable()
     variable := variable_ctx.GetText()
     //fmt.Println("block variable" , variable , reflect.TypeOf(variable))
@@ -82,8 +83,9 @@ func MakeNestedBlock(ctx *parser.NestedBlockContext) (*NestedBlock){
 func MakeLocals(ctx parser.ILocalDefsContext) ([]string) {
   locals := make([]string , 0 , 3)
   if ctx != nil {
-    for i := range ctx.AllVariable()  {
-      variable := ctx.Variable(i).GetText()
+    variables_ctx := ctx.AllVariable()
+    for i := range variables_ctx  {
+      variable := variables_ctx[i].GetText()
       locals = append( locals , variable )
 //      fmt.Println("variable" , variable , reflect.TypeOf(variable))
     }
