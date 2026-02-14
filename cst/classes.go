@@ -3,7 +3,7 @@ package cst
 import (
     "github.com/antlr4-go/antlr/v4"
     "kigo-som/parser"
-    "log"
+    "fmt"
 )
 
 // classdef:
@@ -43,7 +43,7 @@ func MakeInstances( ctx *parser.InstanceFieldsContext ) ([]string) {
 func MakeMethods( ctx *parser.ClassdefContext ) ([]*Method){
 	var methods_ctx []parser.IMethodContext = ctx.AllMethod()
   methods := make([]*Method, 0, 3)
-	log.Println("No of methods" , len(methods_ctx))
+	fmt.Println("No of methods" , len(methods_ctx))
 	for value := range methods_ctx {
 		method_ctx  := methods_ctx[value].(*parser.MethodContext)
 		method := MakeMethod(method_ctx)

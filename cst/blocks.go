@@ -2,7 +2,7 @@ package cst
 
 import (
     "kigo-som/parser"
-    // "log"
+    // "fmt"
     // "reflect"
 )
 //
@@ -61,7 +61,7 @@ func MakeBlockPattern(pattern_ctx *parser.BlockPatternContext) ([]string) {
     argument_ctx := arguments_ctx.Argument(i)
     variable_ctx := argument_ctx.Variable()
     variable := variable_ctx.GetText()
-    //log.Println("block variable" , variable , reflect.TypeOf(variable))
+    //fmt.Println("block variable" , variable , reflect.TypeOf(variable))
     pattern = append(pattern , variable)
   }
   return pattern
@@ -85,7 +85,7 @@ func MakeLocals(ctx parser.ILocalDefsContext) ([]string) {
     for i := range ctx.AllVariable()  {
       variable := ctx.Variable(i).GetText()
       locals = append( locals , variable )
-//      log.Println("variable" , variable , reflect.TypeOf(variable))
+//      fmt.Println("variable" , variable , reflect.TypeOf(variable))
     }
   }
   return locals
@@ -105,14 +105,14 @@ func MakeBlockBody(block_ctx *parser.BlockBodyContext) (*BlockBody) {
   if result_ctx != nil {
     expression_ctx := result_ctx.Expression()
     result_exp = MakeExpression( expression_ctx.(*parser.ExpressionContext) )
-    //log.Println("result_exp" , result_exp , reflect.TypeOf(result_exp))
+    //fmt.Println("result_exp" , result_exp , reflect.TypeOf(result_exp))
     return &BlockBody{ result_exp , nil , nil}
   } else {
     expression_ctx := block_ctx.Expression()
     main_expression := MakeExpression( expression_ctx.(*parser.ExpressionContext) )
     var inner_block *BlockBody = nil
     inner_block_ctx := block_ctx.BlockBody()
-    //log.Println("inner_block_ctx" , inner_block_ctx , reflect.TypeOf(inner_block_ctx))
+    //fmt.Println("inner_block_ctx" , inner_block_ctx , reflect.TypeOf(inner_block_ctx))
     if inner_block_ctx != nil {
       inner_block = MakeBlockBody( inner_block_ctx.(*parser.BlockBodyContext) )
     }

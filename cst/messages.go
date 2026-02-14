@@ -2,7 +2,7 @@ package cst
 
 import (
     "kigo-som/parser"
-    "log"
+    "fmt"
     "reflect"
 )
 
@@ -36,7 +36,7 @@ type BinaryOperand struct {
   unary   []string
 }
 type BinaryMessage struct{
-  selector []string
+  selector string
   operand *BinaryOperand
 }
 type Formula struct{
@@ -56,7 +56,7 @@ func MakeBinaryOperand(ctx *parser.BinaryOperandContext) (*BinaryOperand){
   for i := range ctx.AllUnaryMessage() {
     unary_ctx := ctx.UnaryMessage(i)
     method_name := unary_ctx.UnarySelector().Identifier().GetText()
-    log.Println("unary" , method_name , reflect.TypeOf(method_name))
+    fmt.Println("unary" , method_name , reflect.TypeOf(method_name))
     unary = append( unary , method_name )
   }
   return &BinaryOperand{primary , unary}
@@ -77,7 +77,7 @@ func MakeFormula(ctx *parser.FormulaContext) (*Formula)  {
   for bi := range ctx.AllBinaryMessage() {
     binary_ctx := ctx.BinaryMessage(bi)
     message := MakeBinaryMessage( binary_ctx.(*parser.BinaryMessageContext) )
-    //log.Println("binary" , message , reflect.TypeOf(message))
+    //fmt.Println("binary" , message , reflect.TypeOf(message))
     messages = append( messages , message.(*BinaryMessage) )
   }
   return &Formula{operand , messages}
@@ -104,18 +104,18 @@ func MakeMessages(ctx parser.IMessagesContext) ([]Message){
   for i := range ctx.AllUnaryMessage() {
     unary_ctx := ctx.UnaryMessage(i)
     method_name := unary_ctx.UnarySelector().Identifier().GetText()
-    //log.Println("unary" , method_name , reflect.TypeOf(method_name))
+    //fmt.Println("unary" , method_name , reflect.TypeOf(method_name))
     messages = append( messages , &UnaryMessage{[]string{method_name} } )
   }
   for bi := range ctx.AllBinaryMessage() {
     binary_ctx := ctx.BinaryMessage(bi)
     message := MakeBinaryMessage( binary_ctx.(*parser.BinaryMessageContext) )
-    //log.Println("binary" , message , reflect.TypeOf(message))
+    //fmt.Println("binary" , message , reflect.TypeOf(message))
     messages = append( messages , message )
   }
   if keyword_ctx := ctx.KeywordMessage() ; keyword_ctx != nil {
     message := MakeKeywordMessage( keyword_ctx.(*parser.KeywordMessageContext) )
-    //log.Println("keyword" , message , reflect.TypeOf(message))
+    //fmt.Println("keyword" , message , reflect.TypeOf(message))
     messages = append( messages , message )
   }
   return messages
