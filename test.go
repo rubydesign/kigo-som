@@ -9,6 +9,7 @@ import (
 
 
 func main() {
-	cst.ClassdefFromFile(os.Args[1])
+	classdef := cst.ClassdefFromFile(os.Args[1])
+	cst.PrintClassdef(classdef)
   return
 }

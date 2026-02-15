@@ -4,6 +4,7 @@ import (
     "github.com/antlr4-go/antlr/v4"
     "kigo-som/parser"
     "fmt"
+    "strings"
 )
 
 // classdef:
@@ -29,6 +30,15 @@ type Classdef struct{
 	instance_methods   []*Method
   class_variables  []string
   class_methods    []*Method
+}
+
+func PrintClassdef(classdef *Classdef) (){
+  pre := " -"
+  fmt.Println("Class::" , classdef.name , " < " , classdef.super)
+  fmt.Println(pre , "@  " , strings.Join(classdef.instance_variables , " "))
+  fmt.Println(pre , "@@ " , strings.Join(classdef.class_variables , " "))
+  fmt.Println(pre , "Methods " , len(classdef.instance_methods))
+  PrintMethods(" |" + pre , classdef.instance_methods)
 }
 
 func MakeInstances( ctx *parser.InstanceFieldsContext ) ([]string) {
@@ -79,7 +89,7 @@ func MakeClassfields(ctx *parser.ClassdefContext) ([]string){
   return class_vars
 }
 
-func  MakeClassdef(ctx *parser.ClassdefContext) (*Classdef )  {
+func MakeClassdef(ctx *parser.ClassdefContext) (*Classdef )  {
   name := ctx.Identifier().GetText()
   superclazz := ctx.Superclass().Identifier()
   super_name := ""
