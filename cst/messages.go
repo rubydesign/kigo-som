@@ -2,8 +2,8 @@ package cst
 
 import (
     "kigo-som/parser"
-    // "fmt"
-    // "reflect"
+    "fmt"
+    "strings"
 )
 
 // messages:
@@ -47,6 +47,47 @@ type Formula struct{
 type KeywordMessage struct {
   keywords []string
   formuli  []*Formula
+}
+
+func PrintFormula(pre string , formula *Formula){
+  PrintBinaryOperand( pre , formula.operand)
+  for i := range formula.messages {
+    message := formula.messages[i]
+    fmt.Println(pre + " binary: ", message.selector   )
+    PrintBinaryOperand( pre , message.operand)
+  }
+}
+
+func PrintBinaryOperand( pre string, operand *BinaryOperand){
+  fmt.Println(pre + " primary: " )
+  PrintPrimary( "  " + pre , operand.primary)
+  fmt.Println(pre + " unaries: ", strings.Join(operand.unary , ".") )
+}
+
+func PrintMessage( pre string, mess Message){
+  switch mess.(type){
+  case UnaryMessage:
+    message := mess.(UnaryMessage)
+    fmt.Println(pre + " unary: ", strings.Join(message.message , ".")   )
+  case BinaryMessage:
+    message := mess.(BinaryMessage)
+    fmt.Println(pre + " binary: ", message.selector   )
+    PrintBinaryOperand( pre , message.operand)
+  case KeywordMessage:
+    message := mess.(KeywordMessage)
+    fmt.Println(pre + " keywords: ", strings.Join(message.keywords , ".")   )
+    for i := range message.formuli {
+      formula := message.formuli[i]
+      PrintFormula("  " + pre , formula)
+    }
+  }//switch
+}
+
+func PrintMessages( pre string, messages []Message){
+  for i := range messages {
+    message := messages[i]
+    PrintMessage("  " + pre , message)
+  }
 }
 
 func MakeBinaryOperand(ctx *parser.BinaryOperandContext) (*BinaryOperand){
