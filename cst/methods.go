@@ -2,7 +2,8 @@ package cst
 
 import (
     "kigo-som/parser"
-    // "fmt"
+    "fmt"
+    "strings"
     // "reflect"
 )
 
@@ -19,6 +20,26 @@ type MethodBlock struct {
 type Method struct{
   pattern []string
   method_block *MethodBlock
+}
+
+func PrintMethodBlock( pre string , method_block *MethodBlock)  {
+  if method_block.primitive {
+    fmt.Println("  " + pre , "primitive")
+  } else{
+    PrintBlockContents("  " + pre , method_block.block_contents)
+  }
+}
+
+func PrintMethod( pre string , method *Method)  {
+  fmt.Println(pre , "Method:" , strings.Join(method.pattern , " "))
+  PrintMethodBlock(pre , method.method_block)
+}
+
+func PrintMethods(pre  string , methods []*Method){
+  for i := range methods {
+    method := methods[i]
+    PrintMethod(pre , method)
+  }
 }
 
 func MakeBlockOrPrimitive(ctx *parser.MethodContext) (*MethodBlock) {
