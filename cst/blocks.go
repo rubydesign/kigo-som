@@ -2,7 +2,8 @@ package cst
 
 import (
     "kigo-som/parser"
-    // "fmt"
+    "fmt"
+    "strings"
     // "reflect"
 )
 //
@@ -52,6 +53,25 @@ type BlockBody struct {
 type BlockContents struct {
   locals []string
   block_body *BlockBody
+}
+
+func PrintNestedBlock(pre string , block *NestedBlock ){
+  fmt.Println(pre , "nestedBlock"  )
+}
+
+func PrintBlockBody( pre string , block_body *BlockBody)  {
+  if block_body.result != nil {
+    fmt.Println(pre , "return:" )
+    PrintExpression("  " +pre , block_body.result)
+  } else {
+    PrintExpression(pre , block_body.main)
+    if block_body.code != nil { PrintBlockBody(pre , block_body.code) }
+  }
+}
+
+func PrintBlockContents( pre string , block_contents *BlockContents)  {
+  fmt.Println(pre , "locals:" , strings.Join(block_contents.locals , " ") )
+  PrintBlockBody( pre , block_contents.block_body)
 }
 
 func MakeBlockPattern(pattern_ctx *parser.BlockPatternContext) ([]string) {
