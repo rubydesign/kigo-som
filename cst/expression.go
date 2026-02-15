@@ -2,7 +2,8 @@ package cst
 
 import (
     "kigo-som/parser"
-    // "fmt"
+    "fmt"
+    "strings"
     // "reflect"
 )
 
@@ -34,6 +35,24 @@ type Evaluation struct {
 type Expression struct {
   assignation *Assignation  // OR
   evaluation  *Evaluation
+}
+
+func PrintEvaluation(pre string , evaluation *Evaluation) {
+  PrintPrimary( pre , evaluation.primary)
+  PrintMessages( pre , evaluation.messages)
+}
+
+func PrintAssignation(pre string , assignation *Assignation) {
+  fmt.Println(pre , strings.Join(assignation.assignments , " = ") , " = "  )
+  PrintEvaluation("  " + pre , assignation.evaluation)
+}
+
+func PrintExpression(pre string , expression *Expression) {
+  if expression.assignation != nil {
+    PrintAssignation( pre , expression.assignation)
+  } else {
+    PrintEvaluation( pre , expression.evaluation)
+  }
 }
 
 func  MakeAssignments(ctx *parser.AssignmentsContext) ([]string) {
