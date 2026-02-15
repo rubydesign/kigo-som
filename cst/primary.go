@@ -2,7 +2,7 @@ package cst
 
 import (
     "kigo-som/parser"
-     // "fmt"
+     "fmt"
      // "reflect"
 )
 
@@ -18,6 +18,18 @@ type Primary struct {
   nestedTerm  *Expression
   nestedBlock *NestedBlock
   literal     *Literal
+}
+
+func PrintPrimary(pre string, primary *Primary){
+  if primary.nestedTerm  != nil {
+    PrintExpression(pre , primary.nestedTerm)
+  } else if primary.nestedBlock != nil {
+    PrintNestedBlock(pre , primary.nestedBlock )
+  } else if primary.nestedBlock != nil {
+    PrintLiteral(pre , primary.literal )
+  } else {
+    fmt.Println(pre , primary.variable )
+  }
 }
 
 func MakePrimary(ctx *parser.PrimaryContext) (*Primary){
