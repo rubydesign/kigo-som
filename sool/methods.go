@@ -16,20 +16,22 @@ type Method struct{
 }
 
 func PrintMethod(method *Method){
-  fmt.Println("  Method:" , method.Name , "(" , strings.Join(method.Arguments , " , " ) , ")")
+  fmt.Println("  Method:" , method.Name + "(" , strings.Join(method.Arguments , " , " ) , ")")
 }
 
 func ExtractName(pattern []string) (string){
-  if len(pattern) == 1 { return pattern[0]}
-  if len(pattern) == 0 { panic("Pattern length 0")}
-  if len(pattern) == 2 { return pattern[0]}
-  return pattern[0]
+  names := make([]string , 0 ,3)
+  for i := range pattern {
+    if (i % 2) == 0 { names = append(names , strings.Replace(pattern[i] , ":" , "" , 1))}
+  }
+  return strings.Join(names , "_")
 }
+
 func ExtractArgs(pattern []string) ([]string){
-  if len(pattern) == 0 { panic("Pattern length 0")}
-  if len(pattern) == 1 { return make([]string , 0,0 )}
-  args := make([]string , 0, 3 )
-  if len(pattern) == 2 { args = append(args , pattern[1])}
+  args := make([]string , 0 ,3)
+  for i := range pattern {
+    if (i % 2) == 1 { args = append(args , pattern[i] ) }
+  }
   return args
 }
 
