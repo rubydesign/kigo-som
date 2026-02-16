@@ -14,7 +14,7 @@ import (
 
 type MethodBlock struct {
   Primitive bool  // OR MethodBlock, which is basically BlockContents
-  block_contents *BlockContents
+  BlockContents *BlockContents
 }
 
 type Method struct{
@@ -27,7 +27,7 @@ func PrintMethodBlock( pre string , method_block *MethodBlock)  {
   if method_block.Primitive {
     fmt.Println( "|  " + pre,  "primitive")
   } else{
-    PrintBlockContents(  "|  " + pre ,  method_block.block_contents)
+    PrintBlockContents(  "|  " + pre ,  method_block.BlockContents)
   }
 }
 

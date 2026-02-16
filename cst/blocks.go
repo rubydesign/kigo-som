@@ -51,7 +51,7 @@ type BlockBody struct {
 }
 
 type BlockContents struct {
-  locals []string
+  Locals []string
   block_body *BlockBody
 }
 
@@ -74,8 +74,8 @@ func PrintBlockBody( pre string , block_body *BlockBody)  {
 }
 
 func PrintBlockContents( pre string , block_contents *BlockContents)  {
-  if len( block_contents.locals ) > 0 {
-    fmt.Println(pre , "BlockContents" , "locals:" , strings.Join(block_contents.locals , " ") )
+  if len( block_contents.Locals ) > 0 {
+    fmt.Println(pre , "BlockContents" , "locals:" , strings.Join(block_contents.Locals , " ") )
   }
   PrintBlockBody( pre ,  block_contents.block_body)
 }

@@ -11,12 +11,17 @@ type Method struct{
   Name      string
   Arguments []string
   Primitive  bool
-  // Locals []string
-  // Statements []*Statement
+  Block      *Block
 }
 
 func PrintMethod(method *Method){
-  fmt.Println("  Method:" , method.Name + "(" , strings.Join(method.Arguments , " , " ) , ")")
+  fmt.Print("  Method:" , method.Name + "(" , strings.Join(method.Arguments , " , " ) , ")")
+  if method.Primitive {
+    fmt.Println("  (primitive)")
+  }else{
+    fmt.Println("")
+    PrintBlock(method.Block)
+  }
 }
 
 func ExtractName(pattern []string) (string){
@@ -40,5 +45,9 @@ func MakeMethod(meth *cst.Method) (*Method){
   name := ExtractName(meth.Pattern)
   args := ExtractArgs(meth.Pattern)
   primitive := meth.MethodBlock.Primitive
-  return &Method{ name , args , primitive}
+  var block *Block
+  if !primitive {
+    block = MakeBlock( meth.MethodBlock )
+  }
+  return &Method{ name , args , primitive , block}
 }
