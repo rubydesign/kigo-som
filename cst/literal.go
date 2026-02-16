@@ -48,8 +48,7 @@ func PrintLiteral(pre string, literal *Literal ){
   switch literal.ltype {
   case 1:
     fmt.Println(pre , "LiteralArray:" )
-    for i := range literal.array {
-      lit :=  literal.array[i]
+    for _,lit := range literal.array {
       PrintLiteral( "|  " + pre , lit)
     }
   case 2:
@@ -66,9 +65,8 @@ func PrintLiteral(pre string, literal *Literal ){
 func MakeLiteralArray(ctx *parser.LiteralArrayContext) ([]*Literal){
   literals := make([]*Literal , 0, 3)
   literals_ctx := ctx.AllLiteral()
-  for i := range literals_ctx {
-    literal_ctx :=  literals_ctx[i].(*parser.LiteralContext)
-    literal := MakeLiteral(literal_ctx)
+  for _,literal_ctx := range literals_ctx {
+    literal := MakeLiteral(literal_ctx.(*parser.LiteralContext))
     literals = append(literals , literal)
   }
   return literals

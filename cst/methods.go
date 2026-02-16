@@ -38,8 +38,7 @@ func PrintMethod( pre string , method *Method)  {
 
 func PrintMethods(pre  string , methods []*Method){
   fmt.Println(pre , "Methods:" , len(methods))
-  for i := range methods {
-    method := methods[i]
+  for _ , method := range methods {
     PrintMethod(pre , method)
   }
 }

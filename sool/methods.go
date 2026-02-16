@@ -26,16 +26,16 @@ func PrintMethod(method *Method){
 
 func ExtractName(pattern []string) (string){
   names := make([]string , 0 ,3)
-  for i := range pattern {
-    if (i % 2) == 0 { names = append(names , strings.Replace(pattern[i] , ":" , "" , 1))}
+  for i , pat := range pattern {
+    if (i % 2) == 0 { names = append(names , strings.Replace(pat , ":" , "" , 1))}
   }
   return strings.Join(names , "_")
 }
 
 func ExtractArgs(pattern []string) ([]string){
   args := make([]string , 0 ,3)
-  for i := range pattern {
-    if (i % 2) == 1 { args = append(args , pattern[i] ) }
+  for i , pat := range pattern {
+    if (i % 2) == 1 { args = append(args , pat ) }
   }
   return args
 }

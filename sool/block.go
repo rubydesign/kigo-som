@@ -13,7 +13,7 @@ type Block struct{
 }
 
 func PrintBlock(block *Block){
-  if len(block.L  ocals) > 0 {
+  if len(block.Locals) > 0 {
     fmt.Println("    Locals:" , strings.Join(block.Locals , " " ) )
   }
 }

@@ -54,8 +54,7 @@ type Formula struct{
 func PrintFormula(pre string , formula *Formula){
   fmt.Println(pre , "Formula:" )
   PrintBinaryOperand( "|  " + pre, formula.operand)
-  for i := range formula.messages {
-    message := formula.messages[i]
+  for _ , message := range formula.messages {
     fmt.Println("|  " + pre + " binary: ", message.message   )
     PrintBinaryOperand( "|  " + pre, message.operand)
   }
@@ -78,8 +77,7 @@ func PrintMessage( pre string, message *Message){
     PrintBinaryOperand( pre , message.operand)
   case 3:
     fmt.Println(pre , "MessageKeywords: ", strings.Join(message.message , ".")   )
-    for i := range message.formuli {
-      formula := message.formuli[i]
+    for _ , formula := range message.formuli {
       PrintFormula("|  " + pre , formula)
     }
   default: panic("message type " )
@@ -89,8 +87,7 @@ func PrintMessage( pre string, message *Message){
 func PrintMessages( pre string, messages []*Message){
   if len( messages) == 0 { return }
   fmt.Println(pre , "Messages:" )
-  for i := range messages {
-    message := messages[i]
+  for _,message := range messages {
     PrintMessage("|  " + pre , message)
   }
 }
@@ -100,8 +97,7 @@ func MakeBinaryOperand(ctx *parser.BinaryOperandContext) (*BinaryOperand){
   primary := MakePrimary(primary_ctx.(*parser.PrimaryContext))
   unary := make([]string , 0 ,  3)
   unaries_ctx := ctx.AllUnaryMessage()
-  for i := range unaries_ctx {
-    unary_ctx := unaries_ctx[i]
+  for _,unary_ctx := range unaries_ctx {
     method_name := unary_ctx.UnarySelector().Identifier().GetText()
     // fmt.Println("unary" , method_name , reflect.TypeOf(method_name))
     unary = append( unary , method_name )
@@ -123,8 +119,7 @@ func MakeFormula(ctx *parser.FormulaContext) (*Formula)  {
   operand := MakeBinaryOperand(operarand_ctx.(*parser.BinaryOperandContext))
   messages := make([]*Message , 0 ,  3)
   binaries_ctx:= ctx.AllBinaryMessage()
-  for bi := range binaries_ctx {
-    binary_ctx := binaries_ctx[bi]
+  for _,binary_ctx := range binaries_ctx {
     message := MakeBinaryMessage( binary_ctx.(*parser.BinaryMessageContext) )
     //fmt.Println("binary" , message , reflect.TypeOf(message))
     messages = append( messages , message )
@@ -134,15 +129,12 @@ func MakeFormula(ctx *parser.FormulaContext) (*Formula)  {
 func MakeKeywordMessage(ctx *parser.KeywordMessageContext) (*Message){
   keywords := make([]string , 0,3)
   keywords_ctx := ctx.AllKeyword()
-  for idx := range keywords_ctx {
-    keyword_ctx := keywords_ctx[idx]
-    name := keyword_ctx.Keyword().GetText()
-    keywords = append(keywords , name )
+  for _ ,keyword_ctx := range keywords_ctx {
+    keywords = append(keywords , keyword_ctx.Keyword().GetText() )
   }
   formuli  := make([]*Formula , 0,3)
   formuli_ctx := ctx.AllFormula()
-  for fi := range formuli_ctx {
-    formula_ctx := formuli_ctx[fi]
+  for _,formula_ctx := range formuli_ctx {
     formula := MakeFormula(formula_ctx.(*parser.FormulaContext))
     formuli = append(formuli , formula )
   }
@@ -160,8 +152,7 @@ func MakeMessages(ctx parser.IMessagesContext) ([]*Message){
     messages = append( messages , &Message{ 1 , []string{method_name} , nil,nil } )
   }
   binaries_ctx := ctx.AllBinaryMessage()
-  for bi := range binaries_ctx {
-    binary_ctx := binaries_ctx[bi]
+  for _,binary_ctx := range binaries_ctx {
     message := MakeBinaryMessage( binary_ctx.(*parser.BinaryMessageContext) )
     //fmt.Println("binary" , message , reflect.TypeOf(message))
     messages = append( messages , message )

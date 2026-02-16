@@ -87,8 +87,7 @@ func MakeBinarySelector(sel *parser.BinarySelectorContext) (string) {
 func MakeKeywordPattern(ctx *parser.KeywordPatternContext) ([]string) {
   calling := make( [] string , 0 , 3)
   keywords_ctx := ctx.AllKeyword()
-  for idx := range keywords_ctx {
-    keyword_ctx := keywords_ctx[idx]
+  for idx , keyword_ctx := range keywords_ctx {
 		name := keyword_ctx.Keyword().GetText()
     calling = append(calling , name )
     calling = AddVariable( ctx.Argument(idx).(*parser.ArgumentContext) , calling)

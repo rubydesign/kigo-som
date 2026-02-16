@@ -29,8 +29,8 @@ func PrintClass(class *Class)  {
   fmt.Println( "-", "@  " , strings.Join(class.InstanceVariables , " "))
   // fmt.Println(pre , "@@ " , strings.Join(classdef.class_variables , " "))
   fmt.Println("  " , "Methods:" , len(class.InstanceMethods))
-  for value := range class.InstanceMethods {
-    PrintMethod(class.InstanceMethods[value])
+  for _ , method := range class.InstanceMethods {
+    PrintMethod(method)
   }
 }
 

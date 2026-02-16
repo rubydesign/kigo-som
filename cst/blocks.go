@@ -84,8 +84,7 @@ func MakeBlockPattern(pattern_ctx *parser.BlockPatternContext) ([]string) {
   pattern := make( []string , 0 , 3)
   block_ctx := pattern_ctx.BlockArguments()
   arguments_ctx := block_ctx.AllArgument()
-  for i := range arguments_ctx {
-    argument_ctx := arguments_ctx[i]
+  for _, argument_ctx := range arguments_ctx {
     variable_ctx := argument_ctx.Variable()
     variable := variable_ctx.GetText()
     //fmt.Println("block variable" , variable , reflect.TypeOf(variable))
@@ -110,9 +109,8 @@ func MakeLocals(ctx parser.ILocalDefsContext) ([]string) {
   locals := make([]string , 0 , 3)
   if ctx != nil {
     variables_ctx := ctx.AllVariable()
-    for i := range variables_ctx  {
-      variable := variables_ctx[i].GetText()
-      locals = append( locals , variable )
+    for _, variable := range variables_ctx  {
+      locals = append( locals , variable.GetText() )
 //      fmt.Println("variable" , variable , reflect.TypeOf(variable))
     }
   }

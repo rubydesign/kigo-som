@@ -43,8 +43,7 @@ func PrintClassdef(classdef *Classdef) (){
 func MakeInstances( ctx *parser.InstanceFieldsContext ) ([]string) {
   instances := make([]string, 0, 3)
   variables_ctx := ctx.AllVariable()
-  for value := range variables_ctx {
-    inst  := variables_ctx[value].(*parser.VariableContext)
+  for _ , inst := range variables_ctx {
 		name := inst.GetText()
     instances = append(instances , name)
   }
@@ -55,9 +54,8 @@ func MakeMethods( ctx *parser.ClassdefContext ) ([]*Method){
 	var methods_ctx []parser.IMethodContext = ctx.AllMethod()
   methods := make([]*Method, 0, 3)
   //fmt.Println("methods" , len(methods_ctx))
-	for value := range methods_ctx {
-		method_ctx  := methods_ctx[value].(*parser.MethodContext)
-		method := MakeMethod(method_ctx)
+  for _, method_ctx := range methods_ctx {
+		method := MakeMethod(method_ctx.(*parser.MethodContext))
 		methods = append(methods , method)
   }
   return methods
@@ -66,8 +64,7 @@ func MakeMethods( ctx *parser.ClassdefContext ) ([]*Method){
 func MakeClassMethods( ctx *parser.ClassdefContext ) ([]*Method){
 	var methods_ctx []parser.IClassMethodContext = ctx.AllClassMethod()
   methods := make([]*Method, 0, 3)
-	for value := range methods_ctx {
-    method_ctx  := methods_ctx[value].(*parser.ClassMethodContext)
+  for _,method_ctx := range methods_ctx {
     method := MakeMethod(method_ctx.Method().(*parser.MethodContext))
 		methods = append(methods , method)
   }
@@ -79,10 +76,8 @@ func MakeClassfields(ctx *parser.ClassdefContext) ([]string){
   class_vars := make([]string, 0, 3)
   if classfieds_ctx := ctx.ClassFields() ; classfieds_ctx != nil {
     variables_ctx := classfieds_ctx.AllVariable()
-    for value := range variables_ctx {
-      inst  := variables_ctx[value].(*parser.VariableContext)
-      name := inst.GetText()
-      class_vars = append(class_vars , name)
+    for _ , inst := range variables_ctx {
+      class_vars = append(class_vars , inst.GetText())
     }
   }
   return class_vars
