@@ -26,8 +26,8 @@ import (
 type Classdef struct{
   Name  string
   Super string
-	instance_variables []string
-	instance_methods   []*Method
+  InstanceVariables []string
+  InstanceMethods   []*Method
   class_variables  []string
   class_methods    []*Method
 }
@@ -35,9 +35,9 @@ type Classdef struct{
 func PrintClassdef(classdef *Classdef) (){
   pre := "|-"
   fmt.Println("Class::" , classdef.Name , " < " , classdef.Super)
-  fmt.Println(pre , "-", "@  " , strings.Join(classdef.instance_variables , " "))
+  fmt.Println(pre , "-", "@  " , strings.Join(classdef.InstanceVariables , " "))
   fmt.Println(pre , "@@ " , strings.Join(classdef.class_variables , " "))
-  PrintMethods( pre , classdef.instance_methods)
+  PrintMethods( pre , classdef.InstanceMethods)
 }
 
 func MakeInstances( ctx *parser.InstanceFieldsContext ) ([]string) {
