@@ -24,8 +24,8 @@ import (
 
 
 type Classdef struct{
-	name  string
-	super string
+  Name  string
+  Super string
 	instance_variables []string
 	instance_methods   []*Method
   class_variables  []string
@@ -34,7 +34,7 @@ type Classdef struct{
 
 func PrintClassdef(classdef *Classdef) (){
   pre := "|-"
-  fmt.Println("Class::" , classdef.name , " < " , classdef.super)
+  fmt.Println("Class::" , classdef.Name , " < " , classdef.Super)
   fmt.Println(pre , "-", "@  " , strings.Join(classdef.instance_variables , " "))
   fmt.Println(pre , "@@ " , strings.Join(classdef.class_variables , " "))
   PrintMethods( pre , classdef.instance_methods)
@@ -54,7 +54,7 @@ func MakeInstances( ctx *parser.InstanceFieldsContext ) ([]string) {
 func MakeMethods( ctx *parser.ClassdefContext ) ([]*Method){
 	var methods_ctx []parser.IMethodContext = ctx.AllMethod()
   methods := make([]*Method, 0, 3)
-	fmt.Println("methods" , len(methods_ctx))
+  //fmt.Println("methods" , len(methods_ctx))
 	for value := range methods_ctx {
 		method_ctx  := methods_ctx[value].(*parser.MethodContext)
 		method := MakeMethod(method_ctx)
@@ -71,7 +71,7 @@ func MakeClassMethods( ctx *parser.ClassdefContext ) ([]*Method){
     method := MakeMethod(method_ctx.Method().(*parser.MethodContext))
 		methods = append(methods , method)
   }
-  fmt.Println("class methods" , len(methods) )
+  // fmt.Println("class methods" , len(methods) )
   return methods
 }
 
