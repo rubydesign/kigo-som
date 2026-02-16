@@ -51,42 +51,47 @@ type Formula struct{
   messages []*Message; // binary
 }
 
-func PrintFormula(pre string , typ string , formula *Formula){
-  PrintBinaryOperand( pre , typ + " BO" , formula.operand)
+func PrintFormula(pre string , formula *Formula){
+  fmt.Println(pre , "Formula:" )
+  PrintBinaryOperand( "|  " + pre, formula.operand)
   for i := range formula.messages {
     message := formula.messages[i]
-    fmt.Println(pre + typ + " binary: ", message.message   )
-    PrintBinaryOperand( pre , "BO", message.operand)
+    fmt.Println("|  " + pre + " binary: ", message.message   )
+    PrintBinaryOperand( "|  " + pre, message.operand)
   }
 }
 
-func PrintBinaryOperand( pre string, typ string , operand *BinaryOperand){
-  fmt.Println(pre + typ , " primary: " )
-  PrintPrimary( "  " + pre , typ + " PR" , operand.primary)
-  fmt.Println(pre + typ + " unaries: ", strings.Join(operand.unary , ".") )
+func PrintBinaryOperand( pre string, operand *BinaryOperand){
+  fmt.Println(pre  , "BinaryOperand: " )
+  PrintPrimary( "|  " + pre , operand.primary)
+  if len(operand.unary) > 0 {
+    fmt.Println(pre + "  unaries: ", strings.Join(operand.unary , ".") )
+  }
 }
 
-func PrintMessage( pre string, typ string, message *Message){
+func PrintMessage( pre string, message *Message){
   switch message.typ {
   case 1:
-    fmt.Println(pre + " unary: ", strings.Join(message.message , ".")   )
+    fmt.Println(pre , "Message Unary: ", strings.Join(message.message , ".")   )
   case 2:
-    fmt.Println(pre + " binary: ", message.message   )
-    PrintBinaryOperand( pre , "BO",message.operand)
+    fmt.Println(pre  ,"MessageBinary: ", message.message   )
+    PrintBinaryOperand( pre , message.operand)
   case 3:
-    fmt.Println(pre + " keywords: ", strings.Join(message.message , ".")   )
+    fmt.Println(pre , "MessageKeywords: ", strings.Join(message.message , ".")   )
     for i := range message.formuli {
       formula := message.formuli[i]
-      PrintFormula("  " + pre ,"FO" , formula)
+      PrintFormula("|  " + pre , formula)
     }
   default: panic("message type " )
   }//switch
 }
 
-func PrintMessages( pre string, typ string , messages []*Message){
+func PrintMessages( pre string, messages []*Message){
+  if len( messages) == 0 { return }
+  fmt.Println(pre , "Messages:" )
   for i := range messages {
     message := messages[i]
-    PrintMessage("  " + pre , typ + " ME", message)
+    PrintMessage("|  " + pre , message)
   }
 }
 

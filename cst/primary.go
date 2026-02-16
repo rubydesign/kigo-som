@@ -20,15 +20,16 @@ type Primary struct {
   literal     *Literal
 }
 
-func PrintPrimary(pre string, typ string , primary *Primary){
+func PrintPrimary(pre string, primary *Primary){
+  fmt.Println(pre ,  "Primary:" )
   if primary.nestedTerm  != nil {
-    PrintExpression(pre , typ + " Ex" , primary.nestedTerm)
+    PrintExpression("|  " + pre, primary.nestedTerm)
   } else if primary.nestedBlock != nil {
-    PrintNestedBlock(pre , typ + " NB" ,primary.nestedBlock )
+    PrintNestedBlock("|  " + pre, primary.nestedBlock )
   } else if primary.literal != nil {
-    PrintLiteral(pre , typ + " LT" , primary.literal )
+    PrintLiteral("|  " + pre , primary.literal )
   } else {
-    fmt.Println(pre , typ + " VA:" , primary.variable )
+    fmt.Println("|  " + pre , "LiteralVariable" , primary.variable )
   }
 }
 

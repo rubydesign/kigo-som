@@ -44,22 +44,22 @@ type Literal struct {
   decimal  float64
 }
 
-func PrintLiteral(pre string, typ string ,  literal *Literal ){
+func PrintLiteral(pre string, literal *Literal ){
   switch literal.ltype {
   case 1:
-    fmt.Println(pre , typ + "array:" )
+    fmt.Println(pre , "LiteralArray:" )
     for i := range literal.array {
       lit :=  literal.array[i]
-      PrintLiteral( "  " + pre , typ + " LI" , lit)
+      PrintLiteral( "|  " + pre , lit)
     }
   case 2:
-    fmt.Println(pre , typ , "symbol:" , literal.symbol  )
+    fmt.Println(pre , "LiteralSymbol:" , literal.symbol  )
   case 3:
-    fmt.Println(pre , typ , "string:" , literal.symbol  )
+    fmt.Println(pre , "LiteralString:" , literal.symbol  )
   case 4:
-    fmt.Println(pre , typ ,"int:" , literal.number  )
+    fmt.Println(pre ,"LiteralInt:" , literal.number  )
   case 5:
-  fmt.Println(pre , typ ,"float:" , literal.decimal  )
+    fmt.Println(pre , "LiteralFloat:" , literal.decimal  )
   }
 }
 

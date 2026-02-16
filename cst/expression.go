@@ -37,21 +37,23 @@ type Expression struct {
   evaluation  *Evaluation
 }
 
-func PrintEvaluation(pre string , typ string , evaluation *Evaluation) {
-  PrintPrimary( pre , typ + " Pr" , evaluation.primary)
-  PrintMessages( pre , typ +" ME", evaluation.messages)
+func PrintEvaluation(pre string , evaluation *Evaluation) {
+  fmt.Println(pre ,  "Evaluation:" )
+  PrintPrimary( "|  " + pre, evaluation.primary)
+  PrintMessages( "|  " + pre, evaluation.messages)
 }
 
-func PrintAssignation(pre string , typ string , assignation *Assignation) {
-  fmt.Println(pre , typ + " AS", strings.Join(assignation.assignments , " = ") , " = "  )
-  PrintEvaluation("  " + pre , typ + " Ev", assignation.evaluation)
+func PrintAssignation(pre string , assignation *Assignation) {
+  fmt.Println(pre , "Assignation:", strings.Join(assignation.assignments , " = ") , " = "  )
+  PrintEvaluation("|  " + pre , assignation.evaluation)
 }
 
-func PrintExpression(pre string , typ string, expression *Expression) {
+func PrintExpression(pre string ,expression *Expression) {
+  fmt.Println(pre ,  "Expression:" )
   if expression.assignation != nil {
-    PrintAssignation( pre , typ + " AG" ,expression.assignation)
+    PrintAssignation( "|  " + pre ,expression.assignation)
   } else {
-    PrintEvaluation( pre , typ + " Ev" , expression.evaluation)
+    PrintEvaluation( "|  " + pre , expression.evaluation)
   }
 }
 
