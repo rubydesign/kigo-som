@@ -30,28 +30,28 @@ type Assignation struct {
 }
 type Evaluation struct {
   primary  *Primary
-  messages []Message
+  messages []*Message
 }
 type Expression struct {
   assignation *Assignation  // OR
   evaluation  *Evaluation
 }
 
-func PrintEvaluation(pre string , evaluation *Evaluation) {
-  PrintPrimary( pre , evaluation.primary)
-  PrintMessages( pre , evaluation.messages)
+func PrintEvaluation(pre string , typ string , evaluation *Evaluation) {
+  PrintPrimary( pre , typ + " Pr" , evaluation.primary)
+  PrintMessages( pre , typ +" ME", evaluation.messages)
 }
 
-func PrintAssignation(pre string , assignation *Assignation) {
-  fmt.Println(pre , strings.Join(assignation.assignments , " = ") , " = "  )
-  PrintEvaluation("  " + pre , assignation.evaluation)
+func PrintAssignation(pre string , typ string , assignation *Assignation) {
+  fmt.Println(pre , typ + " AS", strings.Join(assignation.assignments , " = ") , " = "  )
+  PrintEvaluation("  " + pre , typ + " Ev", assignation.evaluation)
 }
 
-func PrintExpression(pre string , expression *Expression) {
+func PrintExpression(pre string , typ string, expression *Expression) {
   if expression.assignation != nil {
-    PrintAssignation( pre , expression.assignation)
+    PrintAssignation( pre , typ + " AG" ,expression.assignation)
   } else {
-    PrintEvaluation( pre , expression.evaluation)
+    PrintEvaluation( pre , typ + " Ev" , expression.evaluation)
   }
 }
 

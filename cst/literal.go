@@ -2,7 +2,7 @@ package cst
 
 import (
     "kigo-som/parser"
-     // "fmt"
+     "fmt"
      // "reflect"
      "strconv"
 )
@@ -42,6 +42,25 @@ type Literal struct {
   symbol   string // also string
   number   int
   decimal  float64
+}
+
+func PrintLiteral(pre string, typ string ,  literal *Literal ){
+  switch literal.ltype {
+  case 1:
+    fmt.Println(pre , typ + "array:" )
+    for i := range literal.array {
+      lit :=  literal.array[i]
+      PrintLiteral( "  " + pre , typ + " LI" , lit)
+    }
+  case 2:
+    fmt.Println(pre , typ , "symbol:" , literal.symbol  )
+  case 3:
+    fmt.Println(pre , typ , "string:" , literal.symbol  )
+  case 4:
+    fmt.Println(pre , typ ,"int:" , literal.number  )
+  case 5:
+  fmt.Println(pre , typ ,"float:" , literal.decimal  )
+  }
 }
 
 func MakeLiteralArray(ctx *parser.LiteralArrayContext) ([]*Literal){

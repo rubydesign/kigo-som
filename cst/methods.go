@@ -22,23 +22,24 @@ type Method struct{
   method_block *MethodBlock
 }
 
-func PrintMethodBlock( pre string , method_block *MethodBlock)  {
+func PrintMethodBlock( pre string , typ string, method_block *MethodBlock)  {
   if method_block.primitive {
-    fmt.Println("  " + pre , "primitive")
+    fmt.Println( pre + "  ", typ , "primitive")
   } else{
-    PrintBlockContents("  " + pre , method_block.block_contents)
+    PrintBlockContents(  pre + "  " , "BC" , method_block.block_contents)
   }
 }
 
-func PrintMethod( pre string , method *Method)  {
-  fmt.Println(pre , "Method:" , strings.Join(method.pattern , " "))
-  PrintMethodBlock(pre , method.method_block)
+func PrintMethod( pre string , typ string , method *Method)  {
+  fmt.Println(pre , typ, "Method:(" , strings.Join(method.pattern , " ") , ")")
+  PrintMethodBlock(pre , "MB", method.method_block)
 }
 
-func PrintMethods(pre  string , methods []*Method){
+func PrintMethods(pre  string ,typ string, methods []*Method){
+  fmt.Println(pre , typ , len(methods))
   for i := range methods {
     method := methods[i]
-    PrintMethod(pre , method)
+    PrintMethod(pre , "ME" , method)
   }
 }
 

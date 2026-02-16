@@ -33,12 +33,11 @@ type Classdef struct{
 }
 
 func PrintClassdef(classdef *Classdef) (){
-  pre := " -"
+  pre := "  "
   fmt.Println("Class::" , classdef.name , " < " , classdef.super)
-  fmt.Println(pre , "@  " , strings.Join(classdef.instance_variables , " "))
+  fmt.Println(pre , "-", "@  " , strings.Join(classdef.instance_variables , " "))
   fmt.Println(pre , "@@ " , strings.Join(classdef.class_variables , " "))
-  fmt.Println(pre , "Methods " , len(classdef.instance_methods))
-  PrintMethods(" |" + pre , classdef.instance_methods)
+  PrintMethods( pre  , "ME" , classdef.instance_methods)
 }
 
 func MakeInstances( ctx *parser.InstanceFieldsContext ) ([]string) {
