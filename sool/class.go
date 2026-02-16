@@ -28,11 +28,15 @@ func PrintClass(class *Class)  {
   fmt.Println("Class:" , class.Name , " < " , class.Super)
   fmt.Println( "-", "@  " , strings.Join(class.InstanceVariables , " "))
   // fmt.Println(pre , "@@ " , strings.Join(classdef.class_variables , " "))
-
+  fmt.Println("  " , "Methods:" , len(class.InstanceMethods))
+  for value := range class.InstanceMethods {
+    PrintMethod(class.InstanceMethods[value])
+  }
 }
 
 func MakeClass(classdef *cst.Classdef) (*Class){
-  class := &Class{ classdef.Name , classdef.Super , nil , nil}
+  methods := MakeMethods(classdef)
+  class := &Class{ classdef.Name , classdef.Super , classdef.InstanceVariables , methods}
   return class
 }
 

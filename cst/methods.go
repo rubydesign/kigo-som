@@ -13,18 +13,18 @@ import (
 //     NewTerm blockContents? EndTerm;
 
 type MethodBlock struct {
-  primitive bool  // OR MethodBlock, which is basically BlockContents
+  Primitive bool  // OR MethodBlock, which is basically BlockContents
   block_contents *BlockContents
 }
 
 type Method struct{
-  pattern []string
-  method_block *MethodBlock
+  Pattern []string
+  MethodBlock *MethodBlock
 }
 
 func PrintMethodBlock( pre string , method_block *MethodBlock)  {
   fmt.Println(pre ,  "MethodBlock:" )
-  if method_block.primitive {
+  if method_block.Primitive {
     fmt.Println( "|  " + pre,  "primitive")
   } else{
     PrintBlockContents(  "|  " + pre ,  method_block.block_contents)
@@ -32,8 +32,8 @@ func PrintMethodBlock( pre string , method_block *MethodBlock)  {
 }
 
 func PrintMethod( pre string , method *Method)  {
-  fmt.Println(pre , "Method:(" , strings.Join(method.pattern , " ") , ")")
-  PrintMethodBlock(pre , method.method_block)
+  fmt.Println(pre , "Method:(" , strings.Join(method.Pattern , " ") , ")")
+  PrintMethodBlock(pre , method.MethodBlock)
 }
 
 func PrintMethods(pre  string , methods []*Method){
