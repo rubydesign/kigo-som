@@ -45,14 +45,14 @@ type NestedBlock struct {
 // main with optional code
 // ie a (possibly empty) list of expression followed by a return
 type BlockBody struct {
-  result *Expression
-  main *Expression
-  code *BlockBody
+  Result *Expression
+  Main *Expression
+  Code *BlockBody
 }
 
 type BlockContents struct {
   Locals []string
-  block_body *BlockBody
+  BlockBody *BlockBody
 }
 
 func PrintNestedBlock(pre string ,  block *NestedBlock ){
@@ -64,12 +64,12 @@ func PrintNestedBlock(pre string ,  block *NestedBlock ){
 
 func PrintBlockBody( pre string , block_body *BlockBody)  {
   fmt.Println(pre , "BlockBody:" )
-  if block_body.result != nil {
+  if block_body.Result != nil {
     fmt.Println("|  " + pre , "return:" )
-    PrintExpression("|  " + pre , block_body.result)
+    PrintExpression("|  " + pre , block_body.Result)
   } else {
-    PrintExpression("|  " + pre,block_body.main)
-    if block_body.code != nil { PrintBlockBody("|  " + pre , block_body.code) }
+    PrintExpression("|  " + pre,block_body.Main)
+    if block_body.Code != nil { PrintBlockBody("|  " + pre , block_body.Code) }
   }
 }
 
@@ -77,7 +77,7 @@ func PrintBlockContents( pre string , block_contents *BlockContents)  {
   if len( block_contents.Locals ) > 0 {
     fmt.Println(pre , "BlockContents" , "locals:" , strings.Join(block_contents.Locals , " ") )
   }
-  PrintBlockBody( pre ,  block_contents.block_body)
+  PrintBlockBody( pre ,  block_contents.BlockBody)
 }
 
 func MakeBlockPattern(pattern_ctx *parser.BlockPatternContext) ([]string) {
