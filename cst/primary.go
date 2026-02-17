@@ -14,22 +14,22 @@ import (
 // collaping nestedTerm into Expression
 
 type Primary struct {
-  variable    string
-  nestedTerm  *Expression
-  nestedBlock *NestedBlock
-  literal     *Literal
+  Variable    string
+  NestedTerm  *Expression
+  NestedBlock *NestedBlock
+  Literal     *Literal
 }
 
 func PrintPrimary(pre string, primary *Primary){
   fmt.Println(pre ,  "Primary:" )
-  if primary.nestedTerm  != nil {
-    PrintExpression("|  " + pre, primary.nestedTerm)
-  } else if primary.nestedBlock != nil {
-    PrintNestedBlock("|  " + pre, primary.nestedBlock )
-  } else if primary.literal != nil {
-    PrintLiteral("|  " + pre , primary.literal )
+  if primary.NestedTerm  != nil {
+    PrintExpression("|  " + pre, primary.NestedTerm)
+  } else if primary.NestedBlock != nil {
+    PrintNestedBlock("|  " + pre, primary.NestedBlock )
+  } else if primary.Literal != nil {
+    PrintLiteral("|  " + pre , primary.Literal )
   } else {
-    fmt.Println("|  " + pre , "LiteralVariable" , primary.variable )
+    fmt.Println("|  " + pre , "LiteralVariable" , primary.Variable )
   }
 }
 

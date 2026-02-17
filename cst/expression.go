@@ -25,22 +25,22 @@ import (
 
 
 type Assignation struct {
-  assignments []string
+  assignments []string  // AND
   evaluation *Evaluation
 }
 type Evaluation struct {
-  primary  *Primary
-  messages []*Message
+  Primary  *Primary  // AND
+  Messages []*Message // possibly empty
 }
 type Expression struct {
-  assignation *Assignation  // OR
-  evaluation  *Evaluation
+  Assignation *Assignation  // OR
+  Evaluation  *Evaluation
 }
 
 func PrintEvaluation(pre string , evaluation *Evaluation) {
   fmt.Println(pre ,  "Evaluation:" )
-  PrintPrimary( "|  " + pre, evaluation.primary)
-  PrintMessages( "|  " + pre, evaluation.messages)
+  PrintPrimary( "|  " + pre, evaluation.Primary)
+  PrintMessages( "|  " + pre, evaluation.Messages)
 }
 
 func PrintAssignation(pre string , assignation *Assignation) {
@@ -50,10 +50,10 @@ func PrintAssignation(pre string , assignation *Assignation) {
 
 func PrintExpression(pre string ,expression *Expression) {
   fmt.Println(pre ,  "Expression:" )
-  if expression.assignation != nil {
-    PrintAssignation( "|  " + pre ,expression.assignation)
+  if expression.Assignation != nil {
+    PrintAssignation( "|  " + pre ,expression.Assignation)
   } else {
-    PrintEvaluation( "|  " + pre , expression.evaluation)
+    PrintEvaluation( "|  " + pre , expression.Evaluation)
   }
 }
 

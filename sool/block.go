@@ -20,9 +20,9 @@ func PrintBlock(block *Block){
 
 func MakeFromBlockBody(body *cst.BlockBody) []Statement {
   if body.Result != nil {
-    return MakeStatement( body.Result )
+    return MakeReturnStatement( body.Result )
   } else {
-    statements := MakeStatement( body.Main )
+    statements := MakeStatementFromExpression( body.Main )
     if body.Code != nil {
       more := MakeFromBlockBody( body.Code )
       statements = append(statements , more...)
