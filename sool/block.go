@@ -18,13 +18,13 @@ func PrintBlock(block *Block){
   }
 }
 
-func MakeFromBlockBody(body *cst.BlockBody) []Statement {
+func MakeStatementsFromBlockBody(body *cst.BlockBody) []Statement {
   if body.Result != nil {
     return MakeReturnStatement( body.Result )
   } else {
     statements := MakeStatementFromExpression( body.Main )
     if body.Code != nil {
-      more := MakeFromBlockBody( body.Code )
+      more := MakeStatementsFromBlockBody( body.Code )
       statements = append(statements , more...)
     }
     return statements
@@ -33,6 +33,6 @@ func MakeFromBlockBody(body *cst.BlockBody) []Statement {
 
 func MakeBlock(block *cst.MethodBlock) (*Block){
   locals := block.BlockContents.Locals
-  statements := MakeFromBlockBody(block.BlockContents.BlockBody)
+  statements := MakeStatementsFromBlockBody(block.BlockContents.BlockBody)
   return &Block{ locals , statements}
 }

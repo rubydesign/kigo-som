@@ -27,6 +27,18 @@ There are just a few kinds of statement:
 *send* calls on an explicit variable, all arguments are variables
 *return* returns an explicit variable, returns are explicit
 
+## SSA
+
+The above makes this a sort of SSA, Single Assignment, which means we can
+annotate inferred type info to the variables.
+
+As a side note the locals (method and block) are very very similar to instance
+variables and thus all will end up with similar forms. Also the arguments
+actually.
+
+These should all get typed representation, ie be objects that have type.
+And by objects i mean som/sool objects.
+
 ## Blocks
 
 I am still learning go, so this is a bit open. Atm i am thinking that a block
