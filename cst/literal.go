@@ -37,28 +37,28 @@ import (
 //     string;
 
 type Literal struct {
-  ltype     int    // 1 array , 2 sym , 3 string, 4 int , 5 double
-  array []*Literal
-  symbol   string // also string
-  number   int
-  decimal  float64
+  Ltype     int    // 1 array , 2 sym , 3 string, 4 int , 5 double
+  Array []*Literal
+  Symbol   string // also string
+  Number   int
+  Decimal  float64
 }
 
 func PrintLiteral(pre string, literal *Literal ){
-  switch literal.ltype {
+  switch literal.Ltype {
   case 1:
     fmt.Println(pre , "LiteralArray:" )
-    for _,lit := range literal.array {
+    for _,lit := range literal.Array {
       PrintLiteral( "|  " + pre , lit)
     }
   case 2:
-    fmt.Println(pre , "LiteralSymbol:" , literal.symbol  )
+    fmt.Println(pre , "LiteralSymbol:" , literal.Symbol  )
   case 3:
-    fmt.Println(pre , "LiteralString:" , literal.symbol  )
+    fmt.Println(pre , "LiteralString:" , literal.Symbol  )
   case 4:
-    fmt.Println(pre ,"LiteralInt:" , literal.number  )
+    fmt.Println(pre ,"LiteralInt:" , literal.Number  )
   case 5:
-    fmt.Println(pre , "LiteralFloat:" , literal.decimal  )
+    fmt.Println(pre , "LiteralFloat:" , literal.Decimal  )
   }
 }
 

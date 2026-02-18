@@ -14,6 +14,11 @@ type Statement interface{
 type ReturnStatement struct {
   value string
 }
+
+func (ret ReturnStatement) using() string {
+  return ret.value
+}
+
 func MakeReturnStatement( exp *cst.Expression ) ([]Statement){
   statements , variable := ReduceExpressionToVariable(exp)
   return append(statements , ReturnStatement{ variable } )
@@ -24,6 +29,7 @@ func MakeReturnStatement( exp *cst.Expression ) ([]Statement){
 func MakeAssignmentForNestedBlock( nestedTerm *cst.NestedBlock)([]Statement , string){
   return nil , ""
 }
+
 func ReduceExpressionToVariable(exp *cst.Expression ) ([]Statement , string) {
   statements := make([]Statement , 0 , 3)
   if eval := exp.Evaluation ; eval != nil  {
@@ -35,17 +41,14 @@ func ReduceExpressionToVariable(exp *cst.Expression ) ([]Statement , string) {
     if primary.NestedTerm != nil {
       return ReduceExpressionToVariable( primary.NestedTerm )
     } else if primary.NestedBlock != nil {
-      cst.PrintExpression("return" , exp)
       return MakeAssignmentForNestedBlock( primary.NestedBlock )
+    } else if primary.Literal != nil {
+      return MakeAssignmentForLiteral( primary.Literal )
     }
   } else {
     panic( "deal with assignation")
   }
   return nil , ""
-}
-
-func (ret ReturnStatement) using() string {
-  return ret.value
 }
 
 func MakeStatementFromExpression(expression *cst.Expression) []Statement {
